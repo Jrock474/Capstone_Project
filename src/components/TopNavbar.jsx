@@ -14,6 +14,8 @@ const MyNavbar = () => {
           <Nav.Link as={Link} to="/Login">Login</Nav.Link>
           <Nav.Link as={Link} to="/News">News</Nav.Link>
           <Nav.Link as={Link} to="/AboutUs">AboutUs</Nav.Link>
+          <Nav.Link as={Link} to="/Registration">Registration</Nav.Link>
+          <Nav.Link as={Link} to="/Login">Login</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
