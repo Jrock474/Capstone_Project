@@ -1,16 +1,16 @@
 import pg from 'pg';
+import express from 'express';
 import winston from 'winston';
 import bodyParser from 'body-parser';
 import bcrypt from 'bcrypt';
 const app = express()
 const port = 3000
 
-import express from 'express';
-const pg = require('pg-promise')();
+// const pg = require('pg-promise')();
 
-const db = pg("postgres://dretaylor@localhost:5432/postgres");
+// const db = pg("postgres://dretaylor@localhost:5432/postgres");
 
-app.get('/', async(req, res) => {
+app.get('/', (req, res) => {
     res.send("ayo")
 })
 
