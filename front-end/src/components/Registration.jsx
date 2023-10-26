@@ -1,14 +1,16 @@
 import React from 'react'
 import { useState } from 'react'
 const Registration = () => {
-const [formData, setformData] = 
-useState({
-  username:"",
-  password:"",
-  reEnterPassword:"",
-  securityQuestion:"",
-  securityAnswer:"",
-  email:""
+
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [formData, setformData] = 
+    useState({
+      username:"",
+      password:"",
+      reEnterPassword:"",
+      securityQuestion:"",
+      securityAnswer:"",
+      email:""
 })
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -24,6 +26,7 @@ const handleChange = (e) => {
   return (
     <div>
       Registration
+      <div>{errorMessage}</div>
       <form action="/Registration" method="post" onSubmit={handleSubmit}>
       <input type="text" name='username' placeholder='Username' required onChange={handleChange}/>
       <input type="password" name='password' placeholder='Password' required onChange={handleChange}/>
