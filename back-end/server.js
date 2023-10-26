@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
     res.send("ayo")
 })
 app.post('/Registration', async (req, res) => {
-    const { username, email, password, reEnterPassword, securityQuestion, securityAnswer } = req.body;
+    const { username, email, password, securityQuestion, securityAnswer } = req.body;
     res.send("registered")
      // Generate a salt and hash the password
      const saltRounds = 10; // You can adjust the number of salt rounds for more security
