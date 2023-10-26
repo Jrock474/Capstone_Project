@@ -24,7 +24,7 @@ const handleChange = (e) => {
   return (
     <div>
       Registration
-      <form onSubmit={handleSubmit}>
+      <form action="/Registration" method="post" onSubmit={handleSubmit}>
       <input type="text" name='username' placeholder='Username' required onChange={handleChange}/>
       <input type="password" name='password' placeholder='Password' required onChange={handleChange}/>
       <input type="password" name='reEnterPassword' placeholder='Confirm Password' required onChange={handleChange}/>
