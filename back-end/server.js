@@ -9,10 +9,12 @@ const db =pg("postgres://oibmtylz:pr7Db6Isdh55dkfrm-md5ItPFhA1IPQi@suleiman.db.e
 
 // url - postgres://oibmtylz:pr7Db6Isdh55dkfrm-md5ItPFhA1IPQi@suleiman.db.elephantsql.com/oibmtylz
 
+
 app.get('/', (req, res) => {
     res.send("ayo")
 })
 app.post('/Registration', async (req, res) => {
+
     const { username, email, password, securityQuestion, securityAnswer } = req.body;
     res.send("registered")
      // Generate a salt and hash the password
@@ -27,6 +29,22 @@ app.post('/Registration', async (req, res) => {
     password: hashedPassword, 
     reEnterPassword: hashedPassword// Store the hashed password in the database
   });
+
+})
+
+app.get('/Login', (req, res) => {
+    res.render('Login', { errorMessage: '' })
+})
+
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    const userEnteredPassword = password;
+  
+    const returningUser = await Users.findOne({
+      where: {
+        email: email,
+      },
+    });
 })
 
 app.listen(port, ()=>{
