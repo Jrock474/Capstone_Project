@@ -12,6 +12,21 @@ app.get('/', (req, res) => {
     res.send("ayo")
 })
 
+app.get('/Login', (req, res) => {
+    res.render('Login', { errorMessage: '' })
+})
+
+app.post('/login', async (req, res) => {
+    const { Email, Password } = req.body;
+    const userEnteredPassword = Password;
+  
+    const returningUser = await Users.findOne({
+      where: {
+        Email: Email,
+      },
+    });
+})
+
 app.listen(port, ()=>{
     console.log('Server is running on port 3000');
 })
