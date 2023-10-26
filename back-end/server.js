@@ -11,6 +11,10 @@ const port = 3000
 app.get('/', (req, res) => {
     res.send("ayo")
 })
+app.post('/Registration', async (req, res) => {
+    const { username, email, password,reEnterPassword, securityQuestion, securityAnswer } = req.body;
+    res.send("ayo")
+})
 
 app.listen(port, ()=>{
     console.log('Server is running on port 3000');
