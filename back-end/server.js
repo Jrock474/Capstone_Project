@@ -11,7 +11,7 @@ const db =pg("postgres://oibmtylz:pr7Db6Isdh55dkfrm-md5ItPFhA1IPQi@suleiman.db.e
 
 
 app.get('/', (req, res) => {
-    res.send("ayo")
+    res.send("postgres://oibmtylz:pr7Db6Isdh55dkfrm-md5ItPFhA1IPQi@suleiman.db.elephantsql.com/oibmtylz")
 })
 app.post('/Registration', async (req, res) => {
 
