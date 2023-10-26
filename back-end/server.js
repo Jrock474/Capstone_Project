@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     res.send("ayo")
 })
 app.post('/Registration', async (req, res) => {
-    const { username, email, password,reEnterPassword, securityQuestion, securityAnswer } = req.body;
+    const { Username, Password, ConfirmPassword, SecQuestion, SecAnswer, Email } = req.body;
     res.send("ayo")
 })
 
