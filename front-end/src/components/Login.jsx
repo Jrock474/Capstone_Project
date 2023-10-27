@@ -35,6 +35,7 @@ const Login = () => {
         <input onChange={handleChange} type="password" placeholder='Password' name = "password" required/>
         <input type="submit" />
       </form>
+
     </div>
   )
 }
