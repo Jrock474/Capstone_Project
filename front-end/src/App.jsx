@@ -9,6 +9,7 @@ import News from './components/News'
 import AboutUs from './components/AboutUs'
 import Home from './components/Home';
 import Registration from './components/Registration';
+import PlayGame from './components/PlayGame'
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
       <MyNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          
           <Route path="/Home" element={<Home />} />
           
           <Route path="/Login" element={<Login />} />
@@ -30,6 +32,8 @@ function App() {
           <Route path="/Registration" element={<Registration />} />
 
           <Route path="/Login" element={<Login />} />
+
+          <Route path="/PlayGame" element={<PlayGame />} />
         
         </Routes>
      
