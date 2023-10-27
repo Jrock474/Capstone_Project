@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
-    username: '',
     password: '',
     reEnterPassword: '',
     secquestion: '',
     secanswer: '',
     email: '',
   });
+
+  const [username, setUserName] = useState("")
 
   const [errorFound, setErrorFound] = useState('');
 
@@ -24,7 +25,16 @@ const Registration = () => {
     }
 
     // Proceed with form submission
-    console.log(formData);
+    console.log(formData.username);
+
+    // On submit of the form, send a POST request with the data to the server.
+    await fetch('http://localhost:3000/Registration', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    })
   };
 
   const handleChange = (e) => {
@@ -78,7 +88,8 @@ const Registration = () => {
           required
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <input type="submit" value="Sign Up"/><br></br>
+        
       </form>
     </div>
   );
