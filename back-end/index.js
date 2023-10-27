@@ -28,6 +28,17 @@ app.get('/', async(req, res) => {
 // Account registration endpoint
 app.post('/Registration', async (req, res) => {
     const { username, email, password, secquestion, secanswer } = req.body;
+
+    const exitingUser = await Users.findOne({
+      where: {
+        email: email,
+      },
+    });
+
+    if (exitingUser){
+      return res.send('Email is already in use')
+    }
+
     
     //  Generate a salt and hash the password
     //  const saltRounds = 10; // You can adjust the number of salt rounds for more security
