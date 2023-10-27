@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const News = () => {
   const [newsData, setNewsData] = useState([]);
   const apiKey = "1f03aff0ade84d56aff9e17c77b3f878";
-
+//news api used: https://newsapi.org/
   const fetchNews = async () => {
     const response = await fetch(`https://newsapi.org/v2/everything?q=gaming&apiKey=${apiKey}`);
     const data = await response.json();
