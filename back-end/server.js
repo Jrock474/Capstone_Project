@@ -3,33 +3,40 @@ const bcrypt = require("bcrypt")
 const pg = require("pg-promise")()
 const app = express()
 const port = 3000
+const {Users} = require("./models")
+app.use(express.json())
+const bodyParser = require('body-parser')
+const { async } = require("regenerator-runtime")
+app.use(bodyParser.json())
 
-const db =pg("postgres://oibmtylz:pr7Db6Isdh55dkfrm-md5ItPFhA1IPQi@suleiman.db.elephantsql.com/oibmtylz")
+const db =pg("postgres://ygpmqypv:M9q0Mw7rINQO4vSafxwkrUr3RhSs7psc@suleiman.db.elephantsql.com/ygpmqypv ")
 // const pg = require('pg-promise')();
 
 // url - postgres://oibmtylz:pr7Db6Isdh55dkfrm-md5ItPFhA1IPQi@suleiman.db.elephantsql.com/oibmtylz
 
 
-app.get('/', (req, res) => {
-    res.send(db)
+app.get('/', async(req, res) => {
+    const allUsers = await Users.findAll()
+    res.send(allUsers)
 })
 
 app.post('/Registration', async (req, res) => {
 
-    const { username, email, password, securityQuestion, securityAnswer } = req.body;
-    res.send("registered")
+    const { username, email, password, secquestion, secanswer } = req.body;
+    
      // Generate a salt and hash the password
      const saltRounds = 10; // You can adjust the number of salt rounds for more security
      const hashedPassword = await bcrypt.hash(password, saltRounds);
   // Create a new user with the hashed password
-  const newUser = await users.create({
-    username,
-    email,
-    securityQuestion,
-    securityAnswer,
-    password: hashedPassword, 
-    reEnterPassword: hashedPassword// Store the hashed password in the database
+  const newUser = await Users.create({
+    username : username,
+    email : email,
+    secquestion : secquestion,
+    secanswer : secanswer,
+    password: hashedPassword, // Store the hashed password in the database
   });
+
+  res.send(newUser)
 
 })
 
