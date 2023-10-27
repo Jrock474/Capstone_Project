@@ -9,8 +9,6 @@ const Registration = () => {
     email: '',
   });
 
-  const [username, setUserName] = useState("")
-
   const [errorFound, setErrorFound] = useState('');
 
   const handleSubmit = async (e) => {
@@ -44,6 +42,7 @@ formData.password= hashedPasswod
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  
   return (
     <div>
       <div>{errorFound && <div className="error">{errorFound}</div>}</div>
