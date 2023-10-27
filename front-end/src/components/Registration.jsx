@@ -49,6 +49,7 @@ const Registration = () => {
         <input
           type="text"
           name="username"
+          maxLength={15}
           placeholder="Username"
           required
           onChange={handleChange}
@@ -56,6 +57,8 @@ const Registration = () => {
         <input
           type="password"
           name="password"
+          minLength={3}
+          maxLength={15}
           placeholder="Password"
           required
           onChange={handleChange}
@@ -63,6 +66,8 @@ const Registration = () => {
         <input
           type="password"
           name="reEnterPassword"
+          minLength={3}
+          maxLength={15}
           placeholder="Confirm Password"
           required
           onChange={handleChange}
@@ -70,6 +75,7 @@ const Registration = () => {
         <input
           type="text"
           name="secquestion"
+          maxLength={40}
           placeholder="Security Question"
           required
           onChange={handleChange}
@@ -77,6 +83,7 @@ const Registration = () => {
         <input
           type="text"
           name="secanswer"
+          maxLength={40}
           placeholder="Security Answer"
           required
           onChange={handleChange}
@@ -84,6 +91,7 @@ const Registration = () => {
         <input
           type="email"
           name="email"
+          maxLength={200}
           placeholder="Email"
           required
           onChange={handleChange}
