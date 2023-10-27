@@ -11,11 +11,11 @@ const MyNavbar = () => {
         <Navbar.Brand as={Link} to="/Home">Capstone Project</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link as={Link} to="/Home">Home</Nav.Link>
-          <Nav.Link as={Link} to="/Login">Login</Nav.Link>
           <Nav.Link as={Link} to="/News">News</Nav.Link>
           <Nav.Link as={Link} to="/AboutUs">AboutUs</Nav.Link>
           <Nav.Link as={Link} to="/Registration">Registration</Nav.Link>
           <Nav.Link as={Link} to="/Login">Login</Nav.Link>
+          <Nav.Link as={Link} to="/PlayGame">Play Game</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

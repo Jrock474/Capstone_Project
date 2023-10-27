@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+
 const Registration = () => {
 const [formData, setformData] = 
 useState({
@@ -22,9 +23,9 @@ const handleChange = (e) => {
 
 
   return (
-    <div>
-      Registration
-      <form action="/Registration" method="post" onSubmit={handleSubmit}>
+    <div id='register-container'>
+     <h1>Registration</h1>
+      <form action="/Registration" method="post" onSubmit={handleSubmit} id='form-id'>
       <input type="text" name='username' placeholder='Username' required onChange={handleChange}/>
       <input type="password" name='password' placeholder='Password' required onChange={handleChange}/>
       <input type="password" name='reEnterPassword' placeholder='Confirm Password' required onChange={handleChange}/>
