@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import bcrypt from 'bcryptjs'
 const Registration = () => {
   const [formData, setFormData] = useState({
     password: '',
@@ -23,7 +23,10 @@ const Registration = () => {
     } else {
       setErrorFound(''); // Reset error message
     }
-
+    //bcrypt
+const saltRounds = 10;
+const hashedPasswod = bcrypt.hashSync(formData.password, saltRounds)
+formData.password= hashedPasswod
     // Proceed with form submission
     console.log(formData.username);
 
@@ -49,6 +52,7 @@ const Registration = () => {
         <input
           type="text"
           name="username"
+          maxLength={15}
           placeholder="Username"
           required
           onChange={handleChange}
@@ -56,6 +60,8 @@ const Registration = () => {
         <input
           type="password"
           name="password"
+          minLength={3}
+          maxLength={15}
           placeholder="Password"
           required
           onChange={handleChange}
@@ -63,6 +69,8 @@ const Registration = () => {
         <input
           type="password"
           name="reEnterPassword"
+          minLength={3}
+          maxLength={15}
           placeholder="Confirm Password"
           required
           onChange={handleChange}
@@ -70,6 +78,7 @@ const Registration = () => {
         <input
           type="text"
           name="secquestion"
+          maxLength={40}
           placeholder="Security Question"
           required
           onChange={handleChange}
@@ -77,6 +86,7 @@ const Registration = () => {
         <input
           type="text"
           name="secanswer"
+          maxLength={40}
           placeholder="Security Answer"
           required
           onChange={handleChange}
@@ -84,6 +94,7 @@ const Registration = () => {
         <input
           type="email"
           name="email"
+          maxLength={200}
           placeholder="Email"
           required
           onChange={handleChange}
