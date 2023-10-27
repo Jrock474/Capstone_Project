@@ -9,31 +9,28 @@ const bodyParser = require('body-parser')
 const { async } = require("regenerator-runtime")
 app.use(bodyParser.json())
 
-const db =pg("postgres://ygpmqypv:M9q0Mw7rINQO4vSafxwkrUr3RhSs7psc@suleiman.db.elephantsql.com/ygpmqypv ")
-// const pg = require('pg-promise')();
 
-// url - postgres://oibmtylz:pr7Db6Isdh55dkfrm-md5ItPFhA1IPQi@suleiman.db.elephantsql.com/oibmtylz
-
-
+// Shows all users in the database
 app.get('/', async(req, res) => {
     const allUsers = await Users.findAll()
     res.send(allUsers)
 })
 
+// Account registration endpoint
 app.post('/Registration', async (req, res) => {
-
     const { username, email, password, secquestion, secanswer } = req.body;
     
      // Generate a salt and hash the password
      const saltRounds = 10; // You can adjust the number of salt rounds for more security
      const hashedPassword = await bcrypt.hash(password, saltRounds);
-  // Create a new user with the hashed password
-  const newUser = await Users.create({
-    username : username,
-    email : email,
-    secquestion : secquestion,
-    secanswer : secanswer,
-    password: hashedPassword, // Store the hashed password in the database
+
+    // Create a new user with the hashed password
+    const newUser = await Users.create({
+        username : username,
+        email : email,
+        secquestion : secquestion,
+        secanswer : secanswer,
+        password: hashedPassword, // Store the hashed password in the database
   });
 
   res.send(newUser)
