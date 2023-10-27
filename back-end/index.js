@@ -25,6 +25,16 @@ app.get('/', async(req, res) => {
     res.send(allUsers)
 })
 
+app.get(`/Login:email`, async(req, res) => {
+  const email = req.params.email
+  const exitingUser = await email.findOne({
+    where: {
+      email: email
+    }
+  });
+  res.send(exitingUser)
+})
+
 // Account registration endpoint
 app.post('/Registration', async (req, res) => {
     const { username, email, password, secquestion, secanswer } = req.body;
@@ -74,9 +84,10 @@ app.post('/Login', async (req, res) => {
     }
 
     if(returningUser.password == userEnteredPassword){
-     return res.send(`welcome back ${returningUser.username}`)
+      console.log(returningUser.username)
+     return res.send(returningUser.username)
     } else {
-      res.send(`invalid login`)
+      res.send({errorMessage: "invalid login"})
     }
 })
 
