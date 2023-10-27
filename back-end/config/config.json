@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "ygpmqypv",
-    "password": "M9q0Mw7rINQO4vSafxwkrUr3RhSs7psc",
-    "database": "ygpmqypv",
-    "host": "suleiman.db.elephantsql.com",
+    "username": "jzdsbatx",
+    "password": "b481sJPqbgJfnSdPqfNjlmGEEIEim7zw",
+    "database": "jzdsbatx",
+    "host": "batyr.db.elephantsql.com",
     "dialect": "postgres"
   },
   "test": {

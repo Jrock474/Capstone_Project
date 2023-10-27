@@ -47,11 +47,8 @@ app.post('/Registration', async (req, res) => {
 
 })
 
-app.get('/Login', (req, res) => {
-    res.render('Login', { errorMessage: '' })
-})
 
-app.post('/login', async (req, res) => {
+app.post('/Login', async (req, res) => {
     const { email, password } = req.body;
     const userEnteredPassword = password;
   
@@ -60,6 +57,16 @@ app.post('/login', async (req, res) => {
         email: email,
       },
     });
+
+    if (!returningUser){
+      return res.send('User not found')
+    }
+
+    if(returningUser.password == userEnteredPassword){
+     return res.send(`welcome back ${returningUser.username}`)
+    } else {
+      res.send(`invalid login`)
+    }
 })
 
 app.listen(port, ()=>{
