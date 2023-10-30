@@ -27,15 +27,20 @@ app.get('/', async(req, res) => {
     res.send(allUsers)
 })
 
-app.get(`/Login:email`, async(req, res) => {
-  const email = req.params.email
-  const exitingUser = await email.findOne({
+app.get('/checkEmail', async (req, res) => {
+  const { email } = req.query; // Get the email from the query parameters
+  // Use your Sequelize model to check if the email exists in your database
+  const existingUser = await Users.findOne({
     where: {
-      email: email
-    }
+      email: email,
+    },
   });
-  res.send(exitingUser)
-})
+  if (existingUser) {
+    res.status(200).send('Email found');
+  } else {
+    res.status(404).send('Email not found in database');
+  }
+});
 
 // Account registration endpoint
 app.post('/Registration', async (req, res) => {
