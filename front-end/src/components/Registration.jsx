@@ -44,10 +44,10 @@ formData.password= hashedPasswod
   };
   
   return (
-    <div>
+    <div className='regMain'>
       <div>{errorFound && <div className="error">{errorFound}</div>}</div>
       Registration
-      <form action="/Registration" method="post" onSubmit={handleSubmit}>
+      <form className= "regForm" action="/Registration" method="post" onSubmit={handleSubmit}>
         <input
           type="text"
           name="username"

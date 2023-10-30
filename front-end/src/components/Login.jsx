@@ -28,9 +28,9 @@ const Login = () => {
   };
   
   return (
-    <div>
+    <div className='logMain'>
       Login
-      <form action="/Login" method="post" onSubmit={handleSubmit}>
+      <form classname= "logForm" action="/Login" method="post" onSubmit={handleSubmit}>
         <input onChange={handleChange} type="email" placeholder='Email' name = "email" required/>
         <input onChange={handleChange} type="password" placeholder='Password' name = "password" required/>
         <input type="submit" />

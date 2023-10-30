@@ -63,6 +63,30 @@ body {
     margin: 0px;
     background-color: black;
 }
+.logMain {
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+height: 100vh;
+}
+
+.regMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+text-align: center;
+height: 100vh;
+}
+
+.newsMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+text-align: center;
+height: 100vh;
+
+}
 
 .Page1Body {
     height: 100vh;
