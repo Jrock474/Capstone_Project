@@ -42,6 +42,21 @@ app.get('/checkEmail', async (req, res) => {
   }
 });
 
+app.get('/checkAnswer', async (req, res) => {
+  const { secanswer } = req.query; // Get the email from the query parameters
+  // Use your Sequelize model to check if the email exists in your database
+  const existingUser = await Users.findOne({
+    where: {
+      secanswer: secanswer,
+    },
+  });
+  if (existingUser) {
+    res.status(200).send(' Correct');
+  } else {
+    res.status(404).send('Wrong Answer');
+  }
+});
+
 // Account registration endpoint
 app.post('/Registration', async (req, res) => {
     const { username, email, password, secquestion, secanswer } = req.body;
