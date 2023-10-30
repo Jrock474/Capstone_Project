@@ -47,14 +47,11 @@ app.post('/Registration', async (req, res) => {
       },
     });
 
-    if (exitingUser){
-      return res.send('Email is already in use')
-    }
 
     
     //  Generate a salt and hash the password
-    //  const saltRounds = 10; // You can adjust the number of salt rounds for more security
-    //  const hashedPassword = await bcrypt.hash(password, saltRounds);
+     const saltRounds = 10; // You can adjust the number of salt rounds for more security
+     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     // Create a new user with the hashed password
     const newUser = await Users.create({
@@ -91,8 +88,12 @@ app.post('/Registration', async (req, res) => {
     res.send('Email sent');
   } catch (error) {
     console.error('Email not sent:', error);
-    res.send('Email not sent');
   }
+
+
+  // if (exitingUser){
+  //   return res.send('Email is already in use')
+  // }
 });
 
 
