@@ -9,7 +9,17 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser')
 const { async } = require("regenerator-runtime")
+const session = require('express-session')
 app.use(express.json())
+app.use(session({
+  secret: 'digitalCrafts',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: false, // Set to true in production if using HTTPS
+    maxAge: 3600000, // Session expiration time in milliseconds (e.g., 1 hour)
+  },
+}));
 app.use(bodyParser.json())
 
 app.use(cors(
@@ -71,8 +81,6 @@ app.post('/Registration', async (req, res) => {
       return res.send('Email is already in use')
     }
 
-
-    
     //  Generate a salt and hash the password
      const saltRounds = 10; // You can adjust the number of salt rounds for more security
      const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -97,7 +105,6 @@ app.post('/Registration', async (req, res) => {
   });
   console.log(username)
   
-  
   const mailOptions = {
     from: 'sbarashang76@gmail.com',
     to: newUser.email, // User's email address
@@ -117,26 +124,39 @@ app.post('/Registration', async (req, res) => {
 
 
 app.post('/Login', async (req, res) => {
-    const { email, password } = req.body;
-    const userEnteredPassword = password;
-  
-    const returningUser = await Users.findOne({
-      where: {
-        email: email,
-      },
-    });
+  const { email, password } = req.body;
+  const userEnteredPassword = password;
 
-    if (!returningUser){
-      return res.send('User not found')
-    }
+  const returningUser = await Users.findOne({
+    where: {
+      email: email,
+    },
+  });
 
-    if(returningUser.password == userEnteredPassword){
-      console.log(returningUser.username)
-     return res.send(returningUser.username)
+  if (!returningUser) {
+    return res.render('login', { errorMessage: 'User not found' });
+  }
+
+  const userName = returningUser.Name;
+  const userID = returningUser.id;
+  const storedHashedPassword = returningUser.password; // this is the password that is stored in the database
+
+  try {
+    const result = await bcrypt.compare(userEnteredPassword, storedHashedPassword);
+
+    if (result) {
+      // Passwords match, redirect to the dashboard
+      res.send("login")
     } else {
-      res.send({errorMessage: "invalid login"})
+      // Passwords do not match, render the login page with an error message
+      res.send('invalid');
     }
-})
+  } catch (error) {
+    console.error(error);
+    // Handle any errors that may occur during password comparison
+    res.status(500).send('Internal server error');
+  }
+});
 
 app.delete('/Delete', async (req, res) => {
   const { email } = req.body;
