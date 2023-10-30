@@ -5,6 +5,8 @@ const Delete = () => {
     email: '',
   });
 
+  const [errorFound, setErrorFound] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
