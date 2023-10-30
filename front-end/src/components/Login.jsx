@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import login from "../images/Login.png";
 
 const Login = () => {
 
@@ -29,7 +30,7 @@ const Login = () => {
   
   return (
     <div className='logMain'>
-      Login
+      <img src={login} className="LoginButton"></img>
       <form classname= "logForm" action="/Login" method="post" onSubmit={handleSubmit}>
         <input onChange={handleChange} type="email" placeholder='Email' name = "email" required/>
         <input onChange={handleChange} type="password" placeholder='Password' name = "password" required/>

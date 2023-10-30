@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs'
+import signUp from "../images/SignUp.png";
+
+
 const Registration = () => {
   const [formData, setFormData] = useState({
     password: '',
@@ -45,8 +48,8 @@ formData.password= hashedPasswod
   
   return (
     <div className='regMain'>
+      <img src={signUp} className="SignInButton"></img>
       <div>{errorFound && <div className="error">{errorFound}</div>}</div>
-      Registration
       <form className= "regForm" action="/Registration" method="post" onSubmit={handleSubmit}>
         <input
           type="text"
