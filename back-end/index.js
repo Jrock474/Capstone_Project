@@ -37,28 +37,35 @@ app.get('/', async(req, res) => {
     res.send(allUsers)
 })
 
-app.get('/playgame:userID', async (req, res) => {
-  try {
-    if (req.session.isAuthenticated) {
-      const foundUser = await Users.findOne({ where: { id: req.params.userID } });
-      if (!foundUser) {
-        return res.status(404).send('User not found'); // Handle the case when the user is not found
-      }
-      let userName = foundUser.dataValues.Name;
-      let userExpenses = foundUser.dataValues.Expenses
-      let userIncome = foundUser.dataValues.Income
-      let userNet = foundUser.dataValues.Net
-      // User is authenticated, proceed to the dashboard
-      res.render('income', { userName, userExpenses, userIncome, userNet });
-    } else {
-      // User is not authenticated, redirect to the login page
-      res.redirect('/login');
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal server error'); // Handle other unexpected errors
+app.get('/checkEmail', async (req, res) => {
+  const { email } = req.query; // Get the email from the query parameters
+  // Use your Sequelize model to check if the email exists in your database
+  const existingUser = await Users.findOne({
+    where: {
+      email: email,
+    },
+  });
+  if (existingUser) {
+    res.status(200).send('Email found');
+  } else {
+    res.status(404).send('Email not found in database');
   }
-})
+});
+
+app.get('/checkAnswer', async (req, res) => {
+  const { secanswer } = req.query; // Get the email from the query parameters
+  // Use your Sequelize model to check if the email exists in your database
+  const existingUser = await Users.findOne({
+    where: {
+      secanswer: secanswer,
+    },
+  });
+  if (existingUser) {
+    res.status(200).send(' Correct');
+  } else {
+    res.status(404).send('Wrong Answer');
+  }
+});
 
 // Account registration endpoint
 app.post('/Registration', async (req, res) => {

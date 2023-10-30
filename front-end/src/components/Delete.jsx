@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const Delete = () => {
   const [formData, setFormData] = useState({
     email: '',
+    secanswer: ''
   });
 
   const [errorFound, setErrorFound] = useState('');
@@ -10,8 +11,23 @@ const Delete = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // On submit of the form, send a DELETE request with the email data to the server.
-    await fetch('http://localhost:3000/delete', {
+    // First, check if the email exists before attempting deletion
+    const checkResponse = await fetch(`http://localhost:3000/checkEmail?email=${formData.email}`);
+
+    if (checkResponse.status !== 200) {
+      setErrorFound('Email not found');
+      return;
+    }
+
+    const checkResponse2 = await fetch(`http://localhost:3000/checkAnswer?secanswer=${formData.secanswer}`);
+
+    if (checkResponse2.status !== 200) {
+      setErrorFound('Wrong Answer');
+      return;
+    }
+
+    // If email exists, proceed with the deletion
+    const deleteResponse = await fetch('http://localhost:3000/delete', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -19,7 +35,13 @@ const Delete = () => {
       body: JSON.stringify(formData),
     });
 
-    console.log('DELETE request sent');
+    if (deleteResponse.status === 200) { //delete on proper server response (done to connect to backend)
+      console.log('User deleted successfully');
+      setErrorFound('User Deleted Successfully');
+    } else {
+      console.error('User deletion failed');
+      setErrorFound('User deletion failed');
+    }
   };
 
   const handleChange = (e) => {
@@ -37,8 +59,16 @@ const Delete = () => {
           name="email"
           required
         />
+        <input
+          onChange={handleChange}
+          type="text"
+          placeholder='Security Answer'
+          name="secanswer"
+          required
+        />
         <input type="submit" value="Delete User" />
       </form>
+      {errorFound && <div className="error-message">{errorFound}</div>}
     </div>
   );
 };
