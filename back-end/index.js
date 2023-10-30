@@ -5,6 +5,7 @@ const app = express()
 const port = 3000
 const cors = require("cors")
 const {Users} = require("./models")
+const crypto = require('crypto');
 const bodyParser = require('body-parser')
 const { async } = require("regenerator-runtime")
 app.use(express.json())

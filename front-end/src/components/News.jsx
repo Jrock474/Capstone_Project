@@ -11,7 +11,7 @@ const News = () => {
   };
 
   return (
-    <div>
+    <div className='newsMain'>
       <button onClick={fetchNews}>Fetch News</button>
       <ul>
         {newsData.slice(0,3).map((article, index) => (
