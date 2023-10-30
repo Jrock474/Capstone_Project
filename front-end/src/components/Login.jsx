@@ -30,7 +30,7 @@ const Login = () => {
   
   return (
     <div className='logMain'>
-      <img src={login} className="LoginButton"></img>
+      <img src={login} className="LoginButtonNoHover"></img>
       <form classname= "logForm" action="/Login" method="post" onSubmit={handleSubmit}>
         <input onChange={handleChange} type="email" placeholder='Email' name = "email" required/>
         <input onChange={handleChange} type="password" placeholder='Password' name = "password" required/>

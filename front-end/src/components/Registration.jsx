@@ -48,7 +48,7 @@ formData.password= hashedPasswod
   
   return (
     <div className='regMain'>
-      <img src={signUp} className="SignInButton"></img>
+      <img src={signUp} className="SignInButtonNoHover"></img>
       <div>{errorFound && <div className="error">{errorFound}</div>}</div>
       <form className= "regForm" action="/Registration" method="post" onSubmit={handleSubmit}>
         <input
