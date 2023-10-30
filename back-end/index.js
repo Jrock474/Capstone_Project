@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 
 app.use(cors(
   {
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "DELETE"],
     credentials: true
   }
 ))
@@ -118,7 +118,7 @@ app.post('/Login', async (req, res) => {
     }
 })
 
-
+app.delete
 
 
 app.listen(port, ()=>{

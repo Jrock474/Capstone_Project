@@ -10,6 +10,7 @@ import AboutUs from './components/AboutUs'
 import Home from './components/Home';
 import Registration from './components/Registration';
 import PlayGame from './components/PlayGame'
+import Delete from './components/Delete';
 
 function App() {
   
@@ -34,6 +35,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
 
           <Route path="/PlayGame" element={<PlayGame />} />
+          <Route path="/Delete" element={<Delete />} />
         
         </Routes>
      
