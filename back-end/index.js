@@ -66,7 +66,28 @@ app.get('/checkAnswer', async (req, res) => {
     res.status(404).send('Wrong Answer');
   }
 });
+app.get('/getQuestion/:email', async (req, res) => {
+  const { email } = req.params; // Get the email from the route parameter
 
+ 
+  const existingUser = await Users.findOne({
+    where: {
+      email: email,
+    },
+  });
+
+  if (!existingUser) {
+    return res.status(404).send('Email not found');
+  }
+
+  const securityQuestion = existingUser.secquestion;
+  
+  if (securityQuestion) {
+    res.status(200).send(securityQuestion);
+  } else {
+    res.status(404).send('Error found in fetching Sec Question');
+  }
+});
 // Account registration endpoint
 app.post('/Registration', async (req, res) => {
     const { username, email, password, secquestion, secanswer } = req.body;

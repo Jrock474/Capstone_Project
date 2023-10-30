@@ -7,6 +7,7 @@ const Delete = () => {
   });
 
   const [errorFound, setErrorFound] = useState('');
+  const [securityQuestion, setSecurityQuestion] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,13 +20,6 @@ const Delete = () => {
       return;
     }
 
-    const checkResponse2 = await fetch(`http://localhost:3000/checkAnswer?secanswer=${formData.secanswer}`);
-
-    if (checkResponse2.status !== 200) {
-      setErrorFound('Wrong Answer');
-      return;
-    }
-
     // If email exists, proceed with the deletion
     const deleteResponse = await fetch('http://localhost:3000/delete', {
       method: 'DELETE',
@@ -35,12 +29,25 @@ const Delete = () => {
       body: JSON.stringify(formData),
     });
 
-    if (deleteResponse.status === 200) { //delete on proper server response (done to connect to backend)
+    if (deleteResponse.status === 200) {
       console.log('User deleted successfully');
       setErrorFound('User Deleted Successfully');
     } else {
       console.error('User deletion failed');
       setErrorFound('User deletion failed');
+    }
+  };
+
+  const handleQuestionSubmit = async (e) => {
+    e.preventDefault();
+
+    const questionResponse = await fetch(`http://localhost:3000/getQuestion/${formData.email}`);
+
+    if (questionResponse.status === 200) {
+      const question = await questionResponse.text();
+      setSecurityQuestion(question);
+    } else {
+      setErrorFound('Email not found');
     }
   };
 
@@ -50,7 +57,21 @@ const Delete = () => {
   };
 
   return (
+    
     <div className='deleteMain'>
+         <div>
+        <form className="QuestionForm" onSubmit={handleQuestionSubmit}>
+          <input
+            onChange={handleChange}
+            type="email"
+            placeholder='Email'
+            name="email"
+            required
+          />
+          <input type="submit" value="Get Security Question" />
+        </form>
+        {securityQuestion && <div className="secquestion">{securityQuestion}</div>}
+      </div>
       <form className="deleteForm" onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
@@ -68,7 +89,8 @@ const Delete = () => {
         />
         <input type="submit" value="Delete User" />
       </form>
-      {errorFound && <div className="error-message">{errorFound}</div>}
+      {errorFound && <div className="errorD">{errorFound}</div>}
+     
     </div>
   );
 };

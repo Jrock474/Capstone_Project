@@ -63,6 +63,13 @@ body {
   margin: 0px;
   background-color: black;
 }
+.errorD {
+color: red;
+
+}
+.secquestion {
+color: red;
+}
 .logMain {
   display: flex;
   justify-content: center;
