@@ -10,8 +10,16 @@ const Delete = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // On submit of the form, send a DELETE request with the email data to the server.
-    await fetch('http://localhost:3000/delete', {
+    // First, check if the email exists before attempting deletion
+    const checkResponse = await fetch(`http://localhost:3000/checkEmail?email=${formData.email}`);
+
+    if (checkResponse.status !== 200) {
+      setErrorFound('Email not found');
+      return;
+    }
+
+    // If email exists, proceed with the deletion
+    const deleteResponse = await fetch('http://localhost:3000/delete', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -19,7 +27,13 @@ const Delete = () => {
       body: JSON.stringify(formData),
     });
 
-    console.log('DELETE request sent');
+    if (deleteResponse.status === 200) { //delete on proper server response (done to connect to backend)
+      console.log('User deleted successfully');
+      setErrorFound('');
+    } else {
+      console.error('User deletion failed');
+      setErrorFound('User deletion failed');
+    }
   };
 
   const handleChange = (e) => {
@@ -39,6 +53,7 @@ const Delete = () => {
         />
         <input type="submit" value="Delete User" />
       </form>
+      {errorFound && <div className="error-message">{errorFound}</div>}
     </div>
   );
 };
