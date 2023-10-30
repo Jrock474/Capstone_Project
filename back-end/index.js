@@ -59,7 +59,7 @@ app.post('/Registration', async (req, res) => {
         email: email,
         secquestion: secquestion,
         secanswer: secanswer,
-        password: password, // Store the hashed password in the database
+        password: hashedPassword, // Store the hashed password in the database
   });
 
   res.send(newUser)
@@ -119,8 +119,26 @@ app.post('/Login', async (req, res) => {
     }
 })
 
-app.delete
+app.delete('/Delete', async (req, res) => {
+  const { email } = req.body;
 
+  const userToDelete = await Users.findOne({
+    where: {
+      email: email,
+    },
+  });
+
+  if (!userToDelete) {
+    return res.send('User not found');
+  }
+
+  try {
+    await userToDelete.destroy(); // Delete the user
+    return res.send('User deleted successfully');
+  } catch (error) {
+    return res.status(500).send('User deletion failed');
+  }
+});
 
 app.listen(port, ()=>{
     console.log('Server is running on port 3000');
