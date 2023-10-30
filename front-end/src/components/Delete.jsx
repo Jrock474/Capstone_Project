@@ -41,7 +41,7 @@ const Delete = () => {
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
 
-    const questionResponse = await fetch(`http://localhost:3000/getQuestion/${formData.email}`);
+    const questionResponse = await fetch(`https://localhost:3000/getQuestion/${formData.email}`);
 
     if (questionResponse.status === 200) {
       const question = await questionResponse.text();
