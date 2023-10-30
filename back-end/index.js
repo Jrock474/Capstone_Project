@@ -47,6 +47,10 @@ app.post('/Registration', async (req, res) => {
       },
     });
 
+    if (exitingUser){
+      return res.send('Email is already in use')
+    }
+
 
     
     //  Generate a salt and hash the password
@@ -59,7 +63,7 @@ app.post('/Registration', async (req, res) => {
         email: email,
         secquestion: secquestion,
         secanswer: secanswer,
-        password: password, // Store the hashed password in the database
+        password: hashedPassword, // Store the hashed password in the database
   });
 
   res.send(newUser)
@@ -89,11 +93,6 @@ app.post('/Registration', async (req, res) => {
   } catch (error) {
     console.error('Email not sent:', error);
   }
-
-
-  // if (exitingUser){
-  //   return res.send('Email is already in use')
-  // }
 });
 
 
