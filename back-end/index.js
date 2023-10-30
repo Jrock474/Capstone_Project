@@ -6,6 +6,7 @@ const port = 3000
 const cors = require("cors")
 const {Users} = require("./models")
 const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser')
 const { async } = require("regenerator-runtime")
 app.use(express.json())
@@ -65,9 +66,34 @@ app.post('/Registration', async (req, res) => {
   });
 
   res.send(newUser)
-  console.log(username)
 
-})
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'sbarashang76@gmail.com', // My Gmail email address
+      pass: 'dcrodlsynxbtyfks', // My application-specific password
+    },
+  });
+  console.log(username)
+  
+  
+  const mailOptions = {
+    from: 'sbarashang76@gmail.com',
+    to: newUser.email, // User's email address
+    subject: 'Password Reset Request',
+    text: `Click the following link to reset your password: http://localhost:5173/Home`,
+  }; // To do: make the above link send you to the updatepassword (put)  page instead of the login page
+  
+  // Send the email
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log('Password reset email sent:', info.response);
+    res.send('Email sent');
+  } catch (error) {
+    console.error('Email not sent:', error);
+    res.send('Email not sent');
+  }
+});
 
 
 app.post('/Login', async (req, res) => {
@@ -92,7 +118,11 @@ app.post('/Login', async (req, res) => {
     }
 })
 
+
+
+
 app.listen(port, ()=>{
     console.log('Server is running on port 3000');
 })
+
 
