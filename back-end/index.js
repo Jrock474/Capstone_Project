@@ -37,6 +37,27 @@ app.get('/', async(req, res) => {
     res.send(allUsers)
 })
 
+app.get('/Login', async(req, res) => {
+    res.redirect(`/playgame/${userID}`)
+})
+
+app.get('/playgame/:userID', async (req, res) => {
+  try {
+    if (req.session.isAuthenticated) {
+      const foundUser = await Users.findOne({ where: { id: req.params.userID } });
+      // User is authenticated, proceed to the dashboard
+      let JSONdata = JSON.stringify(foundUser)
+      res.send(JSONdata);
+    } else {
+      // User is not authenticated, redirect to the login page
+      res.json('Authentication Expired');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error'); // Handle other unexpected errors
+  }
+});
+
 app.get('/checkEmail', async (req, res) => {
   const { email } = req.query; // Get the email from the query parameters
   // Use your Sequelize model to check if the email exists in your database
@@ -167,7 +188,9 @@ app.post('/Login', async (req, res) => {
 
     if (result) {
       // Passwords match, redirect to the dashboard
-      res.send("login")
+      req.session.isAuthenticated = true;
+      req.session.userID = userID; // Store the user's ID in the session
+      res.redirect(`/playgame/${userID}`)
     } else {
       // Passwords do not match, render the login page with an error message
       res.send('invalid');
