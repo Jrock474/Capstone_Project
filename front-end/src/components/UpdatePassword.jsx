@@ -93,6 +93,7 @@ const UpdatePassword = () => {
                 name="email"
                 required
                 value={formData.email} // Set the input value (for question form)
+                maxLength={200}
               />
               <input type="submit" value="Get Security Question" />
             </form>
@@ -105,6 +106,7 @@ const UpdatePassword = () => {
               placeholder='Email'
               name="email"
               required
+              maxLength={200}
               value={formData.email} // Set the input value of email (using props)
             />
             <input
@@ -113,6 +115,7 @@ const UpdatePassword = () => {
               placeholder='Security Answer'
               name="secanswer"
               required
+              maxLength={200}
               value={formData.secanswer} // Set the input value for clearing
             />
             <input type="submit" value="Update Password" />
