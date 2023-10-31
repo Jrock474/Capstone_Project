@@ -12,7 +12,10 @@ const Delete = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // First, check if the email exists before attempting deletion
+    // Clear the input fields after delete function goes off
+    setFormData({ email: '', secanswer: '' });
+
+    // check if the email exists before attempting deletion
     const checkResponse = await fetch(`http://localhost:3000/checkEmail?email=${formData.email}`);
 
     if (checkResponse.status !== 200) {
@@ -24,7 +27,11 @@ const Delete = () => {
 
     if (expectedResponse.status === 200) {
       const expectedAnswer = await expectedResponse.text();
-
+      //error check for wrong answer
+      if (formData.secanswer !== expectedAnswer) {
+        setErrorFound('Wrong Answer');
+        return;
+      }
       // Compare the entered security answer with the expected answer
       if (formData.secanswer === expectedAnswer) {
         // If email exists and security answer is correct, proceed with the deletion
@@ -49,6 +56,9 @@ const Delete = () => {
 
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
+
+    // Clear the email input field after 2nd form button is pressed
+    setFormData({ ...formData, email: '' });
 
     const questionResponse = await fetch(`http://localhost:3000/getQuestion/${formData.email}`);
 
@@ -75,6 +85,7 @@ const Delete = () => {
             placeholder='Email'
             name="email"
             required
+            value={formData.email} // Set the input value (for question form)
           />
           <input type="submit" value="Get Security Question" />
         </form>
@@ -87,6 +98,7 @@ const Delete = () => {
           placeholder='Email'
           name="email"
           required
+          value={formData.email} // Set the input value of email (using props)
         />
         <input
           onChange={handleChange}
@@ -94,6 +106,7 @@ const Delete = () => {
           placeholder='Security Answer'
           name="secanswer"
           required
+          value={formData.secanswer} // Set the input value for clearing
         />
         <input type="submit" value="Delete User" />
       </form>
