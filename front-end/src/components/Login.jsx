@@ -38,7 +38,7 @@ const Login = () => {
 
 
     navigate("/PlayGame")
-  };
+  ;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
