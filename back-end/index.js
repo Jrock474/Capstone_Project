@@ -129,10 +129,12 @@ app.get('/getAnswer/:email', async (req, res) => {
     res.status(404).send('Error found in fetching Sec Question');
   }
 });
+//UPDATE PASSWORD ENDPOINT
+
 app.put('/UpdatePassword', async (req, res) => {
   const { email, newPassword } = req.body;
 
-  // Use your Sequelize model to check if the email exists in your database
+  // Check if the email exists in the database
   const existingUser = await Users.findOne({
     where: {
       email: email,
@@ -144,7 +146,7 @@ app.put('/UpdatePassword', async (req, res) => {
   }
 
   // Generate a salt and hash the new password
-  const saltRounds = 10; // You can adjust the number of salt rounds for more security
+  const saltRounds = 10; 
   const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
 
   // Update the user's password with the new hashed password
@@ -171,7 +173,7 @@ app.post('/Registration', async (req, res) => {
     }
 
     //  Generate a salt and hash the password
-     const saltRounds = 10; // You can adjust the number of salt rounds for more security
+     const saltRounds = 10; 
      const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     // Create a new user with the hashed password
@@ -198,7 +200,7 @@ app.post('/Registration', async (req, res) => {
     from: 'sbarashang76@gmail.com',
     to: newUser.email, // User's email address
     subject: 'Password Reset Request',
-    text: `Click the following link to reset your password ${newUser.username}: http://localhost:5173/Home`,
+    text: `Click the following link to reset your password ${newUser.username}: http://localhost:5173/UpdatePassword`,
   }; // To do: make the above link send you to the updatepassword (put)  page instead of the login page
   
   // Send the email
