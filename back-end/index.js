@@ -171,7 +171,7 @@ app.post('/Registration', async (req, res) => {
     from: 'sbarashang76@gmail.com',
     to: newUser.email, // User's email address
     subject: 'Password Reset Request',
-    text: `Click the following link to reset your password: http://localhost:5173/Home`,
+    text: `Click the following link to reset your password ${newUser.username}: http://localhost:5173/Home`,
   }; // To do: make the above link send you to the updatepassword (put)  page instead of the login page
   
   // Send the email

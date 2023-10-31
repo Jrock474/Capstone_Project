@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const Delete = () => {
   const [formData, setFormData] = useState({
+    username: '',
     email: '',
     secanswer: ''
   });
@@ -44,11 +45,11 @@ const Delete = () => {
         });
 
         if (deleteResponse.status === 200) {
-          console.log('User deleted successfully');
-          setErrorFound('User Deleted Successfully');
+          console.log(`User ${formData.username} deleted successfully`);
+          setErrorFound(`User ${formData.username} Deleted Successfully`);
         } else {
-          console.error('User deletion failed');
-          setErrorFound('User deletion failed');
+          console.error(`User ${formData.username} deletion failed`);
+          setErrorFound(`User ${formData.username} deletion failed`);
         }
       }
     }
