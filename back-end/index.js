@@ -89,8 +89,7 @@ app.get('/checkAnswer', async (req, res) => {
 });
 app.get('/getQuestion/:email', async (req, res) => {
   const { email } = req.params; // Get the email from the route parameter
-
- 
+  
   const existingUser = await Users.findOne({
     where: {
       email: email,

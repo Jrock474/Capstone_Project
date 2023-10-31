@@ -22,7 +22,7 @@ const Registration = () => {
       setErrorFound('Passwords do not match');
       return; // Stop form submission
     } else {
-      setErrorFound(''); // Reset error message
+      setErrorFound(` Registration Successful ${formData.username}`); // Reset error message
     }
     //bcrypt
 const saltRounds = 10;
@@ -49,7 +49,7 @@ formData.password= hashedPasswod
   return (
     <div className='regMain'>
       <img src={signUp} className="SignInButtonNoHover"></img>
-      <div>{errorFound && <div className="error">{errorFound}</div>}</div>
+      <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
       <form className= "regForm" action="/Registration" method="post" onSubmit={handleSubmit}>
         <input
           type="text"
