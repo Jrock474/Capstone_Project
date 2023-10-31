@@ -11,7 +11,7 @@ import Home from './components/Home';
 import Registration from './components/Registration';
 import PlayGame from './components/PlayGame'
 import Delete from './components/Delete';
-
+import UpdatePassword from './components/UpdatePassword';
 function App() {
   
 
@@ -36,6 +36,7 @@ function App() {
 
           <Route path="/PlayGame" element={<PlayGame />} />
           <Route path="/Delete" element={<Delete />} />
+          <Route path="/UpdatePassword" element={<UpdatePassword/>} />
         
         </Routes>
      

@@ -24,7 +24,7 @@ app.use(bodyParser.json())
 
 app.use(cors(
   {
-    methods: ["POST", "GET", "DELETE"],
+    methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true
   }
 ))
@@ -129,6 +129,33 @@ app.get('/getAnswer/:email', async (req, res) => {
     res.status(404).send('Error found in fetching Sec Question');
   }
 });
+app.put('/UpdatePassword', async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  // Use your Sequelize model to check if the email exists in your database
+  const existingUser = await Users.findOne({
+    where: {
+      email: email,
+    },
+  });
+
+  if (!existingUser) {
+    return res.status(404).send('Email not found in the database');
+  }
+
+  // Generate a salt and hash the new password
+  const saltRounds = 10; // You can adjust the number of salt rounds for more security
+  const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+  // Update the user's password with the new hashed password
+  try {
+    await existingUser.update({ password: hashedPassword });
+    res.status(200).send('Password updated successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+})
 // Account registration endpoint
 app.post('/Registration', async (req, res) => {
     const { username, email, password, secquestion, secanswer } = req.body;
@@ -171,7 +198,7 @@ app.post('/Registration', async (req, res) => {
     from: 'sbarashang76@gmail.com',
     to: newUser.email, // User's email address
     subject: 'Password Reset Request',
-    text: `Click the following link to reset your password: http://localhost:5173/Home`,
+    text: `Click the following link to reset your password ${newUser.username}: http://localhost:5173/Home`,
   }; // To do: make the above link send you to the updatepassword (put)  page instead of the login page
   
   // Send the email
