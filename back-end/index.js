@@ -129,10 +129,12 @@ app.get('/getAnswer/:email', async (req, res) => {
     res.status(404).send('Error found in fetching Sec Question');
   }
 });
+//UPDATE PASSWORD ENDPOINT
+
 app.put('/UpdatePassword', async (req, res) => {
   const { email, newPassword } = req.body;
 
-  // Use your Sequelize model to check if the email exists in your database
+  // Check if the email exists in the database
   const existingUser = await Users.findOne({
     where: {
       email: email,
@@ -144,7 +146,7 @@ app.put('/UpdatePassword', async (req, res) => {
   }
 
   // Generate a salt and hash the new password
-  const saltRounds = 10; // You can adjust the number of salt rounds for more security
+  const saltRounds = 10; 
   const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
 
   // Update the user's password with the new hashed password
@@ -171,7 +173,7 @@ app.post('/Registration', async (req, res) => {
     }
 
     //  Generate a salt and hash the password
-     const saltRounds = 10; // You can adjust the number of salt rounds for more security
+     const saltRounds = 10; 
      const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     // Create a new user with the hashed password
@@ -197,9 +199,9 @@ app.post('/Registration', async (req, res) => {
   const mailOptions = {
     from: 'sbarashang76@gmail.com',
     to: newUser.email, // User's email address
-    subject: 'Password Reset Request',
-    text: `Click the following link to reset your password ${newUser.username}: http://localhost:5173/Home`,
-  }; // To do: make the above link send you to the updatepassword (put)  page instead of the login page
+    subject: 'Kanari-Mono Registration',
+    text: `Congrats on your registration ${newUser.username} click here to start playing: http://localhost:5173/Home`,
+  }; 
   
   // Send the email
   try {
@@ -269,6 +271,36 @@ app.delete('/Delete', async (req, res) => {
     return res.status(500).send('User deletion failed');
   }
 });
+
+
+
+// app.post('/sendEmail', async (req, res) => {
+//   // Email sending logic using Nodemailer
+//   try {
+//     const transporter = nodemailer.createTransport({
+//       service: 'Gmail',
+//       auth: {
+//         user: 'sbarashang76@gmail.com', // My Gmail email address
+//         pass: 'dcrodlsynxbtyfks', // My application-specific password
+//       },
+//     });
+
+//     const mailOptions = {
+//       from: 'sbarashang76@gmail.com',
+//       to: 'recipient@example.com', 
+//       subject: 'Gaming info',
+//       text: 'placeholder',
+//     };
+
+//     await transporter.sendMail(mailOptions);
+//     console.log('Email sent successfully');
+//     res.send('Email sent successfully');
+//   } catch (error) {
+//     console.error('Email not sent:', error);
+//     res.status(500).send('Email sending failed');
+//   }
+// });
+
 
 app.listen(port, ()=>{
     console.log('Server is running on port 3000');
