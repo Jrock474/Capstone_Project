@@ -22,7 +22,8 @@ function App() {
       <div>
       <MyNavbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+
+          <Route path="*" element={<Home />} />
           
           <Route path="/Home" element={<Home />} />
           
