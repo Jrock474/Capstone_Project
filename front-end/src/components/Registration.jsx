@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import bcrypt from 'bcryptjs'
 import signUp from "../images/SignUp.png";
 
 
@@ -25,10 +24,7 @@ const Registration = () => {
     } else {
       setErrorFound(` Registration Successful ${formData.username}`); // Reset error message
     }
-    //bcrypt
-const saltRounds = 10;
-const hashedPasswod = bcrypt.hashSync(formData.password, saltRounds)
-formData.password= hashedPasswod
+    
     // Proceed with form submission
     console.log(formData.username);
 
