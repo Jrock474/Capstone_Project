@@ -12,6 +12,7 @@ import Registration from './components/Registration';
 import PlayGame from './components/PlayGame'
 import Delete from './components/Delete';
 import Professor from './components/Professor';
+import UpdatePassword from './components/UpdatePassword';
 
 function App() {
   
@@ -41,7 +42,7 @@ function App() {
 
           <Route path="/Intro" element={<Professor />} />
 
-
+          <Route path="/UpdatePassword" element={<UpdatePassword/>} />
         
         </Routes>
      
