@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 
 import './App.css'
 
@@ -14,6 +14,7 @@ import Delete from './components/Delete';
 
 function App() {
   
+  
 
   return (
     <>
@@ -21,24 +22,15 @@ function App() {
       <MyNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          
           <Route path="/Home" element={<Home />} />
-          
           <Route path="/Login" element={<Login />} />
-         
-          <Route path="/News" element={<News />} />
-        
+          <Route path="/News" element={<News />} />        
           <Route path="/AboutUs" element={<AboutUs />} />
-
           <Route path="/Registration" element={<Registration />} />
-
           <Route path="/Login" element={<Login />} />
-
           <Route path="/PlayGame" element={<PlayGame />} />
-          <Route path="/Delete" element={<Delete />} />
-        
-        </Routes>
-     
+          <Route path="/Delete" element={<Delete />} />       
+        </Routes>    
       </div>
       
     </>

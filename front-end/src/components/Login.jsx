@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import login from "../images/Login.png";
 
@@ -28,12 +28,11 @@ const Login = () => {
     console.log(loginSubmission)
     if (loginSubmission.ok) {
       // on Successful login
-      setErrorFound(`Login Successful, Hello ${formData.email}`);
+      navigate("/PlayGame");
     } else {
       // On error
       setErrorFound('Invalid login credentials. Please try again.');
     }
-    navigate("/PlayGame");
   };
 
 

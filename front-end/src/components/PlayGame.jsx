@@ -5,10 +5,13 @@ import newGame from "../images/NewGame.png";
 
 const PlayGame = () => {
 
+  const getUserData = async() =>{
+    let userData = await fetch(`http://localhost:3000/playgame/:userID`)
+    console.log(userData)
+  } 
+
   useEffect(()=>{
-    const getUserData = async() =>{
-      let userData = await fetch("")
-    } 
+    getUserData()
   },[])
 
   return (
