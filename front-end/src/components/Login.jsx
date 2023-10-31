@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 import login from "../images/Login.png";
 
 const Login = () => {
+
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -14,13 +17,15 @@ const Login = () => {
     e.preventDefault();
 
     // On submit of the form, send a POST request with the data to the server.
-    let data = await fetch('http://localhost:3000/Login', { 
+    let loginSubmission = await fetch('http://localhost:3000/Login', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
     })
+
+    console.log(loginSubmission)
     if (data.ok) {
       // on Successful login
       setErrorFound(`Login Successful, Hello ${formData.email}`);
@@ -31,6 +36,9 @@ const Login = () => {
     console.log(data)
   };
 
+
+    navigate("/PlayGame")
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
