@@ -108,6 +108,27 @@ app.get('/getQuestion/:email', async (req, res) => {
     res.status(404).send('Error found in fetching Sec Question');
   }
 });
+app.get('/getAnswer/:email', async (req, res) => {
+  const { email } = req.params; // Get the email from the route parameter
+  
+  const existingUser = await Users.findOne({
+    where: {
+      email: email,
+    },
+  });
+
+  if (!existingUser) {
+    return res.status(404).send('Wrong Answer');
+  }
+
+  const securityAnswer = existingUser.secanswer;
+  
+  if (securityAnswer) {
+    res.status(200).send(securityAnswer);
+  } else {
+    res.status(404).send('Error found in fetching Sec Question');
+  }
+});
 // Account registration endpoint
 app.post('/Registration', async (req, res) => {
     const { username, email, password, secquestion, secanswer } = req.body;

@@ -5,6 +5,7 @@ import signUp from "../images/SignUp.png";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
+    username: '',
     password: '',
     reEnterPassword: '',
     secquestion: '',
