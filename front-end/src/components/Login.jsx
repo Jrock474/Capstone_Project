@@ -26,19 +26,17 @@ const Login = () => {
     })
 
     console.log(loginSubmission)
-    if (data.ok) {
+    if (loginSubmission.ok) {
       // on Successful login
       setErrorFound(`Login Successful, Hello ${formData.email}`);
     } else {
       // On error
       setErrorFound('Invalid login credentials. Please try again.');
     }
-    console.log(data)
+    navigate("/PlayGame");
   };
 
 
-    navigate("/PlayGame")
-  ;
 
   const handleChange = (e) => {
     const { name, value } = e.target;

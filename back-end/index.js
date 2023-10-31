@@ -175,7 +175,7 @@ app.post('/Login', async (req, res) => {
   });
 
   if (!returningUser) {
-    return res.render('login', { errorMessage: 'User not found' });
+    return res.send('User not found');
   }
 
   const userName = returningUser.Name;
@@ -192,7 +192,7 @@ app.post('/Login', async (req, res) => {
       res.redirect(`/playgame/${userID}`)
     } else {
       // Passwords do not match, render the login page with an error message
-      res.send('invalid');
+      res.send(`invalid${result}`);
     }
   } catch (error) {
     console.error(error);
