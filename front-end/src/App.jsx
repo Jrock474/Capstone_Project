@@ -11,6 +11,8 @@ import Home from './components/Home';
 import Registration from './components/Registration';
 import PlayGame from './components/PlayGame'
 import Delete from './components/Delete';
+import Professor from './components/Professor';
+import UpdatePassword from './components/UpdatePassword';
 
 export const UserData = createContext()
 
@@ -24,17 +26,32 @@ function App() {
       <MyNavbar />
       <UserData.Provider value = {[userData, setUserData]}>
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Home" element={<Home />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/News" element={<News />} />        
-            <Route path="/AboutUs" element={<AboutUs />} />
-            <Route path="/Registration" element={<Registration />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/PlayGame" element={<PlayGame />} />
-            <Route path="/Delete" element={<Delete />} />       
-        </Routes>    
-      </UserData.Provider>
+
+          <Route path="*" element={<Home />} />
+          
+          <Route path="/Home" element={<Home />} />
+          
+          <Route path="/Login" element={<Login />} />
+         
+          <Route path="/News" element={<News />} />
+        
+          <Route path="/AboutUs" element={<AboutUs />} />
+
+          <Route path="/Registration" element={<Registration />} />
+
+          <Route path="/Login" element={<Login />} />
+
+          <Route path="/PlayGame" element={<PlayGame />} />
+
+          <Route path="/Delete" element={<Delete />} />
+
+          <Route path="/Intro" element={<Professor />} />
+
+          <Route path="/UpdatePassword" element={<UpdatePassword/>} />
+        
+        </Routes>
+        </UserData.Provider>
+     
       </div>
       
     </>

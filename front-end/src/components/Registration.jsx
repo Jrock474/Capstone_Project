@@ -41,7 +41,7 @@ const Registration = () => {
         body: JSON.stringify(formData),
     })
 
-    const registrationData = registrationesponse.json()
+    const registrationData = await registrationesponse.json()
     console.log(registrationData)
 
     navigate("/PlayGame")
@@ -61,7 +61,7 @@ const Registration = () => {
           type="text"
           name="username"
           maxLength={15}
-          placeholder="Username"
+          placeholder="Username (15 letters max)"
           required
           onChange={handleChange}
         />
@@ -70,7 +70,7 @@ const Registration = () => {
           name="password"
           minLength={3}
           maxLength={15}
-          placeholder="Password"
+          placeholder="Password (length= 3-15)"
           required
           onChange={handleChange}
         />
