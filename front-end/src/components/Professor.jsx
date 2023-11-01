@@ -1,5 +1,4 @@
 import React from 'react'
-import prof from "../images/Gas-can-logo.png"
 
 const Professor = () => {
 
@@ -7,7 +6,7 @@ const Professor = () => {
   return (
     <div>
       <div className='intro-prof'>
-      <img src={prof} alt="" />
+      <img src={"/images/Gas-can-logo.png"} alt="" />
       <video src=""></video>
       <h1 style={myStyle}>Intro</h1>
       <div className='dialogue'>

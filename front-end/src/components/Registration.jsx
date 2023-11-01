@@ -1,8 +1,6 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import signUp from "../images/SignUp.png";
-
 
 const Registration = () => {
 
@@ -55,7 +53,7 @@ const Registration = () => {
   
   return (
     <div className='regMain'>
-      <img src={signUp} className="SignInButtonNoHover"></img>
+      <img src={"/images/SignUp.png"} className="SignInButtonNoHover"></img>
       <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
       <form className= "centeringForInputs" action="/Registration" method="post" onSubmit={handleSubmit}>
         <input
