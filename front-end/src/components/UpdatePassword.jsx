@@ -4,7 +4,8 @@ const UpdatePassword = () => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
-        secanswer: ''
+        secanswer: '',
+        newPassword: ''
       });
     
       const [errorFound, setErrorFound] = useState('');
@@ -14,7 +15,7 @@ const UpdatePassword = () => {
         e.preventDefault();
     
         // Clear the input fields after functions goes off
-        setFormData({ email: '', secanswer: '' });
+        setFormData({ email: '', secanswer: '', newPassword: '' });
     
         // check if the email exists before attempting deletion
         const checkResponse = await fetch(`http://localhost:3000/checkEmail?email=${formData.email}`);
@@ -93,6 +94,7 @@ const UpdatePassword = () => {
                 name="email"
                 required
                 value={formData.email} // Set the input value (for question form)
+                maxLength={200}
               />
               <input type="submit" value="Get Security Question" />
             </form>
@@ -105,6 +107,7 @@ const UpdatePassword = () => {
               placeholder='Email'
               name="email"
               required
+              maxLength={200}
               value={formData.email} // Set the input value of email (using props)
             />
             <input
@@ -113,8 +116,18 @@ const UpdatePassword = () => {
               placeholder='Security Answer'
               name="secanswer"
               required
+              maxLength={200}
               value={formData.secanswer} // Set the input value for clearing
             />
+            <input
+          onChange={handleChange}
+          type="password" // Input for the new password
+          placeholder="New Password"
+          name="newPassword"
+          required
+          maxLength={200}
+          value={formData.newPassword}
+        />
             <input type="submit" value="Update Password" />
           </form>
           {errorFound && <div className="errorD">{errorFound}</div>}

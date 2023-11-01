@@ -44,9 +44,11 @@ const Delete = () => {
           body: JSON.stringify(formData),
         });
 
+        const deletedUser = await deleteResponse.json()
+
         if (deleteResponse.status === 200) {
-          console.log(`User ${formData.username} deleted successfully`);
-          setErrorFound(`User ${formData.username} Deleted Successfully`);
+          console.log(deletedUser);
+          setErrorFound('User Deleted Successfully');
         } else {
           console.error(`User ${formData.username} deletion failed`);
           setErrorFound(`User ${formData.username} deletion failed`);
@@ -86,6 +88,7 @@ const Delete = () => {
             placeholder='Email'
             name="email"
             required
+            maxLength={200}
             value={formData.email} // Set the input value (for question form)
           />
           <input type="submit" value="Get Security Question" />
@@ -99,6 +102,7 @@ const Delete = () => {
           placeholder='Email'
           name="email"
           required
+          maxLength={200}
           value={formData.email} // Set the input value of email (using props)
         />
         <input
@@ -107,6 +111,7 @@ const Delete = () => {
           placeholder='Security Answer'
           name="secanswer"
           required
+          maxLength={50}
           value={formData.secanswer} // Set the input value for clearing
         />
         <input type="submit" value="Delete User" />

@@ -1,16 +1,19 @@
-const express = require("express")
-const bcrypt = require("bcrypt")
-const pg = require("pg-promise")()
-const app = express()
-const port = 3000
+const express = require("express");
+const bcrypt = require("bcrypt");
+const pg = require("pg-promise")();
+const app = express();
+const port = 3000;
 const cors = require("cors")
-const {Users} = require("./models")
+const {Users} = require("./models");
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser')
+const session = require("express-session")
 const { async } = require("regenerator-runtime")
-const session = require('express-session')
+const cookieParser = require('cookie-parser');
+app.use(cookieParser())
 app.use(express.json())
+app.use(bodyParser.json())
 app.use(session({
   secret: 'digitalCrafts',
   resave: false,
@@ -20,7 +23,8 @@ app.use(session({
     maxAge: 3600000, // Session expiration time in milliseconds (e.g., 1 hour)
   },
 }));
-app.use(bodyParser.json())
+
+
 
 app.use(cors(
   {
@@ -37,21 +41,24 @@ app.get('/', async(req, res) => {
     res.send(allUsers)
 })
 
+// Redirects to Play Game upon successful login
 app.get('/Login', async(req, res) => {
     res.redirect(`/playgame/${userID}`)
 })
 
+// Sends UserData to Client
 app.get('/playgame/:userID', async (req, res) => {
   try {
-    if (req.session.isAuthenticated) {
+    // if (req.session.isAuthenticated) {
       const foundUser = await Users.findOne({ where: { id: req.params.userID } });
       // User is authenticated, proceed to the dashboard
-      let JSONdata = JSON.stringify(foundUser)
-      res.send(JSONdata);
-    } else {
-      // User is not authenticated, redirect to the login page
-      res.json('Authentication Expired');
-    }
+      const JSONdata = foundUser.dataValues
+      console.log(JSONdata)
+      res.json(JSONdata);
+    // } else {
+    //   // User is not authenticated, redirect to the login page
+    //   res.json('Authentication Expired');
+    // }
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal server error'); // Handle other unexpected errors
@@ -129,10 +136,12 @@ app.get('/getAnswer/:email', async (req, res) => {
     res.status(404).send('Error found in fetching Sec Question');
   }
 });
+//UPDATE PASSWORD ENDPOINT
+
 app.put('/UpdatePassword', async (req, res) => {
   const { email, newPassword } = req.body;
 
-  // Use your Sequelize model to check if the email exists in your database
+  // Check if the email exists in the database
   const existingUser = await Users.findOne({
     where: {
       email: email,
@@ -144,7 +153,7 @@ app.put('/UpdatePassword', async (req, res) => {
   }
 
   // Generate a salt and hash the new password
-  const saltRounds = 10; // You can adjust the number of salt rounds for more security
+  const saltRounds = 10; 
   const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
 
   // Update the user's password with the new hashed password
@@ -171,7 +180,7 @@ app.post('/Registration', async (req, res) => {
     }
 
     //  Generate a salt and hash the password
-     const saltRounds = 10; // You can adjust the number of salt rounds for more security
+     const saltRounds = 10; 
      const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     // Create a new user with the hashed password
@@ -183,8 +192,6 @@ app.post('/Registration', async (req, res) => {
         password: hashedPassword, // Store the hashed password in the database
   });
 
-  res.send(newUser)
-
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -192,14 +199,13 @@ app.post('/Registration', async (req, res) => {
       pass: 'dcrodlsynxbtyfks', // My application-specific password
     },
   });
-  console.log(username)
   
   const mailOptions = {
     from: 'sbarashang76@gmail.com',
     to: newUser.email, // User's email address
-    subject: 'Password Reset Request',
-    text: `Click the following link to reset your password ${newUser.username}: http://localhost:5173/Home`,
-  }; // To do: make the above link send you to the updatepassword (put)  page instead of the login page
+    subject: 'Kanari-Mono Registration',
+    text: `Congrats on your registration ${newUser.username} click here to start playing: http://localhost:5173/Home`,
+  }; 
   
   // Send the email
   try {
@@ -209,9 +215,19 @@ app.post('/Registration', async (req, res) => {
   } catch (error) {
     console.error('Email not sent:', error);
   }
+
+  req.session.isAuthenticated = true;
+  req.session.userID = newUser.id; // Store the user's ID in the session
+
+  const userID = newUser.id
+
+  res.json(newUser)
+
+  // Redirect to the dashboard or another protected route
+  // res.redirect(`/playgame/${userID}`);
 });
 
-
+// Login endpoint
 app.post('/Login', async (req, res) => {
   const { email, password } = req.body;
   const userEnteredPassword = password;
@@ -223,7 +239,7 @@ app.post('/Login', async (req, res) => {
   });
 
   if (!returningUser) {
-    return res.send('User not found');
+    return res.status(400).send('User not found');
   }
 
   const userName = returningUser.Name;
@@ -234,13 +250,13 @@ app.post('/Login', async (req, res) => {
     const result = await bcrypt.compare(userEnteredPassword, storedHashedPassword);
 
     if (result) {
-      // Passwords match, redirect to the dashboard
+      // Passwords match, redirect to the game with the User's ID
       req.session.isAuthenticated = true;
       req.session.userID = userID; // Store the user's ID in the session
       res.redirect(`/playgame/${userID}`)
     } else {
       // Passwords do not match, render the login page with an error message
-      res.send(`invalid${result}`);
+      return res.status(400).send(`Invalid login`);
     }
   } catch (error) {
     console.error(error);
@@ -264,11 +280,41 @@ app.delete('/Delete', async (req, res) => {
 
   try {
     await userToDelete.destroy(); // Delete the user
-    return res.send('User deleted successfully');
+    return res.json(userToDelete.username);
   } catch (error) {
     return res.status(500).send('User deletion failed');
   }
 });
+
+
+
+// app.post('/sendEmail', async (req, res) => {
+//   // Email sending logic using Nodemailer
+//   try {
+//     const transporter = nodemailer.createTransport({
+//       service: 'Gmail',
+//       auth: {
+//         user: 'sbarashang76@gmail.com', // My Gmail email address
+//         pass: 'dcrodlsynxbtyfks', // My application-specific password
+//       },
+//     });
+
+//     const mailOptions = {
+//       from: 'sbarashang76@gmail.com',
+//       to: 'recipient@example.com', 
+//       subject: 'Gaming info',
+//       text: 'placeholder',
+//     };
+
+//     await transporter.sendMail(mailOptions);
+//     console.log('Email sent successfully');
+//     res.send('Email sent successfully');
+//   } catch (error) {
+//     console.error('Email not sent:', error);
+//     res.status(500).send('Email sending failed');
+//   }
+// });
+
 
 app.listen(port, ()=>{
     console.log('Server is running on port 3000');
