@@ -47,8 +47,8 @@ const Delete = () => {
         const deletedUser = await deleteResponse.json()
 
         if (deleteResponse.status === 200) {
-          console.log(deletedUser);
-          setErrorFound('User Deleted Successfully');
+          console.log(deletedUser.username);
+          setErrorFound(`${deletedUser.username} Deleted Successfully`);
         } else {
           console.error(`User ${formData.username} deletion failed`);
           setErrorFound(`User ${formData.username} deletion failed`);

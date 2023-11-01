@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserData } from '../App';
 import signUp from "../images/SignUp.png";
 
 
 const Registration = () => {
+
+  const [userData, setUserData] = useContext(UserData)
 
   const navigate = useNavigate()
 
@@ -42,6 +45,8 @@ const Registration = () => {
     })
 
     const registrationData = await registrationesponse.json()
+
+    setUserData(registrationData)
     console.log(registrationData)
 
     navigate("/PlayGame")
