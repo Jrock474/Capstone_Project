@@ -306,7 +306,27 @@ color: lightblue;
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  height: 5rem;
+  width: 20rem;
+  background-color: rgb(0, 0, 0);
+  color: rgb(16, 164, 237);
+  box-shadow: none;
+  text-shadow: none;
+  border: 5px solid rgb(236, 5, 159);
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 1rem;
 }
+.submitBtn{
+  height: 5rem;
+  width: 20rem;
+  background-color: rgb(0, 0, 0);
+  color: rgb(62, 184, 245);
+  border: 5px solid rgb(236, 5, 159);
+  /* margin: 20px; */
+  border-radius: 1rem;
+} 
 
 .regMain {
   display: flex;

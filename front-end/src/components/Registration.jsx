@@ -55,7 +55,7 @@ const Registration = () => {
     <div className='regMain'>
       <img src={"/images/SignUp.png"} className="SignInButtonNoHover" style= {{ marginBottom: 35 }} />
       <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
-      <form className= "centeringForInputs" action="/Registration" method="post" onSubmit={handleSubmit}>
+      <form action="/Registration" method="post" onSubmit={handleSubmit}>
         <input
           type="text"
           name="username"
@@ -112,7 +112,9 @@ const Registration = () => {
           onChange={handleChange}
           className= "centeringForInputs"
         />
-        <input type="submit" value="Sign Up"/><br></br>
+        <button type="submit" className= "submitBtn">Sign Up</button>
+        {/* <input type="submit" value="Sign Up" className= "submitBtn" /> */}
+        <br></br>
         
       </form>
     </div>
