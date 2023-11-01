@@ -52,6 +52,14 @@ body {
   height: 100%;
   width: 100%;
   overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  background-color: black;
+  padding-top: 100px;
 }
 
 body {
@@ -345,3 +353,64 @@ color: lightblue;
 .carousel-captionsAnt {
   color: rgb(255, 251, 11);
 }
+
+body{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.GameBody{
+  align-self: center;
+  justify-self: center;
+
+  display: grid;
+  grid-template-columns: 216.25px 400px 216.25px;
+  grid-template-rows: 143.5px 400px 143.5px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.Pet{
+  grid-column: 2/2;
+  grid-row: 2/2;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+ 
+}
+
+.ActivityBox{
+  grid-column: 1/4;
+  grid-row: 3/3;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+   
+}
+
+.MoodBox{
+  grid-column: 1/4;
+  grid-row: 1/1;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  
+}
+
+#Poop{
+  grid-column: 3/3;
+  grid-row: 2/2;
+  display: flex;
+  align-self:flex-end;
+  align-content: center;
+  justify-content: center;
+    
+}
+
+
