@@ -1,9 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import logo2 from "../images/Logo2.png";
-import continueBtn from "../images/Continue.png";
-import newGame from "../images/NewGame.png";
-import { UserData } from '../App';
-import Professor from './Professor';
 
 const PlayGame = () => {
 
@@ -19,10 +14,9 @@ const PlayGame = () => {
   return (
     <div>
       <div className='logMain'>
-      <div>Welcome {userName}</div>
-      <img src={logo2} className="logo2"></img>
-      <img src={continueBtn} className="ContinueButton"></img>
-      <img src={newGame} className="NewGameButton"></img>
+      <img src={"/images/Logo2.png"} className="logo2"></img>
+      <img src={"/images/Continue.png"} className="ContinueButton"></img>
+      <img src={"/images/NewGame.png"} className="NewGameButton"></img>
       {/* <Professor /> */}
       </div>
     </div>
