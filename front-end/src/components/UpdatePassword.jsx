@@ -95,6 +95,7 @@ const UpdatePassword = () => {
                 required
                 value={formData.email} // Set the input value (for question form)
                 maxLength={200}
+                className='margin-for-inputs'
               />
               <input type="submit" value="Get Security Question" />
             </form>
@@ -109,6 +110,7 @@ const UpdatePassword = () => {
               required
               maxLength={200}
               value={formData.email} // Set the input value of email (using props)
+              className='margin-for-inputs'
             />
             <input
               onChange={handleChange}
@@ -118,6 +120,7 @@ const UpdatePassword = () => {
               required
               maxLength={200}
               value={formData.secanswer} // Set the input value for clearing
+              className='margin-for-inputs'
             />
             <input
           onChange={handleChange}
@@ -127,6 +130,7 @@ const UpdatePassword = () => {
           required
           maxLength={200}
           value={formData.newPassword}
+          className='margin-for-inputs'
         />
             <input type="submit" value="Update Password" />
           </form>
