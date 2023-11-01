@@ -101,6 +101,14 @@ color: red;
   height: 100vh;
 
 }
+.updateMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+
+}
 .Page1Body {
     height: 100vh;
     width: 100vw;

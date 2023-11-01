@@ -10,7 +10,21 @@ const UpdatePassword = () => {
     
       const [errorFound, setErrorFound] = useState('');
       const [securityQuestion, setSecurityQuestion] = useState('');
+      const handleQuestionSubmit = async (e) => {
+        e.preventDefault();
     
+        // Clear the email input field after 2nd form button is pressed
+        setFormData({ ...formData, email: '' });
+    
+        const questionResponse = await fetch(`http://localhost:3000/getQuestion/${formData.email}`);
+    
+        if (questionResponse.status === 200) {
+          const question = await questionResponse.text();
+          setSecurityQuestion(question);
+        } else {
+          setErrorFound('Email not found');
+        }
+      };
       const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -62,21 +76,7 @@ const UpdatePassword = () => {
         }
       };
     
-      const handleQuestionSubmit = async (e) => {
-        e.preventDefault();
     
-        // Clear the email input field after 2nd form button is pressed
-        setFormData({ ...formData, email: '' });
-    
-        const questionResponse = await fetch(`http://localhost:3000/getQuestion/${formData.email}`);
-    
-        if (questionResponse.status === 200) {
-          const question = await questionResponse.text();
-          setSecurityQuestion(question);
-        } else {
-          setErrorFound('Email not found');
-        }
-      };
     
       const handleChange = (e) => {
         const { name, value } = e.target;
@@ -84,7 +84,7 @@ const UpdatePassword = () => {
       };
     
       return (
-        <div className='deleteMain'>
+        <div className='updateMain'>
           <div>
             <form className="QuestionForm" onSubmit={handleQuestionSubmit}>
               <input
@@ -100,7 +100,7 @@ const UpdatePassword = () => {
             </form>
             {securityQuestion && <div className="secquestion">{securityQuestion}</div>}
           </div>
-          <form className="deleteForm" onSubmit={handleSubmit}>
+          <form className="updateForm" onSubmit={handleSubmit}>
             <input
               onChange={handleChange}
               type="email"

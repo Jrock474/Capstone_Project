@@ -33,7 +33,35 @@ app.use(cors(
   }
 ))
 
+//UPDATE PASSWORD ENDPOINT
 
+app.put('/UpdatePassword', async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  // Check if the email exists in the database
+  const existingUser = await Users.findOne({
+    where: {
+      email: email,
+    },
+  });
+
+  if (!existingUser) {
+    return res.status(404).send('Email not found in the database');
+  }
+
+  // Generate a salt and hash the new password
+  const saltRounds = 10; 
+  const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+  // Update the user's password with the new hashed password
+  try {
+    await existingUser.update({ password: hashedPassword });
+    res.status(200).send('Password updated successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+})
 
 // Shows all users in the database
 app.get('/', async(req, res) => {
@@ -136,35 +164,7 @@ app.get('/getAnswer/:email', async (req, res) => {
     res.status(404).send('Error found in fetching Sec Question');
   }
 });
-//UPDATE PASSWORD ENDPOINT
 
-app.put('/UpdatePassword', async (req, res) => {
-  const { email, newPassword } = req.body;
-
-  // Check if the email exists in the database
-  const existingUser = await Users.findOne({
-    where: {
-      email: email,
-    },
-  });
-
-  if (!existingUser) {
-    return res.status(404).send('Email not found in the database');
-  }
-
-  // Generate a salt and hash the new password
-  const saltRounds = 10; 
-  const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
-
-  // Update the user's password with the new hashed password
-  try {
-    await existingUser.update({ password: hashedPassword });
-    res.status(200).send('Password updated successfully');
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal server error');
-  }
-})
 // Account registration endpoint
 app.post('/Registration', async (req, res) => {
     const { username, email, password, secquestion, secanswer } = req.body;
