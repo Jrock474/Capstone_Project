@@ -1,49 +1,27 @@
-import './App.css'
-
 import React from 'react'
-import Kaiju1 from "../images/DinoStill.gif";
-import MoodAngry from "../images/MoodAngry.png";
-import MoodHungry from "../images/MoodDiscomfort.png";
-import MoodSick from "../images/MoodSick.png";
-import ActFight from "../images/FightIcon.png";
-import ActFood from "../images/FoodIcon.png";
-import ActMedicine from "../images/MedicineIcon.png";
-import ActBath from "../images/BathIcon.png";
-import ActPlay from "../images/PlayIcon.png";
-import Poop from "../images/Poop.png";
-
-
-
 
 const MainGame = () => {
   return (
     <div>
-
       <div className="GameBody">
-
         <div className="Pet" id="Pet">
-          <img src={Kaiju1} style= {{ height: 500 }} /> 
+          <img src={"/gifs/DinoStill.gif"} style= {{ height: 500 }} /> 
         </div>
-
         <div className="MoodBox">
-          <img src={MoodAngry} style= {{ height: 150 }} />
-            <img src={MoodHungry} style= {{ height: 150 }} />
-              <img src={MoodSick} style= {{ height: 150 }} />
+          <img src={"/images/MoodAngry.png"} style= {{ height: 150 }} />
+            <img src={"/images/MoodDiscomfort.png"} style= {{ height: 150 }} />
+              <img src={"/images/MoodSick.png"} style= {{ height: 150 }} />
               </div>
-
               <div className="ActivityBox">
-                <img src={ActFight} style= {{ height: 150 }} />
-                  <img src={ActFood} style= {{ height: 150 }} />
-                    <img src={ActMedicine} style= {{ height: 150 }} />
-                      <img src={ActBath} style= {{ height: 150 }} />
-                        <img src={ActPlay} style= {{ height: 150 }} />
+                <img src={"/images/FightIcon.png"} style= {{ height: 150 }} />
+                  <img src={"/images/FoodIcon.png"} style= {{ height: 150 }} />
+                    <img src={"/images/MedicineIcon.png"} style= {{ height: 150 }} />
+                      <img src={"/images/BathIcon.png"} style= {{ height: 150 }} />
+                        <img src={"/images/PlayIcon.png"} style= {{ height: 150 }} />
                         </div>
-
-                        <img src={Poop} id="Poop" style= {{ height: 150 }} />
-
+                        <img src={"/images/Poop.png"} id="Poop" style= {{ height: 150 }} />
                         </div>
                       </div>
                       )
 }
-
                       export default MainGame
