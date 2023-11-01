@@ -51,7 +51,6 @@ body {
   height: 100%;
   width: 100%;
   overflow-y: hidden;
-
 }
 
 body {
@@ -63,13 +62,15 @@ body {
   margin: 0px;
   background-color: black;
 }
+
 .errorD {
 color: red;
-
 }
+
 .secquestion {
 color: red;
 }
+
 .logMain {
   display: flex;
   justify-content: center;
@@ -93,14 +94,18 @@ color: red;
   text-align: center;
   height: 100vh;
 }
+
 .deleteMain {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   height: 100vh;
-
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
+
 .Page1Body {
     height: 100vh;
     width: 100vw;
@@ -149,6 +154,7 @@ color: red;
     text-align: center;
     transition: 0.6s;
 }
+
 .LoginButtonNoHover {
     height: 100px;
     width: auto;
@@ -179,6 +185,7 @@ color: red;
     text-align: center;
     transition: 0.6s;
 }
+
 .SignInButtonNoHover {
     height: 100px;
     width: auto;
@@ -261,6 +268,12 @@ color: red;
   flex-direction: column;
 }
 
+.centeringForInputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
 .regMain {
   display: flex;
   flex-direction: column;
@@ -291,4 +304,20 @@ color: red;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+.carousel-captionsEth {
+  color: rgb(130, 255, 215);
+}
+
+.carousel-captionsSab {
+  color: rgb(171, 98, 244);
+}
+
+.carousel-captionsJor {
+  color: rgb(252, 90, 147);
+}
+
+.carousel-captionsAnt {
+  color: rgb(255, 251, 11);
 }
