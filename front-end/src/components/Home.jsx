@@ -2,9 +2,6 @@ import React from "react";
 import login from "../images/Login.png";
 import signUp from "../images/SignUp.png";
 import logo2 from "../images/Logo2.png";
-import loginGlow from "../images/LoginGlow.png";
-import Login from "./Login";
-import Registration from "./Registration";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {

@@ -1,5 +1,7 @@
+import './App.css'
+
 import React from 'react'
-// import Kaiju1 from "../images/DinoStill.gif";
+import Kaiju1 from "../images/DinoStill.gif";
 import MoodAngry from "../images/MoodAngry.png";
 import MoodHungry from "../images/MoodDiscomfort.png";
 import MoodSick from "../images/MoodSick.png";
@@ -11,6 +13,8 @@ import ActPlay from "../images/PlayIcon.png";
 import Poop from "../images/Poop.png";
 
 
+
+
 const MainGame = () => {
   return (
     <div>
@@ -18,24 +22,24 @@ const MainGame = () => {
       <div className="GameBody">
 
         <div className="Pet" id="Pet">
-          {/* <img src={Kaiju1} style="width: 500px;" /> */}
+          <img src={Kaiju1} style= {{ height: 500 }} /> 
         </div>
 
         <div className="MoodBox">
-          <img src={MoodAngry} style="height: 150px;" />
-            <img src={MoodHungry} style="height: 150px;" />
-              <img src={MoodSick} style="height: 150px;" />
+          <img src={MoodAngry} style= {{ height: 150 }} />
+            <img src={MoodHungry} style= {{ height: 150 }} />
+              <img src={MoodSick} style= {{ height: 150 }} />
               </div>
 
               <div className="ActivityBox">
-                <img src={ActFight} style="height: 150px;" />
-                  <img src={ActFood} style="height: 150px;" />
-                    <img src={ActMedicine} style="height: 150px;" />
-                      <img src={ActBath} style="height: 150px;" />
-                        <img src={ActPlay} style="height: 150px;" />
+                <img src={ActFight} style= {{ height: 150 }} />
+                  <img src={ActFood} style= {{ height: 150 }} />
+                    <img src={ActMedicine} style= {{ height: 150 }} />
+                      <img src={ActBath} style= {{ height: 150 }} />
+                        <img src={ActPlay} style= {{ height: 150 }} />
                         </div>
 
-                        <img src={Poop} id="Poop" style="height: 175px;" />
+                        <img src={Poop} id="Poop" style= {{ height: 150 }} />
 
                         </div>
                       </div>
