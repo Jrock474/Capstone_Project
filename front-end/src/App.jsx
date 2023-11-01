@@ -12,6 +12,8 @@ import Registration from './components/Registration';
 import PlayGame from './components/PlayGame'
 import Delete from './components/Delete';
 import MainGame from './components/MainGame';
+import Professor from './components/Professor';
+import UpdatePassword from './components/UpdatePassword';
 
 function App() {
   
@@ -21,7 +23,8 @@ function App() {
       <div>
       <MyNavbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+
+          <Route path="*" element={<Home />} />
           
           <Route path="/Home" element={<Home />} />
           
@@ -36,9 +39,12 @@ function App() {
           <Route path="/Login" element={<Login />} />
 
           <Route path="/PlayGame" element={<PlayGame />} />
+
           <Route path="/Delete" element={<Delete />} />
 
-          <Route path="/MainGame" element={<MainGame />} />
+          <Route path="/Intro" element={<Professor />} />
+
+          <Route path="/UpdatePassword" element={<UpdatePassword/>} />
         
         </Routes>
      

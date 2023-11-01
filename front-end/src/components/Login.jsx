@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import login from "../images/Login.png";
-
+import { Link } from 'react-router-dom';
 const Login = () => {
 
   const navigate = useNavigate()
@@ -26,35 +26,34 @@ const Login = () => {
     })
 
     console.log(loginSubmission)
-    if (data.ok) {
+    if (loginSubmission.ok) {
       // on Successful login
       setErrorFound(`Login Successful, Hello ${formData.email}`);
     } else {
       // On error
       setErrorFound('Invalid login credentials. Please try again.');
     }
-    console.log(data)
+    navigate("/PlayGame");
   };
 
 
-    navigate("/PlayGame")
-  ;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
   
+  
   return (
     <div className='logMain'>
       <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
       <img src={login} className="LoginButtonNoHover"></img>
       <form className= "logForm" action="/Login" method="post" onSubmit={handleSubmit}>
-        <input onChange={handleChange} type="email" placeholder='Email' name = "email" required/>
-        <input onChange={handleChange} type="password" placeholder='Password' name = "password" required/>
+        <input onChange={handleChange} maxLength={200}type="email" placeholder='Email' name = "email" required/>
+        <input onChange={handleChange} maxLength= {15} type="password" placeholder='Password' name = "password" required/>
         <input type="submit" />
       </form>
-
+      <Link to="/updatepassword">Forgot your password?</Link>
     </div>
   )
 }
