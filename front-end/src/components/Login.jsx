@@ -19,6 +19,7 @@ const Login = () => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorFound("")
 
     // On submit of the form, send a POST request with the data to the server.
     const loginSubmission = await fetch('http://localhost:3000/Login', { 
@@ -39,13 +40,10 @@ const Login = () => {
     // If login is successful, fetches User data and redirects
     if (loginSubmission.ok) {
       // on Successful login
-      console.log(userData)
       setUserData(userData)
       navigate("/PlayGame");
     }
   };
-
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;

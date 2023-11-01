@@ -22,6 +22,7 @@ const Registration = () => {
   const [errorFound, setErrorFound] = useState('');
 
   const handleSubmit = async (e) => {
+    setErrorFound("")
     e.preventDefault();
 
     // Check if the passwords match
