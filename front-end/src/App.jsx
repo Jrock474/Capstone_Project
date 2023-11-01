@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 
 import './App.css'
 
@@ -15,13 +15,17 @@ import MainGame from './components/MainGame';
 import Professor from './components/Professor';
 import UpdatePassword from './components/UpdatePassword';
 
-function App() {
-  
+export const UserData = createContext()
 
+function App() {
+
+  const [userData, setUserData] = useState(null)
+  
   return (
     <>
       <div>
       <MyNavbar />
+      <UserData.Provider value = {[userData, setUserData]}>
         <Routes>
 
           <Route path="*" element={<Home />} />
@@ -49,6 +53,7 @@ function App() {
           <Route path="/MainGame" element={<MainGame/>} />
         
         </Routes>
+        </UserData.Provider>
      
       </div>
       

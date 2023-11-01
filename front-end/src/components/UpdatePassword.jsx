@@ -4,17 +4,32 @@ const UpdatePassword = () => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
-        secanswer: ''
+        secanswer: '',
+        newPassword: ''
       });
     
       const [errorFound, setErrorFound] = useState('');
       const [securityQuestion, setSecurityQuestion] = useState('');
+      const handleQuestionSubmit = async (e) => {
+        e.preventDefault();
     
+        // Clear the email input field after 2nd form button is pressed
+        setFormData({ ...formData, email: '' });
+    
+        const questionResponse = await fetch(`http://localhost:3000/getQuestion/${formData.email}`);
+    
+        if (questionResponse.status === 200) {
+          const question = await questionResponse.text();
+          setSecurityQuestion(question);
+        } else {
+          setErrorFound('Email not found');
+        }
+      };
       const handleSubmit = async (e) => {
         e.preventDefault();
     
         // Clear the input fields after functions goes off
-        setFormData({ email: '', secanswer: '' });
+        setFormData({ email: '', secanswer: '', newPassword: '' });
     
         // check if the email exists before attempting deletion
         const checkResponse = await fetch(`http://localhost:3000/checkEmail?email=${formData.email}`);
@@ -61,21 +76,7 @@ const UpdatePassword = () => {
         }
       };
     
-      const handleQuestionSubmit = async (e) => {
-        e.preventDefault();
     
-        // Clear the email input field after 2nd form button is pressed
-        setFormData({ ...formData, email: '' });
-    
-        const questionResponse = await fetch(`http://localhost:3000/getQuestion/${formData.email}`);
-    
-        if (questionResponse.status === 200) {
-          const question = await questionResponse.text();
-          setSecurityQuestion(question);
-        } else {
-          setErrorFound('Email not found');
-        }
-      };
     
       const handleChange = (e) => {
         const { name, value } = e.target;
@@ -83,7 +84,7 @@ const UpdatePassword = () => {
       };
     
       return (
-        <div className='deleteMain'>
+        <div className='updateMain'>
           <div>
             <form className="QuestionForm" onSubmit={handleQuestionSubmit}>
               <input
@@ -94,12 +95,13 @@ const UpdatePassword = () => {
                 required
                 value={formData.email} // Set the input value (for question form)
                 maxLength={200}
+                className='margin-for-inputs'
               />
               <input type="submit" value="Get Security Question" />
             </form>
             {securityQuestion && <div className="secquestion">{securityQuestion}</div>}
           </div>
-          <form className="deleteForm" onSubmit={handleSubmit}>
+          <form className="updateForm" onSubmit={handleSubmit}>
             <input
               onChange={handleChange}
               type="email"
@@ -108,6 +110,7 @@ const UpdatePassword = () => {
               required
               maxLength={200}
               value={formData.email} // Set the input value of email (using props)
+              className='margin-for-inputs'
             />
             <input
               onChange={handleChange}
@@ -117,7 +120,18 @@ const UpdatePassword = () => {
               required
               maxLength={200}
               value={formData.secanswer} // Set the input value for clearing
+              className='margin-for-inputs'
             />
+            <input
+          onChange={handleChange}
+          type="password" // Input for the new password
+          placeholder="New Password"
+          name="newPassword"
+          required
+          maxLength={200}
+          value={formData.newPassword}
+          className='margin-for-inputs'
+        />
             <input type="submit" value="Update Password" />
           </form>
           {errorFound && <div className="errorD">{errorFound}</div>}
