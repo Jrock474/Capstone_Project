@@ -43,8 +43,10 @@ const Delete = () => {
           body: JSON.stringify(formData),
         });
 
+        const deletedUser = deleteResponse.json()
+
         if (deleteResponse.status === 200) {
-          console.log('User deleted successfully');
+          console.log(deletedUser);
           setErrorFound('User Deleted Successfully');
         } else {
           console.error('User deletion failed');

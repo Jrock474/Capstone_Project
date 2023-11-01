@@ -12,25 +12,29 @@ import Registration from './components/Registration';
 import PlayGame from './components/PlayGame'
 import Delete from './components/Delete';
 
-function App() {
-  
-  
+export const UserData = createContext()
 
+function App() {
+
+  const [userData, setUserData] = useState(null)
+  
   return (
     <>
       <div>
       <MyNavbar />
+      <UserData.Provider value = {[userData, setUserData]}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/News" element={<News />} />        
-          <Route path="/AboutUs" element={<AboutUs />} />
-          <Route path="/Registration" element={<Registration />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/PlayGame" element={<PlayGame />} />
-          <Route path="/Delete" element={<Delete />} />       
+            <Route path="/" element={<Home />} />
+            <Route path="/Home" element={<Home />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/News" element={<News />} />        
+            <Route path="/AboutUs" element={<AboutUs />} />
+            <Route path="/Registration" element={<Registration />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/PlayGame" element={<PlayGame />} />
+            <Route path="/Delete" element={<Delete />} />       
         </Routes>    
+      </UserData.Provider>
       </div>
       
     </>
