@@ -20,7 +20,7 @@ const MainGame = () => {
                         <img src={"/images/PlayIcon.png"} style= {{ height: 150 }} />
                         </div>
 
-                        <img src={Poop} id="Poop" style= {{ height: 150 }} />
+                        <img src={"/images/Poop.png"} id="Poop" style= {{ height: 150 }} />
 
                         </div>
                       </div>
