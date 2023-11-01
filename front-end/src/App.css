@@ -110,6 +110,9 @@ color: lightblue;
   align-items: center;
   text-align: center;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 .updateMain {
@@ -118,6 +121,13 @@ color: lightblue;
   align-items: center;
   text-align: center;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.margin-for-inputs {
+  margin-bottom: 2rem;
 }
 
 .Page1Body {
