@@ -16,8 +16,11 @@ const News = () => {
       <ul>
         {newsData.slice(0,3).map((article, index) => (
           <li key={index}>
-            <strong>{article.title}</strong>
-            <p>{article.description}</p>
+            <a href={article.url} target="_blank" rel="noopener noreferrer">
+              <strong>{article.title}</strong>
+            </a>
+            <img className= "newsImg" src={article.urlToImage} alt={article.title} />
+            <p className='newsDescription'>{article.description}</p>
           </li>
         ))}
       </ul>
