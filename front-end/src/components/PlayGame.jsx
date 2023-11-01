@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { UserData } from '../App'
 
 const PlayGame = () => {
 
@@ -13,6 +14,7 @@ const PlayGame = () => {
 
   return (
     <div>
+      <div>Welcome {userName}</div>
       <div className='logMain'>
       <img src={"/images/Logo2.png"} className="logo2"></img>
       <img src={"/images/Continue.png"} className="ContinueButton"></img>
