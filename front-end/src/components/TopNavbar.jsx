@@ -17,6 +17,7 @@ const MyNavbar = () => {
           <Nav.Link as={Link} to="/Login">Login</Nav.Link>
           <Nav.Link as={Link} to="/PlayGame">Play Game</Nav.Link>
           <Nav.Link as={Link} to="/Delete">Delete</Nav.Link>
+          <Nav.Link as={Link} to="/MainGame">Main Game</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

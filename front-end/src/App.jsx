@@ -11,6 +11,7 @@ import Home from './components/Home';
 import Registration from './components/Registration';
 import PlayGame from './components/PlayGame'
 import Delete from './components/Delete';
+import MainGame from './components/MainGame';
 
 function App() {
   
@@ -36,6 +37,8 @@ function App() {
 
           <Route path="/PlayGame" element={<PlayGame />} />
           <Route path="/Delete" element={<Delete />} />
+
+          <Route path="/MainGame" element={<MainGame />} />
         
         </Routes>
      
