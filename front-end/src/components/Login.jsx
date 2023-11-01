@@ -55,8 +55,8 @@ const Login = () => {
   return (
     <div className='logMain'>
       <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
-      <img src={"/images/Login.png"} className="LoginButtonNoHover"></img>
-      <form action="/Login" method="post" onSubmit={handleSubmit}>
+      <img src={"/images/Login.png"} className="LoginButtonNoHover" style= {{ marginBottom: 35 }} />
+      <form className= "centeringForInputs" action="/Login" method="post" onSubmit={handleSubmit}>
         <input onChange={handleChange} type="email" placeholder='Email' name = "email" className= "centeringForInputs" required/>
         <input onChange={handleChange} type="password" placeholder='Password' name = "password" className= "centeringForInputs" required/>
         <input type="submit" className= "submitBtn"/>
