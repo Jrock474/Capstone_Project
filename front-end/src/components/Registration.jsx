@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import signUp from "../images/SignUp.png";
@@ -56,7 +57,7 @@ const Registration = () => {
     <div className='regMain'>
       <img src={signUp} className="SignInButtonNoHover"></img>
       <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
-      <form className= "regForm" action="/Registration" method="post" onSubmit={handleSubmit}>
+      <form className= "centeringForInputs" action="/Registration" method="post" onSubmit={handleSubmit}>
         <input
           type="text"
           name="username"
@@ -64,6 +65,7 @@ const Registration = () => {
           placeholder="Username (15 letters max)"
           required
           onChange={handleChange}
+          className= "centeringForInputs"
         />
         <input
           type="password"
@@ -73,6 +75,7 @@ const Registration = () => {
           placeholder="Password (length= 3-15)"
           required
           onChange={handleChange}
+          className= "centeringForInputs"
         />
         <input
           type="password"
@@ -82,6 +85,7 @@ const Registration = () => {
           placeholder="Confirm Password"
           required
           onChange={handleChange}
+          className= "centeringForInputs"
         />
         <input
           type="text"
@@ -90,6 +94,7 @@ const Registration = () => {
           placeholder="Security Question"
           required
           onChange={handleChange}
+          className= "centeringForInputs"
         />
         <input
           type="text"
@@ -98,6 +103,7 @@ const Registration = () => {
           placeholder="Security Answer"
           required
           onChange={handleChange}
+          className= "centeringForInputs"
         />
         <input
           type="email"
@@ -106,6 +112,7 @@ const Registration = () => {
           placeholder="Email"
           required
           onChange={handleChange}
+          className= "centeringForInputs"
         />
         <input type="submit" value="Sign Up"/><br></br>
         
