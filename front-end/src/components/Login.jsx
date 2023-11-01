@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { UserData } from '../App';
@@ -55,9 +56,9 @@ const Login = () => {
     <div className='logMain'>
       <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
       <img src={login} className="LoginButtonNoHover"></img>
-      <form className= "logForm" action="/Login" method="post" onSubmit={handleSubmit}>
-        <input onChange={handleChange} maxLength={200}type="email" placeholder='Email' name = "email" required/>
-        <input onChange={handleChange} maxLength= {15} type="password" placeholder='Password' name = "password" required/>
+      <form className= "centeringForInputs" action="/Login" method="post" onSubmit={handleSubmit}>
+        <input onChange={handleChange} type="email" placeholder='Email' name = "email" className= "centeringForInputs" required/>
+        <input onChange={handleChange} type="password" placeholder='Password' name = "password" className= "centeringForInputs" required/>
         <input type="submit" />
       </form>
       <Link to="/updatepassword">Forgot your password?</Link>
@@ -66,3 +67,4 @@ const Login = () => {
 }
 
 export default Login
+
