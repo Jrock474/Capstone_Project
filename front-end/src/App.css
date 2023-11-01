@@ -52,6 +52,14 @@ body {
   height: 100%;
   width: 100%;
   overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  background-color: black;
+  padding-top: 100px;
 }
 
 body {
@@ -87,7 +95,15 @@ color: red;
   text-align: center;
   height: 100vh;
 }
+/* NEWS CSS */
+.newsImg{
+height: 50%;
+width: 50%;
+}
+.newsDescription {
+color: lightblue;
 
+}
 .newsMain {
   display: flex;
   justify-content: center;
@@ -186,7 +202,7 @@ color: red;
 
 .LoginButton:hover {
     transform: scale(1.2);
-    content: url('../src/images/LoginGlow.png');
+    content: url('/images/LoginGlow.png');
 }
 
 .SignInButton {
@@ -217,7 +233,7 @@ color: red;
 
 .SignInButton:hover {
     transform: scale(1.2);
-    content: url('../src/images/SignUpGlow.png');
+    content: url('/images/SignUpGlow.png');
 }
 
 .NewGameButton {
@@ -235,7 +251,7 @@ color: red;
 
 .NewGameButton:hover {
     transform: scale(1.2);
-    content: url('../src/images/NewGameGlow.png');
+    content: url('/images/NewGameGlow.png');
 }
 
 
@@ -254,7 +270,7 @@ color: red;
 
 .ContinueButton:hover {
     transform: scale(1.2);
-    content: url('../src/images/ContinueGlow.png');
+    content: url('/images/ContinueGlow.png');
 }
 
 .OptionsButton {
@@ -272,7 +288,7 @@ color: red;
 
 .OptionsButton:hover {
     transform: scale(1.2);
-    content: url('../src/images/OptionsGlow.png');
+    content: url('/images/OptionsGlow.png');
 }
 
 .logo2 {
@@ -357,3 +373,64 @@ color: red;
 .carousel-captionsAnt {
   color: rgb(255, 251, 11);
 }
+
+body{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.GameBody{
+  align-self: center;
+  justify-self: center;
+
+  display: grid;
+  grid-template-columns: 216.25px 400px 216.25px;
+  grid-template-rows: 143.5px 400px 143.5px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.Pet{
+  grid-column: 2/2;
+  grid-row: 2/2;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+ 
+}
+
+.ActivityBox{
+  grid-column: 1/4;
+  grid-row: 3/3;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+   
+}
+
+.MoodBox{
+  grid-column: 1/4;
+  grid-row: 1/1;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  
+}
+
+#Poop{
+  grid-column: 3/3;
+  grid-row: 2/2;
+  display: flex;
+  align-self:flex-end;
+  align-content: center;
+  justify-content: center;
+    
+}
+
+
