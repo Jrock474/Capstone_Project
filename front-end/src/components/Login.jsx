@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserData } from '../App';
 import login from "../images/Login.png";
 import { Link } from 'react-router-dom';
+
 const Login = () => {
 
   const [userData, setUserData] = useContext(UserData)
@@ -56,10 +57,10 @@ const Login = () => {
     <div className='logMain'>
       <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
       <img src={login} className="LoginButtonNoHover"></img>
-      <form className= "centeringForInputs" action="/Login" method="post" onSubmit={handleSubmit}>
+      <form action="/Login" method="post" onSubmit={handleSubmit}>
         <input onChange={handleChange} type="email" placeholder='Email' name = "email" className= "centeringForInputs" required/>
         <input onChange={handleChange} type="password" placeholder='Password' name = "password" className= "centeringForInputs" required/>
-        <input type="submit" />
+        <input type="submit" className= "submitBtn"/>
       </form>
       <Link to="/updatepassword">Forgot your password?</Link>
     </div>
