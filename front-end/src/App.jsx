@@ -45,6 +45,8 @@ function App() {
           <Route path="/Intro" element={<Professor />} />
 
           <Route path="/UpdatePassword" element={<UpdatePassword/>} />
+
+          <Route path="/MainGame" element={<MainGame/>} />
         
         </Routes>
      
