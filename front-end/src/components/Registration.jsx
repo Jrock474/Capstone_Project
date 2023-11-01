@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import signUp from "../images/SignUp.png";
 
 
 const Registration = () => {
+
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -29,13 +33,18 @@ const Registration = () => {
     console.log(formData.username);
 
     // On submit of the form, send a POST request with the data to the server.
-    await fetch('http://localhost:3000/Registration', { 
+    const registrationesponse = await fetch('http://localhost:3000/Registration', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
     })
+
+    const registrationData = await registrationesponse.json()
+    console.log(registrationData)
+
+    navigate("/PlayGame")
   };
 
   const handleChange = (e) => {

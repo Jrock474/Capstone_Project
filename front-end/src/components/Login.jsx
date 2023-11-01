@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { UserData } from '../App';
 import login from "../images/Login.png";
 import { Link } from 'react-router-dom';
 const Login = () => {
+
+  const [userData, setUserData] = useContext(UserData)
 
   const navigate = useNavigate()
 
@@ -25,15 +28,19 @@ const Login = () => {
         body: JSON.stringify(formData),
     })
 
-    console.log(loginSubmission)
+    let userData = await loginSubmission.json()
+
+
+
+    console.log(userData)
     if (loginSubmission.ok) {
       // on Successful login
-      setErrorFound(`Login Successful, Hello ${formData.email}`);
+      setUserData(loginSubmission)
+      // navigate("/PlayGame");
     } else {
       // On error
       setErrorFound('Invalid login credentials. Please try again.');
     }
-    navigate("/PlayGame");
   };
 
 
