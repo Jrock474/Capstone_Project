@@ -85,7 +85,15 @@ color: red;
   text-align: center;
   height: 100vh;
 }
+/* NEWS CSS */
+.newsImg{
+height: 50%;
+width: 50%;
+}
+.newsDescription {
+color: lightblue;
 
+}
 .newsMain {
   display: flex;
   justify-content: center;
