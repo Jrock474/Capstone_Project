@@ -27,9 +27,7 @@ const Registration = () => {
     if (formData.password !== formData.reEnterPassword) {
       setErrorFound('Passwords do not match');
       return; // Stop form submission
-    } else {
-      setErrorFound(` Registration Successful ${formData.username}`); // Reset error message
-    }
+    } 
     
     // Proceed with form submission
     console.log(formData.username);
@@ -43,12 +41,16 @@ const Registration = () => {
         body: JSON.stringify(formData),
     })
 
-    const registrationData = await registrationesponse.json()
-
-    setUserData(registrationData)
-    console.log(registrationData)
-
-    navigate("/PlayGame")
+    if (!registrationesponse.ok) {
+      // on Successful login
+      const registrationData = await registrationesponse.json()
+      return setErrorFound(registrationData)
+    } else {
+      const registrationData = await registrationesponse.json()
+      setUserData(registrationData)
+      console.log(registrationData)
+      navigate("/PlayGame")
+    }
   };
 
   const handleChange = (e) => {
