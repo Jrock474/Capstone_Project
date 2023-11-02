@@ -11,8 +11,10 @@ const bodyParser = require('body-parser')
 const session = require("express-session")
 const { async } = require("regenerator-runtime")
 const cookieParser = require('cookie-parser');
-app.use(cookieParser())
+const passport = require("passport")
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(session({
   secret: 'digitalCrafts',
@@ -23,6 +25,9 @@ app.use(session({
     maxAge: 3600000, // Session expiration time in milliseconds (e.g., 1 hour)
   },
 }));
+
+
+
 
 
 
@@ -76,22 +81,23 @@ app.get('/', async(req, res) => {
 
 // Redirects to Play Game upon successful login
 app.get('/Login', async(req, res) => {
-    res.redirect(`/playgame/${userID}`)
+    res.redirect(`/playgame/${req.params.userID}`)
 })
 
-// Sends UserData to Client
+// Session endpoint that also sends UserData to Client 
 app.get('/playgame/:userID', async (req, res) => {
   try {
-    // if (req.session.isAuthenticated) {
-      const foundUser = await Users.findOne({ where: { id: req.params.userID } });
+    const foundUser = await Users.findOne({ where: { id: req.params.userID }});
+
+    if (req.session.isAuthenticated) {
       // User is authenticated, proceed to the dashboard
       const JSONdata = foundUser.dataValues
       console.log(JSONdata)
       res.json(JSONdata);
-    // } else {
-    //   // User is not authenticated, redirect to the login page
-    //   res.json('Authentication Expired');
-    // }
+    } else {
+      // User is not authenticated, redirect to the login page
+      res.json('Authentication Expired');
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal server error'); // Handle other unexpected errors
@@ -224,12 +230,7 @@ app.post('/Registration', async (req, res) => {
   req.session.isAuthenticated = true;
   req.session.userID = newUser.id; // Store the user's ID in the session
 
-  const userID = newUser.id
-
-  res.json(newUser)
-
-  // Redirect to the dashboard or another protected route
-  // res.redirect(`/playgame/${userID}`);
+  res.redirect(`/playgame/${newUser.id}`)
 });
 
 // Login endpoint
@@ -256,8 +257,10 @@ app.post('/Login', async (req, res) => {
     if (result) {
       // Passwords match, redirect to the game with the User's ID
       req.session.isAuthenticated = true;
-      req.session.userID = userID; // Store the user's ID in the session
-      res.redirect(`/playgame/${userID}`)
+      req.session.userID = returningUser.id; // Store the user's ID in the session
+      
+
+      res.redirect(`/playgame/${returningUser.id}`)
     } else {
       // Passwords do not match, render the login page with an error message
       return res.status(400).send(`Invalid login`);
