@@ -15,13 +15,14 @@ const Login = () => {
     password: ''
   });
 
-  const [errorFound, setErrorFound] = useState('');
+  const [errorFound, setErrorFound] = useState("");
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorFound("")
 
     // On submit of the form, send a POST request with the data to the server.
-    let loginSubmission = await fetch('http://localhost:3000/Login', { 
+    const loginSubmission = await fetch('https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/Login', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,22 +30,20 @@ const Login = () => {
         body: JSON.stringify(formData),
     })
 
-    let userData = await loginSubmission.json()
-
-
-
-    console.log(userData)
-    if (loginSubmission.ok) {
-      // on Successful login
-      setUserData(loginSubmission)
-      // navigate("/PlayGame");
-    } else {
-      // On error
+    // If login is unsuccessful
+    if(!loginSubmission.ok){
       setErrorFound('Invalid login credentials. Please try again.');
     }
+    
+    const userData = await loginSubmission.json()
+
+    // If login is successful, fetches User data and redirects
+    if (loginSubmission.ok) {
+      // on Successful login
+      setUserData(userData)
+      navigate("/PlayGame");
+    }
   };
-
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;

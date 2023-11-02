@@ -1,18 +1,17 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const pg = require("pg-promise")();
 const app = express();
 const port = 3000;
 const cors = require("cors")
 const {Users} = require("./models");
-const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser')
 const session = require("express-session")
-const { async } = require("regenerator-runtime")
-const cookieParser = require('cookie-parser');
-app.use(cookieParser())
+const passport = require("passport")
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(session({
   secret: 'digitalCrafts',
@@ -26,17 +25,22 @@ app.use(session({
 
 
 
+
+
+
 app.use(cors(
   {
+    origin: "*",
     methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true
   }
 ))
 
 //UPDATE PASSWORD ENDPOINT
-
 app.put('/UpdatePassword', async (req, res) => {
-  const { email, newPassword } = req.body;
+  const { email, secanswer, newPassword } = req.body;
+
+  let userAnswer = secanswer
 
   // Check if the email exists in the database
   const existingUser = await Users.findOne({
@@ -46,7 +50,11 @@ app.put('/UpdatePassword', async (req, res) => {
   });
 
   if (!existingUser) {
-    return res.status(404).send('Email not found in the database');
+    return res.status(400).send('Email not found');
+  }
+
+  if (existingUser.secanswer != userAnswer){
+    return res.status(400).json("Invalid credentials")
   }
 
   // Generate a salt and hash the new password
@@ -71,22 +79,23 @@ app.get('/', async(req, res) => {
 
 // Redirects to Play Game upon successful login
 app.get('/Login', async(req, res) => {
-    res.redirect(`/playgame/${userID}`)
+    res.redirect(`/playgame/${req.params.userID}`)
 })
 
-// Sends UserData to Client
+// Session endpoint that also sends UserData to Client 
 app.get('/playgame/:userID', async (req, res) => {
   try {
-    // if (req.session.isAuthenticated) {
-      const foundUser = await Users.findOne({ where: { id: req.params.userID } });
+    const foundUser = await Users.findOne({ where: { id: req.params.userID }});
+
+    if (req.session.isAuthenticated) {
       // User is authenticated, proceed to the dashboard
       const JSONdata = foundUser.dataValues
       console.log(JSONdata)
       res.json(JSONdata);
-    // } else {
-    //   // User is not authenticated, redirect to the login page
-    //   res.json('Authentication Expired');
-    // }
+    } else {
+      // User is not authenticated, redirect to the login page
+      res.json('Authentication Expired');
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal server error'); // Handle other unexpected errors
@@ -104,7 +113,7 @@ app.get('/checkEmail', async (req, res) => {
   if (existingUser) {
     res.status(200).send('Email found');
   } else {
-    res.status(404).send('Email not found in database');
+    res.status(404).json('Email not found in database');
   }
 });
 
@@ -176,7 +185,7 @@ app.post('/Registration', async (req, res) => {
     });
 
     if (exitingUser){
-      return res.send('Email is already in use')
+      return res.status(400).json('Email is already in use')
     }
 
     //  Generate a salt and hash the password
@@ -219,12 +228,7 @@ app.post('/Registration', async (req, res) => {
   req.session.isAuthenticated = true;
   req.session.userID = newUser.id; // Store the user's ID in the session
 
-  const userID = newUser.id
-
-  res.json(newUser)
-
-  // Redirect to the dashboard or another protected route
-  // res.redirect(`/playgame/${userID}`);
+  res.redirect(`/playgame/${newUser.id}`)
 });
 
 // Login endpoint
@@ -242,18 +246,18 @@ app.post('/Login', async (req, res) => {
     return res.status(400).send('User not found');
   }
 
-  const userName = returningUser.Name;
   const userID = returningUser.id;
   const storedHashedPassword = returningUser.password; // this is the password that is stored in the database
 
   try {
     const result = await bcrypt.compare(userEnteredPassword, storedHashedPassword);
-
     if (result) {
       // Passwords match, redirect to the game with the User's ID
       req.session.isAuthenticated = true;
-      req.session.userID = userID; // Store the user's ID in the session
-      res.redirect(`/playgame/${userID}`)
+      req.session.userID = returningUser.id; // Store the user's ID in the session
+      
+
+      res.redirect(`/playgame/${returningUser.id}`)
     } else {
       // Passwords do not match, render the login page with an error message
       return res.status(400).send(`Invalid login`);
@@ -266,7 +270,9 @@ app.post('/Login', async (req, res) => {
 });
 
 app.delete('/Delete', async (req, res) => {
-  const { email } = req.body;
+  const { email, secanswer } = req.body;
+
+  let userAnswer = secanswer
 
   const userToDelete = await Users.findOne({
     where: {
@@ -275,15 +281,22 @@ app.delete('/Delete', async (req, res) => {
   });
 
   if (!userToDelete) {
-    return res.send('User not found');
+    return res.json('User not found');
   }
 
+  if (userToDelete.secanswer == userAnswer){
   try {
     await userToDelete.destroy(); // Delete the user
-    return res.json(userToDelete.username);
+    return res.json(userToDelete);
   } catch (error) {
-    return res.status(500).send('User deletion failed');
+    return res.status(500).json('User deletion failed');
   }
+} else {
+  return res.status(400).json("Invalid credentials")
+}
+
+
+
 });
 //placeholder logic from the documentation
 app.get('/logout', function (req, res, next) {

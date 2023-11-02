@@ -17,14 +17,14 @@ const Delete = () => {
     setFormData({ email: '', secanswer: '' });
 
     // check if the email exists before attempting deletion
-    const checkResponse = await fetch(`http://localhost:3000/checkEmail?email=${formData.email}`);
+    const checkResponse = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/checkEmail?email=${formData.email}`);
 
     if (checkResponse.status !== 200) {
       setErrorFound('Email not found');
       return;
     }
 
-    const expectedResponse = await fetch(`http://localhost:3000/getAnswer/${formData.email}`);
+    const expectedResponse = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/getAnswer/${formData.email}`);
 
     if (expectedResponse.status === 200) {
       const expectedAnswer = await expectedResponse.text();
@@ -36,7 +36,7 @@ const Delete = () => {
       // Compare the entered security answer with the expected answer
       if (formData.secanswer === expectedAnswer) {
         // If email exists and security answer is correct, proceed with the deletion
-        const deleteResponse = await fetch('http://localhost:3000/delete', {
+        const deleteRequest = await fetch('https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/delete', {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -44,14 +44,14 @@ const Delete = () => {
           body: JSON.stringify(formData),
         });
 
-        const deletedUser = await deleteResponse.json()
+        const deletedResponse = await deleteRequest.json()
 
-        if (deleteResponse.status === 200) {
-          console.log(deletedUser);
-          setErrorFound('User Deleted Successfully');
+        if (deleteRequest.status === 200) {
+          console.log(deletedResponse.username);
+          setErrorFound(`${deletedResponse.username} Deleted Successfully`);
         } else {
           console.error(`User ${formData.username} deletion failed`);
-          setErrorFound(`User ${formData.username} deletion failed`);
+          setErrorFound(deletedResponse);
         }
       }
     }
@@ -59,11 +59,12 @@ const Delete = () => {
 
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
+    setErrorFound(null);
 
     // Clear the email input field after 2nd form button is pressed
     setFormData({ ...formData, email: '' });
 
-    const questionResponse = await fetch(`http://localhost:3000/getQuestion/${formData.email}`);
+    const questionResponse = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/getQuestion/${formData.email}`);
 
     if (questionResponse.status === 200) {
       const question = await questionResponse.text();

@@ -1,8 +1,11 @@
-
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserData } from '../App';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Registration = () => {
+
+  const [userData, setUserData] = useContext(UserData)
 
   const navigate = useNavigate()
 
@@ -18,21 +21,20 @@ const Registration = () => {
   const [errorFound, setErrorFound] = useState('');
 
   const handleSubmit = async (e) => {
+    setErrorFound("")
     e.preventDefault();
 
     // Check if the passwords match
     if (formData.password !== formData.reEnterPassword) {
       setErrorFound('Passwords do not match');
       return; // Stop form submission
-    } else {
-      setErrorFound(` Registration Successful ${formData.username}`); // Reset error message
-    }
+    } 
     
     // Proceed with form submission
     console.log(formData.username);
 
     // On submit of the form, send a POST request with the data to the server.
-    const registrationesponse = await fetch('http://localhost:3000/Registration', { 
+    const registrationesponse = await fetch('https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/Registration', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,10 +42,16 @@ const Registration = () => {
         body: JSON.stringify(formData),
     })
 
-    const registrationData = await registrationesponse.json()
-    console.log(registrationData)
-
-    navigate("/PlayGame")
+    if (!registrationesponse.ok) {
+      // on Successful login
+      const registrationData = await registrationesponse.json()
+      return setErrorFound(registrationData)
+    } else {
+      const registrationData = await registrationesponse.json()
+      setUserData(registrationData)
+      console.log(registrationData)
+      navigate("/PlayGame")
+    }
   };
 
   const handleChange = (e) => {
@@ -115,6 +123,7 @@ const Registration = () => {
         <button type="submit" className= "submitBtn">Sign Up</button>
         {/* <input type="submit" value="Sign Up" className= "submitBtn" /> */}
         <br></br>
+        <Link to="/Login">Already have an account?</Link>
         
       </form>
     </div>

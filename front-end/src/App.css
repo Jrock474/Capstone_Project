@@ -337,11 +337,11 @@ color: lightblue;
 }
 
 .carousel-captionsEth {
-  color: rgb(130, 255, 215);
+  color: rgb(0, 170, 116);
 }
 
 .carousel-captionsSab {
-  color: rgb(171, 98, 244);
+  color: rgb(129, 37, 220);
 }
 
 .carousel-captionsJor {
@@ -440,4 +440,6 @@ field{
   margin: 20px;
 }
 
-
+.fieldset-for-inputs {
+  border-color: white;
+}
