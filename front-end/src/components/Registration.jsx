@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { UserData } from '../App';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Registration = () => {
 
@@ -122,6 +123,7 @@ const Registration = () => {
         <button type="submit" className= "submitBtn">Sign Up</button>
         {/* <input type="submit" value="Sign Up" className= "submitBtn" /> */}
         <br></br>
+        <Link to="/Login">Already have an account?</Link>
         
       </form>
     </div>
