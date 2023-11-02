@@ -253,7 +253,6 @@ app.post('/Login', async (req, res) => {
 
   try {
     const result = await bcrypt.compare(userEnteredPassword, storedHashedPassword);
-
     if (result) {
       // Passwords match, redirect to the game with the User's ID
       req.session.isAuthenticated = true;
