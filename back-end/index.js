@@ -1,5 +1,5 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const pg = require("pg-promise")();
 const app = express();
 const port = 3000;
