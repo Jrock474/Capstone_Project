@@ -22,7 +22,7 @@ const Login = () => {
     setErrorFound("")
 
     // On submit of the form, send a POST request with the data to the server.
-    const loginSubmission = await fetch('http://localhost:3000/Login', { 
+    const loginSubmission = await fetch('https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app//Login', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

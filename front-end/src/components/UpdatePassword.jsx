@@ -17,7 +17,7 @@ const UpdatePassword = () => {
         // Clear the email input field after 2nd form button is pressed
         setFormData({ ...formData, email: '' });
     
-        const questionResponse = await fetch(`http://localhost:3000/getQuestion/${formData.email}`);
+        const questionResponse = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app//getQuestion/${formData.email}`);
     
         if (questionResponse.status === 200) {
           const question = await questionResponse.text();
@@ -34,14 +34,14 @@ const UpdatePassword = () => {
         setFormData({ email: '', secanswer: '', newPassword: '' });
     
         // check if the email exists before attempting deletion
-        const checkResponse = await fetch(`http://localhost:3000/checkEmail?email=${formData.email}`);
+        const checkResponse = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app//checkEmail?email=${formData.email}`);
     
         if (checkResponse.status !== 200) {
           setErrorFound('Email not found');
           return;
         }
     
-        const expectedResponse = await fetch(`http://localhost:3000/getAnswer/${formData.email}`);
+        const expectedResponse = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app//getAnswer/${formData.email}`);
     
         if (expectedResponse.status === 200) {
           const expectedAnswer = await expectedResponse.text();
@@ -54,7 +54,7 @@ const UpdatePassword = () => {
           if (formData.secanswer === expectedAnswer) {
             
             //this is where the update password logic goes      
-            const updateResponse = await fetch('http://localhost:3000/UpdatePassword', {
+            const updateResponse = await fetch('https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app//UpdatePassword', {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
