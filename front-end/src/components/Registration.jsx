@@ -34,7 +34,7 @@ const Registration = () => {
     console.log(formData.username);
 
     // On submit of the form, send a POST request with the data to the server.
-    const registrationesponse = await fetch('https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app//Registration', { 
+    const registrationesponse = await fetch('https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/Registration', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
