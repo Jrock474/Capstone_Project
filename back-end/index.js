@@ -30,7 +30,7 @@ app.use(session({
 
 app.use(cors(
   {
-    origin: "https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/",
+    origin: "*",
     methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true
   }
