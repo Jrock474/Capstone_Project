@@ -5,12 +5,9 @@ const app = express();
 const port = 3000;
 const cors = require("cors")
 const {Users} = require("./models");
-const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser')
 const session = require("express-session")
-const { async } = require("regenerator-runtime")
-const cookieParser = require('cookie-parser');
 const passport = require("passport")
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
