@@ -123,7 +123,7 @@ const Registration = () => {
         <button type="submit" className= "submitBtn">Sign Up</button>
         {/* <input type="submit" value="Sign Up" className= "submitBtn" /> */}
         <br></br>
-        <Link to="/Login">Already have an account?</Link>
+        <Link to="/Login" className='links-for-reRoutes'>Already Have An Account?</Link>
         
       </form>
     </div>

@@ -456,3 +456,7 @@ field{
 .fieldset-for-inputs {
   border-color: white;
 }
+
+.links-for-reRoutes {
+  color: rgb(0, 234, 255);
+}
