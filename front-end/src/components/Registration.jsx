@@ -68,7 +68,7 @@ const Registration = () => {
           type="text"
           name="username"
           maxLength={15}
-          placeholder="Username (15 letters max)"
+          placeholder="Username"
           required
           onChange={handleChange}
           className= "centeringForInputs"
@@ -78,7 +78,7 @@ const Registration = () => {
           name="password"
           minLength={3}
           maxLength={15}
-          placeholder="Password (length= 3-15)"
+          placeholder="Password"
           required
           onChange={handleChange}
           className= "centeringForInputs"
