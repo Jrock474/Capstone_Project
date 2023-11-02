@@ -96,6 +96,7 @@ color: red;
   align-items: center;
   text-align: center;
   height: 100vh;
+  margin-bottom: 75px;
 }
 /* NEWS CSS */
 .newsImg{
@@ -302,16 +303,12 @@ color: lightblue;
   flex-direction: column;
 }
 
-
-/* .submitBtn{
-  height: 5rem;
-  width: 20rem;
-  background-color: rgb(0, 0, 0);
-  color: rgb(62, 184, 245);
-  border: 5px solid rgb(236, 5, 159);
-  /* margin: 20px; 
-  border-radius: 1rem;
-}  */
+.centeringForInputs {
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  text-shadow: none;
+ }
 
 .regMain {
   display: flex;
@@ -334,11 +331,6 @@ color: lightblue;
   height: 100vh;
   width: 100vw;
 }
-
-/* .carousel-container {
-  margin: auto;
-  width: 100%;
-} */
 
 .carousel-imgs {
   height: 100%;
@@ -428,13 +420,10 @@ input{
   background-color: rgb(0, 0, 0);
   border: solid 2px  rgb(255, 0, 242);
   text-align: center;
-  height: 60px;
+  height: 55px;
   border-radius: 20px;
   width: 300px;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  
+  margin: 20px;
 }
 
 /* .centeringForInputs {
@@ -447,12 +436,12 @@ input{
 /* } */ 
 
 .submitBtn{
-  color: rgb(1, 4, 5);
-  background-color:  rgb(255, 0, 242);
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 0, 242);
   border: solid 2px  rgb(255, 0, 242);
   text-align: center;
-  height: 45px;
-  border-radius: 20px;
+  height: 55px;
+  border-radius: 30px;
   width: 300px;
   margin: 20px;
   align-self: center;
