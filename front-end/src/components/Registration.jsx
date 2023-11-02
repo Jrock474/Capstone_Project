@@ -53,7 +53,7 @@ const Registration = () => {
   
   return (
     <div className='regMain'>
-      <img src={"/images/SignUp.png"} className="SignInButtonNoHover" style= {{ marginBottom: 35 }} />
+      <img src={"/images/SignUp.png"} className="SignInButtonNoHover" style= {{ marginBottom: 15 }} />
       <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
       <form action="/Registration" method="post" onSubmit={handleSubmit}>
         <input
