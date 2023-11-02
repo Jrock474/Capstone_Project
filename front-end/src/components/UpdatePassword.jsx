@@ -94,11 +94,11 @@ const UpdatePassword = () => {
                 maxLength={200}
                 className='margin-for-inputs'
               />
-              <input type="submit" value="Get Security Question" />
+              <input type="submit" value="Get Security Question" className= "submitBtn"/>
             </form>
             {securityQuestion && <div className="secquestion">{securityQuestion}</div>}
           </div>
-          <form className="updateForm" onSubmit={handleSubmit}>
+          <form className= "centeringForInputs" onSubmit={handleSubmit}>
             <input
               onChange={handleChange}
               type="email"
@@ -107,7 +107,7 @@ const UpdatePassword = () => {
               required
               maxLength={200}
               value={formData.email} // Set the input value of email (using props)
-              className='margin-for-inputs'
+              className= "centeringForInputs"
             />
             <input
               onChange={handleChange}
@@ -117,7 +117,7 @@ const UpdatePassword = () => {
               required
               maxLength={200}
               value={formData.secanswer} // Set the input value for clearing
-              className='margin-for-inputs'
+              className= "centeringForInputs"
             />
             <input
           onChange={handleChange}
@@ -127,9 +127,9 @@ const UpdatePassword = () => {
           required
           maxLength={200}
           value={formData.newPassword}
-          className='margin-for-inputs'
+          className= "centeringForInputs"
         />
-            <input type="submit" value="Update Password" />
+            <input type="submit" value="Update Password" className= "submitBtn"/>
           </form>
           {errorFound && <div className="errorD">{errorFound}</div>}
         </div>

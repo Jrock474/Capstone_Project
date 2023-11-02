@@ -60,7 +60,7 @@ const Login = () => {
         <input onChange={handleChange} type="password" placeholder='Password' name = "password" className= "centeringForInputs" required/>
         <input type="submit" className= "submitBtn"/>
       </form>
-      <Link to="/updatepassword">Forgot your password?</Link>
+      <Link to="/updatepassword" className='links-for-reRoutes'>Forgot Your Password?</Link>
     </div>
   )
 }
