@@ -1,8 +1,10 @@
-
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserData } from '../App';
 import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
+
+  const [userData, setUserData] = useContext(UserData)
 
   const navigate = useNavigate()
 
@@ -18,15 +20,14 @@ const Registration = () => {
   const [errorFound, setErrorFound] = useState('');
 
   const handleSubmit = async (e) => {
+    setErrorFound("")
     e.preventDefault();
 
     // Check if the passwords match
     if (formData.password !== formData.reEnterPassword) {
       setErrorFound('Passwords do not match');
       return; // Stop form submission
-    } else {
-      setErrorFound(` Registration Successful ${formData.username}`); // Reset error message
-    }
+    } 
     
     // Proceed with form submission
     console.log(formData.username);
@@ -40,10 +41,16 @@ const Registration = () => {
         body: JSON.stringify(formData),
     })
 
-    const registrationData = await registrationesponse.json()
-    console.log(registrationData)
-
-    navigate("/PlayGame")
+    if (!registrationesponse.ok) {
+      // on Successful login
+      const registrationData = await registrationesponse.json()
+      return setErrorFound(registrationData)
+    } else {
+      const registrationData = await registrationesponse.json()
+      setUserData(registrationData)
+      console.log(registrationData)
+      navigate("/PlayGame")
+    }
   };
 
   const handleChange = (e) => {

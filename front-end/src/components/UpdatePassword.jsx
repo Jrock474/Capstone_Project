@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+
 const UpdatePassword = () => {
     const [formData, setFormData] = useState({
         username: '',
@@ -27,6 +28,7 @@ const UpdatePassword = () => {
       };
       const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorFound("")
     
         // Clear the input fields after functions goes off
         setFormData({ email: '', secanswer: '', newPassword: '' });
@@ -50,13 +52,8 @@ const UpdatePassword = () => {
           }
           // Compare the entered security answer with the expected answer
           if (formData.secanswer === expectedAnswer) {
-            // If email exists and security answer is correct, proceed with the deletion
-
-
-//this is where the update password logic goes
-
-
-
+            
+            //this is where the update password logic goes      
             const updateResponse = await fetch('http://localhost:3000/UpdatePassword', {
               method: 'PUT',
               headers: {

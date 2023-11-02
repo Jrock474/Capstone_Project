@@ -34,9 +34,10 @@ app.use(cors(
 ))
 
 //UPDATE PASSWORD ENDPOINT
-
 app.put('/UpdatePassword', async (req, res) => {
-  const { email, newPassword } = req.body;
+  const { email, secanswer, newPassword } = req.body;
+
+  let userAnswer = secanswer
 
   // Check if the email exists in the database
   const existingUser = await Users.findOne({
@@ -46,7 +47,11 @@ app.put('/UpdatePassword', async (req, res) => {
   });
 
   if (!existingUser) {
-    return res.status(404).send('Email not found in the database');
+    return res.status(400).send('Email not found');
+  }
+
+  if (existingUser.secanswer != userAnswer){
+    return res.status(400).json("Invalid credentials")
   }
 
   // Generate a salt and hash the new password
@@ -104,7 +109,7 @@ app.get('/checkEmail', async (req, res) => {
   if (existingUser) {
     res.status(200).send('Email found');
   } else {
-    res.status(404).send('Email not found in database');
+    res.status(404).json('Email not found in database');
   }
 });
 
@@ -176,7 +181,7 @@ app.post('/Registration', async (req, res) => {
     });
 
     if (exitingUser){
-      return res.send('Email is already in use')
+      return res.status(400).json('Email is already in use')
     }
 
     //  Generate a salt and hash the password
@@ -242,7 +247,6 @@ app.post('/Login', async (req, res) => {
     return res.status(400).send('User not found');
   }
 
-  const userName = returningUser.Name;
   const userID = returningUser.id;
   const storedHashedPassword = returningUser.password; // this is the password that is stored in the database
 
@@ -266,7 +270,9 @@ app.post('/Login', async (req, res) => {
 });
 
 app.delete('/Delete', async (req, res) => {
-  const { email } = req.body;
+  const { email, secanswer } = req.body;
+
+  let userAnswer = secanswer
 
   const userToDelete = await Users.findOne({
     where: {
@@ -275,15 +281,22 @@ app.delete('/Delete', async (req, res) => {
   });
 
   if (!userToDelete) {
-    return res.send('User not found');
+    return res.json('User not found');
   }
 
+  if (userToDelete.secanswer == userAnswer){
   try {
     await userToDelete.destroy(); // Delete the user
-    return res.json(userToDelete.username);
+    return res.json(userToDelete);
   } catch (error) {
-    return res.status(500).send('User deletion failed');
+    return res.status(500).json('User deletion failed');
   }
+} else {
+  return res.status(400).json("Invalid credentials")
+}
+
+
+
 });
 //placeholder logic from the documentation
 app.get('/logout', function (req, res, next) {

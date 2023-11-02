@@ -36,7 +36,7 @@ const Delete = () => {
       // Compare the entered security answer with the expected answer
       if (formData.secanswer === expectedAnswer) {
         // If email exists and security answer is correct, proceed with the deletion
-        const deleteResponse = await fetch('http://localhost:3000/delete', {
+        const deleteRequest = await fetch('http://localhost:3000/delete', {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -44,14 +44,14 @@ const Delete = () => {
           body: JSON.stringify(formData),
         });
 
-        const deletedUser = await deleteResponse.json()
+        const deletedResponse = await deleteRequest.json()
 
-        if (deleteResponse.status === 200) {
-          console.log(deletedUser);
-          setErrorFound('User Deleted Successfully');
+        if (deleteRequest.status === 200) {
+          console.log(deletedResponse.username);
+          setErrorFound(`${deletedResponse.username} Deleted Successfully`);
         } else {
           console.error(`User ${formData.username} deletion failed`);
-          setErrorFound(`User ${formData.username} deletion failed`);
+          setErrorFound(deletedResponse);
         }
       }
     }
@@ -59,6 +59,7 @@ const Delete = () => {
 
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
+    setErrorFound(null);
 
     // Clear the email input field after 2nd form button is pressed
     setFormData({ ...formData, email: '' });
