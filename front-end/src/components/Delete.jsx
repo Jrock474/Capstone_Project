@@ -93,11 +93,11 @@ const Delete = () => {
             value={formData.email} // Set the input value (for question form)
             className='margin-for-inputs'
           />
-          <input type="submit" value="Get Security Question" />
+          <input type="submit" value="Get Security Question" className= "submitBtn"/>
         </form>
         {securityQuestion && <div className="secquestion">{securityQuestion}</div>}
       </div>
-      <form className="deleteForm" onSubmit={handleSubmit}>
+      <form className= "centeringForInputs" onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
           type="email"
@@ -118,7 +118,7 @@ const Delete = () => {
           value={formData.secanswer} // Set the input value for clearing
           className='margin-for-inputs'
         />
-        <input type="submit" value="Delete User" />
+        <input type="submit" value="Delete User" className= "submitBtn"/>
       </form>
       {errorFound && <div className="errorD">{errorFound}</div>}
     </div>
