@@ -16,7 +16,7 @@ const MainGame = () => {
   let isPoopActive = false
   
   // Changes animation based off of selected activity
-  const [monoState, setMonoState] = useState("/gifs/DinoStill.gif")
+  const [monoState, setMonoState] = useState("/gifs/Dino_Still.gif")
 
   const handleMonoChange = () =>{
     
@@ -36,7 +36,7 @@ const MainGame = () => {
 
     // Changes Mono animation based off its state
     if(isMonoSick){
-      return setMonoState("/gifs/DinoSick.gif")
+      return setMonoState("/gifs/Dino_Sick.gif")
     } else if (isMonoAngry){
       return setMonoState("/gifs/DinoAngry.gif")
     } 
@@ -55,8 +55,7 @@ const MainGame = () => {
     <div>
       <div className="GameBody">
         <div className="Pet" id="Pet">
-
-          <img src={monoState} style= {{ height: 350 }} /> 
+          <img src={monoState} style= {{ height: 500 }} /> 
         </div>
         <div className="MoodBox">
           <img src={"/images/MoodAngry.png"} style= {{ height: 100 }} />
@@ -65,11 +64,10 @@ const MainGame = () => {
               </div>
               <div className="ActivityBox">
                 {/* <img src={"/images/FightIcon.png"} style= {{ height: 100 }} /> */}
-                  <img src={"/images/FoodIcon.png"} style= {{ height: 100 }} />
-
-                    <img src={"/images/MedicineIcon.png"} style= {{ height: 100 }} />
+                  <img onClick={() =>{handleClick("/gifs/Dino_Eating.gif")}} src={"/images/FoodIcon.png"} style= {{ height: 100 }} />
+                    <img onClick={() =>{handleClick("/gifs/Dino_Pill.gif")}} src={"/images/MedicineIcon.png"} style= {{ height: 100 }} />
                       <img src={"/images/BathIcon.png"} style= {{ height: 100 }} />
-                        <img src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
+                        <img onClick={() =>{handleClick("/gifs/Dino_Play.gif")}} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
                         </div>
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />
                         </div>
