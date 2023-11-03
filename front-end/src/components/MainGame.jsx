@@ -1,10 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext, createContext} from 'react'
 import Music1 from './Music1'
+import { WeatherContext } from '../App';
+
 import Timer from './Timer'
 
 const MainGame = () => {
+  ///weather context
+  const weatherData = useContext(WeatherContext);
 
   //Character Data
+
   const [monoData, setMonoData] = useState({
   health: 100,
   hunger: 100,
@@ -51,6 +56,7 @@ const MainGame = () => {
   // Runs every time Mono's data is changed
   useEffect(()=>{
     handleMonoChange()
+    console.log(weatherData)
   },[monoData])
 
   setTimeout(() => {
@@ -63,9 +69,19 @@ const MainGame = () => {
     setIsActivityActive(true)
     setMonoState(e)
   }
+  
 
   return (
+  
     <div>
+        <div className="wDetails">
+            <img
+              src={weatherData[0].icon}
+              alt="Weather Icon"
+              className="weather-icon"
+            />
+             <p >Weather Condition: {weatherData[0].condition}</p>
+          </div>
       <div className="GameBody">
         <div className="Pet" id="Pet">
           <img src={monoState} style= {{ height: 500 }} />
@@ -86,6 +102,7 @@ const MainGame = () => {
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />
                         </div>
                         <Music1/>
+                        
                       </div>
                       )
 }
