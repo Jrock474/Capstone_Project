@@ -88,8 +88,8 @@ const MainGame = () => {
           <p>Weather Condition: {weatherData[0].condition}</p>
         )}
         {!(weatherData[0].icon && weatherData[0].condition) && (
-           <Link to="/Weather">
-           <p>Click here to Enter Weather Data</p>
+           <Link to="/Weather" className='links-for-reRoutes'>
+           <p>Click Here to Enter Weather Data</p>
          </Link>
         )}
       </div>
@@ -113,8 +113,7 @@ const MainGame = () => {
                         {/* <Timer /> */}
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />
                         </div>
-                        <Music1/>
-                        
+                        <Music1/>                      
                       </div>
                       )
 }
