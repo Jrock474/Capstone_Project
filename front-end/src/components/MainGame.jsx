@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 
 const MainGame = () => {
 
+  const [animationTimer, setAnimationTimer] = useState(0) //initilize timer
   //Character Data
   const [monoData, setMonoData] = useState({
   health: 100,
