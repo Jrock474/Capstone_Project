@@ -81,6 +81,7 @@ const Delete = () => {
 
   return (
     <div className='deleteMain'>
+      <img src={"./images/DeleteAccount.PNG"} style={{height: 200, marginBottom: 20}} />
       <div>
         <form className="QuestionForm" onSubmit={handleQuestionSubmit}>
           <input

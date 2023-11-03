@@ -55,11 +55,7 @@ const MainGame = () => {
     <div>
       <div className="GameBody">
         <div className="Pet" id="Pet">
-<<<<<<< HEAD
-          <img src={monoState} style= {{ height: 350 }} /> 
-=======
           <img src={monoState} style= {{ height: 500 }} /> 
->>>>>>> main
         </div>
         <div className="MoodBox">
           <img src={"/images/MoodAngry.png"} style= {{ height: 100 }} />
