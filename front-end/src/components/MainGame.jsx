@@ -11,9 +11,9 @@ const MainGame = () => {
   })
 
   // Determines the state of character based off of data
-  const [isMonoSick, setIsMonoSick] = useState(false)
-  const [isMonoAngry, setIsMonoAngry] = useState(false)
-  const [isPoopActive, setIsPoopActive] = useState(false)
+  let isMonoSick = false
+  let isMonoAngry = false
+  let isPoopActive = false
   
   // Changes animation based off of selected activity
   const [monoState, setMonoState] = useState("/gifs/DinoStill.gif")
@@ -22,16 +22,16 @@ const MainGame = () => {
     
     // Checks to see if Mono health is below 26
     if(monoData.health < 26){
-      setIsMonoSick(true)
+      isMonoSick = true
     } else {
-      setIsMonoSick(false)
+      isMonoSick = false
     }
 
     // Checks to see if Mono happiness is below 26
     if(monoData.happiness < 26){
-      setIsMonoAngry(true)
+      isMonoAngry = true
     } else {
-      setIsMonoAngry(false)
+      isMonoAngry = false
     }
 
     // Changes Mono animation based off its state
