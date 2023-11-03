@@ -62,12 +62,12 @@ const MainGame = () => {
   
     <div>
         <div className="wDetails">
-            {/* <img
-              src={weatherData.con}
+            <img
+              src={weatherData[0].icon}
               alt="Weather Icon"
               className="weather-icon"
-            /> */}
-             <p>Weather Condition: {weatherData.condition}</p>
+            />
+             <p >Weather Condition: {weatherData[0].condition}</p>
           </div>
       <div className="GameBody">
         <div className="Pet" id="Pet">

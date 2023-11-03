@@ -19,7 +19,7 @@ export const WeatherContext = createContext()
 function App() {
 
   const [userData, setUserData] = useState(null)
-  const [weatherData, setWeatherData] = useState(['Sunny']);
+  const [weatherData, setWeatherData] = useState([]);
   return (
     <>
       <div>
