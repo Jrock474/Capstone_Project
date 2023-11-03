@@ -21,14 +21,14 @@ const MainGame = () => {
   const handleMonoChange = () =>{
     
     // Checks to see if Mono health is below 26
-    if(monoData.health < 26){
+    if(monoData.health <= 25){
       isMonoSick = true
     } else {
       isMonoSick = false
     }
 
     // Checks to see if Mono happiness is below 26
-    if(monoData.happiness < 26){
+    if(monoData.happiness <= 25){
       isMonoAngry = true
     } else {
       isMonoAngry = false
