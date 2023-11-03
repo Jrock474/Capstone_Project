@@ -13,18 +13,20 @@ import Delete from './components/Delete';
 import MainGame from './components/MainGame';
 import Professor from './components/Professor';
 import UpdatePassword from './components/UpdatePassword';
-
+import Weather from './components/Weather';
 export const UserData = createContext()
-
+export const WeatherContext = createContext()
 function App() {
 
   const [userData, setUserData] = useState(null)
-  
+  const [weatherData, setWeatherData] = useState([]);
   return (
     <>
       <div>
       <MyNavbar />
       <UserData.Provider value = {[userData, setUserData]}>
+      <WeatherContext.Provider value={[weatherData, setWeatherData]}>
+      
         <Routes>
 
           <Route path="*" element={<Home />} />
@@ -44,10 +46,11 @@ function App() {
           <Route path="/Intro" element={<Professor />} />
 
           <Route path="/UpdatePassword" element={<UpdatePassword/>} />
-
-          <Route path="/MainGame" element={<MainGame/>} />
-        
+          <Route path="/MainGame"element={<MainGame />}/>
+          <Route path="/Weather" element={<Weather  />} />
+          
         </Routes>
+        </WeatherContext.Provider>
         </UserData.Provider>
      
       </div>
