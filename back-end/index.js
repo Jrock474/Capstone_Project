@@ -4,7 +4,7 @@ const pg = require("pg-promise")();
 const app = express();
 const port = 3000;
 const cors = require("cors")
-const {Users} = require("./models");
+const {Users, MonoStats} = require("./models");
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser')
 const session = require("express-session")
@@ -173,6 +173,11 @@ app.get('/getAnswer/:email', async (req, res) => {
     res.status(404).send('Error found in fetching Sec Question');
   }
 });
+
+// Mono save data
+app.post("/save/:userID", async () =>{
+  const {monoData} = req.body
+})
 
 // Account registration endpoint
 app.post('/Registration', async (req, res) => {
