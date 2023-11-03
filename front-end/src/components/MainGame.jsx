@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useContext, createContext} from 'react'
 import Music1 from './Music1'
+import Timer from './Timer'
 import { WeatherContext } from '../App';
+
 
 import Timer from './Timer'
 
