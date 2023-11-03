@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext, createContext} from 'react'
 import Music1 from './Music1'
 import Timer from './Timer'
 import { WeatherContext } from '../App';
-
+import { Link } from 'react-router-dom';
 
 const MainGame = () => {
   ///weather context
@@ -74,14 +74,25 @@ const MainGame = () => {
   return (
   
     <div>
-        <div className="wDetails">
-            <img
-              src={weatherData[0].icon}
-              alt="Weather Icon"
-              className="weather-icon"
-            />
-             <p >Weather Condition: {weatherData[0].condition}</p>
-          </div>
+       <div>
+      <div className="wDetails">
+        {weatherData[0].icon && (
+          <img
+            src={weatherData[0].icon}
+            alt="Weather Icon"
+            className="weather-icon"
+          />
+        )}
+        {weatherData[0].condition && (
+          <p>Weather Condition: {weatherData[0].condition}</p>
+        )}
+        {!(weatherData[0].icon && weatherData[0].condition) && (
+           <Link to="/Weather">
+           <p>Click here to Enter Weather Data</p>
+         </Link>
+        )}
+      </div>
+    </div>
       <div className="GameBody">
         <div className="Pet" id="Pet">
           <img src={monoState} style= {{ height: 500 }} />
