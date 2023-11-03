@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-
+import Music1 from './Music1'
 const MainGame = () => {
 
   //Character Data
@@ -71,6 +71,7 @@ const MainGame = () => {
                         </div>
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />
                         </div>
+                        <Music1/>
                       </div>
                       )
 }
