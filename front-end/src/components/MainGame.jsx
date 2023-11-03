@@ -19,13 +19,30 @@ const MainGame = () => {
   const [monoState, setMonoState] = useState("/gifs/DinoStill.gif")
 
   const handleMonoChange = () =>{
+    
+    // Checks to see if Mono health is below 26
+    if(monoData.health < 26){
+      setIsMonoSick(true)
+    } else {
+      setIsMonoSick(false)
+    }
+
+    // Checks to see if Mono happiness is below 26
+    if(monoData.happiness < 26){
+      setIsMonoAngry(true)
+    } else {
+      setIsMonoAngry(false)
+    }
+
+    // Changes Mono animation based off its state
     if(isMonoSick){
       return setMonoState("/gifs/DinoSick.gif")
     } else if (isMonoAngry){
       return setMonoState("/gifs/DinoAngry.gif")
     } 
   }
-
+  
+  // Runs every time Mono's data is changed
   useEffect(()=>{
     handleMonoChange()
   },[monoData])
