@@ -28,8 +28,10 @@ const AboutUs = () => {
           </div>
 
           <div className='SababuText'>
-            <p style={{alignSelf:'center'}}>Hello my name is Sababu. kdjfbvksdjbgkjsdbhgkjbhsdogbksdgbksdjbgosd
-              sdkfvkasdhbfkajsdhfbkasdbgkasjbgkasjdbgkjwf
+            <p style={{alignSelf:'center'}}>Hello my name is Sababu.
+             https://portfolio-ivory-delta-98.vercel.app/ 
+             https://drive.google.com/file/d/18SQ9YnNfsLhL2dW3GMwAMqSKOnxu1Qew/view
+              https://github.com/sababu1
             </p>
           </div>
           </div>
