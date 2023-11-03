@@ -5,7 +5,7 @@ const MainGame = () => {
     <div>
       <div className="GameBody">
         <div className="Pet" id="Pet">
-          <img src={"/gifs/DinoStill.gif"} style= {{ height: 350 }} /> 
+          <img src={"/gifs/Dino_Still.gif"} style= {{ height: 500 }} /> 
         </div>
         <div className="MoodBox">
           <img src={"/images/MoodAngry.png"} style= {{ height: 100 }} />
@@ -13,7 +13,7 @@ const MainGame = () => {
               <img src={"/images/MoodSick.png"} style= {{ height: 100 }} />
               </div>
               <div className="ActivityBox">
-                <img src={"/images/FightIcon.png"} style= {{ height: 100 }} />
+                {/* <img src={"/images/FightIcon.png"} style= {{ height: 100 }} /> */}
                   <img src={"/images/FoodIcon.png"} style= {{ height: 100 }} />
                     <img src={"/images/MedicineIcon.png"} style= {{ height: 100 }} />
                       <img src={"/images/BathIcon.png"} style= {{ height: 100 }} />
