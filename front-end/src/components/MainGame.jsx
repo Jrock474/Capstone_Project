@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Music1 from './Music1'
+import Timer from './Timer'
+
 const MainGame = () => {
 
   //Character Data
@@ -18,7 +20,11 @@ const MainGame = () => {
   // Changes animation based off of selected activity
   const [monoState, setMonoState] = useState("/gifs/Dino_Still.gif")
 
-  const handleMonoChange = () =>{
+  const [isActivityActive, setIsActivityActive] = useState(false);
+
+
+
+  const handleMonoChange = () => {
     
     // Checks to see if Mono health is below 26
     if(monoData.health <= 25){
@@ -47,7 +53,14 @@ const MainGame = () => {
     handleMonoChange()
   },[monoData])
 
+  setTimeout(() => {
+    setIsActivityActive(false);
+    setMonoState("/gifs/Dino_Still.gif");
+  }, 3000);
+
+
   const handleClick = (e) =>{
+    setIsActivityActive(true)
     setMonoState(e)
   }
 
@@ -55,7 +68,7 @@ const MainGame = () => {
     <div>
       <div className="GameBody">
         <div className="Pet" id="Pet">
-          <img src={monoState} style= {{ height: 500 }} /> 
+          <img src={monoState} style= {{ height: 500 }} />
         </div>
         <div className="MoodBox">
           <img src={"/images/MoodAngry.png"} style= {{ height: 100 }} />
@@ -69,6 +82,7 @@ const MainGame = () => {
                       <img src={"/images/BathIcon.png"} style= {{ height: 100 }} />
                         <img onClick={() =>{handleClick("/gifs/Dino_Play.gif")}} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
                         </div>
+                        {/* <Timer /> */}
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />
                         </div>
                         <Music1/>
