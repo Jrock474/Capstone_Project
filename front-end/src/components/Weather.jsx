@@ -1,45 +1,43 @@
-import React, { useContext, createContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { WeatherContext } from '../App';
-
+import { useNavigate } from 'react-router-dom';
 
 const Weather = () => {
-const [weatherContext, setWeatherContext] = useContext(WeatherContext)
+  const navigate = useNavigate();
+  const [weatherContext, setWeatherContext] = useContext(WeatherContext);
   const apiKey = '3f93593a210c4dc788d222647230810';
   const [city, setCity] = useState('');
   const [displayWeather, setDisplayWeather] = useState(false);
-  let weatherData = ({  
-    icon: '',
-    condition: '',
-    temperature: '',
-  });
-
+  const [errorFound, setErrorFound] = useState('');
   const fetchWeatherData = async () => {
     try {
       const response = await fetch(
         `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
       );
-  
+
       if (response.ok) {
         const data = await response.json();
         const iconUrl = data.current.condition.icon;
         const condition = data.current.condition.text;
         const temperature = data.current.temp_f;
-        weatherData = ({
+        const weatherData = {
           icon: iconUrl,
           condition: condition,
           temperature: temperature,
-        });
-        setWeatherContext(weatherData)
-  
+        };
+        setWeatherContext(weatherData);
         setDisplayWeather(true);
+       
+        // If the fetch call is successful, navigate to MainGame
+        navigate('/MainGame');
       } else {
+        setErrorFound('Please Enter a Valid City')
         console.error('Error fetching weather data');
       }
     } catch (error) {
       console.error('Error:', error);
     }
   };
-  
 
   const handleButtonClick = () => {
     if (city) {
@@ -72,22 +70,13 @@ const [weatherContext, setWeatherContext] = useContext(WeatherContext)
         </div>
         {displayWeather && (
           <div className="wDetails">
-            <h3 className="whCity">Weather for {city}</h3>
-            <p className="wTemp">Temperature: {weatherData.temperature}°F</p>
-            <p className="WeText">Condition: {weatherData.condition}</p>
-            <img
-              src={weatherData.icon}
-              alt="Weather Icon"
-              className="weather-icon"
-            />
+            <h3 className="whCity">Weather for {city} Entered</h3>
           </div>
         )}
       </div>
+      <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
     </div>
   );
 };
 
 export default Weather;
-
-
-
