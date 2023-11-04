@@ -9,6 +9,7 @@ const MainGame = () => {
   ///weather context
   const weatherData = useContext(WeatherContext);
 
+  const [animationTimer, setAnimationTimer] = useState(0) //initilize timer
   //Character Data
 
   const [monoData, setMonoData] = useState({

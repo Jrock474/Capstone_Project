@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       MonoStats.belongsTo(models.Users, {
-        foreignKey: 'userID', // The name of the foreign key column in the Mono Stats table
+        foreignKey: 'userID', // The name of the foreign key column in the MonoStats table
         onDelete: 'CASCADE', // Set the onDelete behavior as needed
         onUpdate: 'CASCADE' // Set the onUpdate behavior as needed
       });
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   MonoStats.init({
     userID: DataTypes.INTEGER,
-    monoData: DataTypes.JSON
+    monoData: DataTypes.JSONB
   }, {
     sequelize,
     modelName: 'MonoStats',

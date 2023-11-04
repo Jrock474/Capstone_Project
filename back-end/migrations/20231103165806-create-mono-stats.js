@@ -15,12 +15,9 @@ module.exports = {
           model: 'Users', // The name of the referenced table
           key: 'id' // The name of the referenced column
         },
-        allowNull: false, // Set this to false if you want the foreign key to be required
-        onUpdate: 'CASCADE', // Set the onUpdate behavior as needed
-        onDelete: 'CASCADE' // Set the onDelete behavior as needed
       },
       monoData: {
-        type: Sequelize.JSON
+        type: Sequelize.JSONB
       },
       createdAt: {
         allowNull: false,
