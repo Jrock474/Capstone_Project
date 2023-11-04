@@ -1,9 +1,17 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext, createContext} from 'react'
 import Music1 from './Music1'
+import { WeatherContext } from '../App';
+import Timer from './Timer'
+import { Link } from 'react-router-dom';
+
+
 const MainGame = () => {
+  ///weather context
+  const weatherData = useContext(WeatherContext);
 
   const [animationTimer, setAnimationTimer] = useState(0) //initilize timer
   //Character Data
+
   const [monoData, setMonoData] = useState({
   health: 100,
   hunger: 100,
@@ -19,7 +27,11 @@ const MainGame = () => {
   // Changes animation based off of selected activity
   const [monoState, setMonoState] = useState("/gifs/Dino_Still.gif")
 
-  const handleMonoChange = () =>{
+  const [isActivityActive, setIsActivityActive] = useState(false);
+
+
+
+  const handleMonoChange = () => {
     
     // Checks to see if Mono health is below 26
     if(monoData.health <= 25){
@@ -46,17 +58,46 @@ const MainGame = () => {
   // Runs every time Mono's data is changed
   useEffect(()=>{
     handleMonoChange()
+    console.log(weatherData)
   },[monoData])
 
+  setTimeout(() => {
+    setIsActivityActive(false);
+    setMonoState("/gifs/Dino_Still.gif");
+  }, 3000);
+
+
   const handleClick = (e) =>{
+    setIsActivityActive(true)
     setMonoState(e)
   }
+  
 
   return (
+  
     <div>
+       <div>
+      <div className="wDetails">
+        {weatherData[0].icon && (
+          <img
+            src={weatherData[0].icon}
+            alt="Weather Icon"
+            className="weather-icon"
+          />
+        )}
+        {weatherData[0].condition && (
+          <p>Weather Condition: {weatherData[0].condition}</p>
+        )}
+        {!(weatherData[0].icon && weatherData[0].condition) && (
+           <Link to="/Weather" className='links-for-reRoutes'>
+           <p>Click Here to Enter Weather Data</p>
+         </Link>
+        )}
+      </div>
+    </div>
       <div className="GameBody">
         <div className="Pet" id="Pet">
-          <img src={monoState} style= {{ height: 500 }} /> 
+          <img src={monoState} style= {{ height: 500 }} />
         </div>
         <div className="MoodBox">
           <img src={"/images/MoodAngry.png"} style= {{ height: 100 }} />
@@ -70,9 +111,10 @@ const MainGame = () => {
                       <img src={"/images/BathIcon.png"} style= {{ height: 100 }} />
                         <img onClick={() =>{handleClick("/gifs/Dino_Play.gif")}} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
                         </div>
+                        {/* <Timer /> */}
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />
                         </div>
-                        <Music1/>
+                        <Music1/>                      
                       </div>
                       )
 }

@@ -82,6 +82,7 @@ const UpdatePassword = () => {
     
       return (
         <div className='updateMain'>
+          <img src={"./images/ResetPassword.PNG"} style={{height: 185, marginBottom: 30}} />
           <div>
             <form className="QuestionForm" onSubmit={handleQuestionSubmit}>
               <input
