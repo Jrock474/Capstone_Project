@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { WeatherContext } from '../App';
 import { useNavigate } from 'react-router-dom';
+import Music2 from './MusicFolder/WeatherOst';
 
 const Weather = () => {
   const navigate = useNavigate();
@@ -51,6 +52,7 @@ const Weather = () => {
 
   return (
     <div>
+    <Music2/>
       <div className="wContainer">
         <h2 className="wTitle">Weather Information</h2>
         <div className="wInput">

@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext, createContext} from 'react'
-import Music1 from './Music1'
+import Music1 from './MusicFolder/Music1'
 import { WeatherContext } from '../App';
 import Timer from './Timer'
 import { Link } from 'react-router-dom';
-
+import useSound from 'use-sound'
 
 const MainGame = () => {
   ///weather context
@@ -71,7 +71,18 @@ const MainGame = () => {
     setIsActivityActive(true)
     setMonoState(e)
   }
-  
+  //Adds animation and Eating sfx on burger click
+  const [eatsfx] = useSound('/music/Eating.mp3')
+  const handleEatingSound = () => {
+    handleClick("/gifs/Dino_Eating.gif");
+    eatsfx();
+  };
+  //Adds animation and playing sfx on ball click
+  const [playsfx] = useSound('/music/BallBouncesfx.mp3')
+  const handlePlayingSound = () => {
+    handleClick("/gifs/Dino_Play.gif");
+    playsfx();
+  };
 
   return (
   
@@ -95,6 +106,10 @@ const MainGame = () => {
         )}
       </div>
     </div>
+
+{/* GAME LOGIC BELOW */}
+
+
       <div className="GameBody">
         <div className="Pet" id="Pet">
           <img src={monoState} style= {{ height: 500 }} />
@@ -106,10 +121,10 @@ const MainGame = () => {
               </div>
               <div className="ActivityBox">
                 {/* <img src={"/images/FightIcon.png"} style= {{ height: 100 }} /> */}
-                  <img onClick={() =>{handleClick("/gifs/Dino_Eating.gif")}} src={"/images/FoodIcon.png"} style= {{ height: 100 }} />
+                <img onClick={handleEatingSound}  src={"/images/FoodIcon.png"}  style={{ height: 100 }}  />
                     <img onClick={() =>{handleClick("/gifs/Dino_Pill.gif")}} src={"/images/MedicineIcon.png"} style= {{ height: 100 }} />
                       <img src={"/images/BathIcon.png"} style= {{ height: 100 }} />
-                        <img onClick={() =>{handleClick("/gifs/Dino_Play.gif")}} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
+                        <img onClick={handlePlayingSound} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
                         </div>
                         {/* <Timer /> */}
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />
