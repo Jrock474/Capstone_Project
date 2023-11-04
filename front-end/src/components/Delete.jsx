@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Music3 from './MusicFolder/DeleteOst';
 const Delete = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -81,6 +81,7 @@ const Delete = () => {
 
   return (
     <div className='deleteMain'>
+    <Music3/>
       <img src={"./images/DeleteAccount.PNG"} style={{height: 200, marginBottom: 20}} />
       <div>
         <form className="QuestionForm" onSubmit={handleQuestionSubmit}>

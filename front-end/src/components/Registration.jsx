@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { UserData } from '../App';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import Music7 from './MusicFolder/RegistrationOst';
 const Registration = () => {
 
   const [userData, setUserData] = useContext(UserData)
@@ -61,6 +61,7 @@ const Registration = () => {
   
   return (
     <div className='regMain'>
+      <Music7/>
       <img src={"/images/SignUp.png"} className="SignInButtonNoHover" style= {{ marginBottom: 15 }} />
       <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
       <form action="/Registration" method="post" onSubmit={handleSubmit}>
