@@ -56,8 +56,8 @@ const Weather = () => {
       <div className="wContainer">
         <h2 className="wTitle">Weather Information</h2>
         <div className="wInput">
-          <label htmlFor="city" className="wLabel">
-            Enter Current City:
+          <label htmlFor="city" className="wTitle">
+            {/* Enter Current City: */}
           </label>
           <input
             type="text"
@@ -65,8 +65,9 @@ const Weather = () => {
             value={city}
             onChange={handleCityChange}
             className="wCity"
+            placeholder='Enter Current City'
           />
-          <button onClick={handleButtonClick} className="get-weather-button">
+          <button onClick={handleButtonClick} className="submitBtn">
             Get Weather
           </button>
         </div>

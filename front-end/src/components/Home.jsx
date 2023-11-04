@@ -13,8 +13,7 @@ const Home = () => {
 
   return (
     <>
-      <div>Home</div>
-      <Music5/>
+      <div></div>
       <div className="Page1Body">
         <img src={"/images/Logo2.png"} className="logo2"></img>
           <img src={"/images/Login.png"} className="LoginButton" onClick={reRouteLogin}></img>
