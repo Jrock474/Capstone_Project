@@ -3,11 +3,7 @@ import Music1 from './MusicFolder/Music1'
 import { WeatherContext } from '../App';
 import Timer from './Timer'
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import useSound from 'use-sound'
-=======
-
->>>>>>> main
 
 const MainGame = () => {
   ///weather context
