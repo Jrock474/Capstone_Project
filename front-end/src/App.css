@@ -58,6 +58,9 @@ max-width: 30px;
 max-height: 30px;
 
 }
+.Welcome {
+  color: red;
+}
 .errorD {
   color: red;
 }

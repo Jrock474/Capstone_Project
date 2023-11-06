@@ -15,7 +15,7 @@ const PlayGame = () => {
   return (
     <div>
       <div className='logMain'>
-      <div>Welcome {userName}</div>
+      <div className='Welcome'>Welcome {userName}</div>
       <img src={"/images/Logo2.png"} className="logo2"></img>
       <img src={"/images/Continue.png"} className="ContinueButton"></img>
       <img src={"/images/NewGame.png"} className="NewGameButton"></img>
