@@ -1,23 +1,26 @@
-import React, {useState, useEffect, useContext, createContext} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import Music1 from './MusicFolder/Music1'
 import { WeatherContext } from '../App';
-import Timer from './Timer'
 import { Link } from 'react-router-dom';
 import useSound from 'use-sound'
+import { UserData } from '../App';
 
 const MainGame = () => {
+  const userData = useContext(UserData)
+  // const userID = userData[0].id
+  
   ///weather context
   const weatherData = useContext(WeatherContext);
 
   const [animationTimer, setAnimationTimer] = useState(0) //initilize timer
-  //Character Data
 
-  const [monoData, setMonoData] = useState({
-  health: 100,
-  hunger: 100,
-  cleanliness: 100,
-  happiness: 100
-  })
+  //Character Data
+  let monoData = {
+    health: 100,
+    hunger: 100,
+    cleanliness: 100,
+    happiness: 100
+  }
 
   // Determines the state of character based off of data
   let isMonoSick = false
@@ -26,10 +29,30 @@ const MainGame = () => {
   
   // Changes animation based off of selected activity
   const [monoState, setMonoState] = useState("/gifs/Dino_Still.gif")
-
   const [isActivityActive, setIsActivityActive] = useState(false);
+  const [activityTimer, setActivityTimer] = useState(0)
 
+  // Gets existing Mono data if possible
+  const getSaveData = async() =>{
+    const saveDataFetch = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/monostats/${userID}`)
+    const saveData = await saveDataFetch.json()
 
+    if (saveData != null){
+      monoData = saveData
+    }
+  }
+
+   // Saves Mono data to database
+   const saveMonoData = async() =>{
+    const saveRespone = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel./save/${userID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(monoData),
+    });
+    console.log(saveRespone)
+  }
 
   const handleMonoChange = () => {
     
@@ -49,40 +72,42 @@ const MainGame = () => {
 
     // Changes Mono animation based off its state
     if(isMonoSick){
-      return setMonoState("/gifs/Dino_Sick.gif")
+       setMonoState("/gifs/Dino_Sick.gif")
     } else if (isMonoAngry){
-      return setMonoState("/gifs/DinoAngry.gif")
-    } 
+       setMonoState("/gifs/DinoAngry.gif")
+    } else {
+      setMonoState("/gifs/Dino_Still.gif")
+    }
   }
+
+  // Runs on page startup
+  useEffect(()=>{
+    getSaveData()
+  },[])
   
   // Runs every time Mono's data is changed
   useEffect(()=>{
     handleMonoChange()
+    saveMonoData()
     console.log(weatherData)
   },[monoData])
 
-  setTimeout(() => {
-    setIsActivityActive(false);
-    setMonoState("/gifs/Dino_Still.gif");
-  }, 3000);
 
-
-  const handleClick = (e) =>{
-    setIsActivityActive(true)
+  const handleActivityClick = (e) =>{
     setMonoState(e)
   }
   //Adds animation and Eating sfx on burger click
   const [eatsfx] = useSound('/music/Eating.mp3')
-  const handleEatingSound = () => {
-    handleClick("/gifs/Dino_Eating.gif");
-    eatsfx();
-  };
+  // const handleEatingSound = () => {
+  //   handleClick("/gifs/Dino_Eating.gif");
+  //   eatsfx();
+  // };
   //Adds animation and playing sfx on ball click
   const [playsfx] = useSound('/music/BallBouncesfx.mp3')
-  const handlePlayingSound = () => {
-    handleClick("/gifs/Dino_Play.gif");
-    playsfx();
-  };
+  // const handlePlayingSound = () => {
+  //   handleClick("/gifs/Dino_Play.gif");
+  //   playsfx();
+  // };
 
   return (
   
@@ -121,10 +146,10 @@ const MainGame = () => {
               </div>
               <div className="ActivityBox">
                 {/* <img src={"/images/FightIcon.png"} style= {{ height: 100 }} /> */}
-                <img onClick={handleEatingSound}  src={"/images/FoodIcon.png"}  style={{ height: 100 }}  />
-                    <img onClick={() =>{handleClick("/gifs/Dino_Pill.gif")}} src={"/images/MedicineIcon.png"} style= {{ height: 100 }} />
+                <img onClick={() =>{handleActivityClick("gifs/Dino_Eating.gif")}}  src={"/images/FoodIcon.png"}  style={{ height: 100 }}  />
+                    <img onClick={() =>{handleActivityClick("/gifs/Dino_Pill.gif")}} src={"/images/MedicineIcon.png"} style= {{ height: 100 }} />
                       <img src={"/images/BathIcon.png"} style= {{ height: 100 }} />
-                        <img onClick={handlePlayingSound} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
+                        <img onClick={() =>{ handleActivityClick("/gifs/Dino_Play.gif")}} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
                         </div>
                         {/* <Timer /> */}
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />

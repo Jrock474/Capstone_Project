@@ -1,6 +1,5 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const pg = require("pg-promise")();
 const app = express();
 const port = 3000;
 const cors = require("cors")
@@ -8,7 +7,6 @@ const {Users, MonoStats} = require("./models");
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser')
 const session = require("express-session")
-const passport = require("passport")
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -82,8 +80,6 @@ app.get('/Login', async(req, res) => {
 app.get('/playgame/:userID', async (req, res) => {
   try {
     const foundUser = await Users.findOne({ where: { id: req.params.userID }});
-
-    console.log(req.session)
 
     if (req.session.isAuthenticated && req.params.userID == req.session.userID) {
       // User is authenticated, proceed to the dashboard
@@ -174,11 +170,11 @@ app.get('/getAnswer/:email', async (req, res) => {
 
 app.get("/monostats/:userID", async (req, res)=>{
   const userID = req.params.userID
-  let monoData = await MonoStats.findAll({ where: { id: userID } });
+  let monoData = await MonoStats.findOne({ where: { userID: userID } });
   res.json(monoData)
 })
 
-app.get("/allmonostats", async (req, res)=>{
+app.get("/monostats", async (req, res)=>{
   const userID = req.params.userID
   let monoData = await MonoStats.findAll();
   res.json(monoData)
