@@ -47,32 +47,51 @@ body {
 } */
 .wContainer {
   background-color: #f0f0f0;
- 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); margin-bottom: 20px;
-  align-self: flex-end; 
-  margin-left: auto; margin-top: 20px;
-   
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-top: 20px;
+
 }
+
 .wTitle {
-  font-size: 37px;  align-self: center; align-items: center;  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);   
+  font-size: 37px;
+  align-self: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
 .wInput {
-  display: flex; flex-direction: column; align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .wLabel {
-  font-size: 14px;  margin-bottom: 5px;
+  font-size: 14px;
+  margin-bottom: 5px;
 }
+
 .wInput {
   /* padding: 5px; font-size: 14px; width: 100px;  margin-bottom: 5px; */
 }
+
 .wDetails {
-  margin-top: 10px; font-size: 14px; text-align: right;
-  border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px; color: red;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: right;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  color: red;
 }
+
 .wCity {
-  color:  rgb(255, 0, 242)
+  color: rgb(255, 0, 242)
 }
+
 #root {
 
   height: 100%;
@@ -490,7 +509,17 @@ field {
   color: rgb(0, 234, 255);
 }
 
-.AnthonyContainer{
+.AboutUsNav{
+  width: 100%;
+  height: 200px;
+  margin-bottom: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.AnthonyContainer {
   display: grid;
   grid-template-columns: 500px 500px;
   grid-template-rows: 500px;
@@ -501,7 +530,7 @@ field {
   justify-items: center;
 }
 
-.AnthonyPfp{
+.AnthonyPfp {
   width: 450px;
   height: 450px;
   /* background-color: red; */
@@ -511,11 +540,11 @@ field {
 
   display: flex;
 
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.AnthonyText{
+.AnthonyText {
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
@@ -532,7 +561,7 @@ align-items: center;
 
 }
 
-.SababuContainer{
+.SababuContainer {
   display: grid;
   grid-template-columns: 500px 500px;
   grid-template-rows: 500px;
@@ -543,7 +572,7 @@ align-items: center;
   justify-items: center;
 }
 
-.SababuPfp{
+.SababuPfp {
   width: 450px;
   height: 450px;
   /* background-color: red; */
@@ -553,11 +582,11 @@ align-items: center;
 
   display: flex;
 
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.SababuText{
+.SababuText {
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
@@ -574,7 +603,7 @@ align-items: center;
 
 }
 
-.JordanContainer{
+.JordanContainer {
   display: grid;
   grid-template-columns: 500px 500px;
   grid-template-rows: 500px;
@@ -585,7 +614,7 @@ align-items: center;
   justify-items: center;
 }
 
-.JordanPfp{
+.JordanPfp {
   width: 450px;
   height: 450px;
   /* background-color: red; */
@@ -595,11 +624,11 @@ align-items: center;
 
   display: flex;
 
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.JordanText{
+.JordanText {
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
@@ -616,7 +645,7 @@ align-items: center;
 
 }
 
-.EthanContainer{
+.EthanContainer {
   display: grid;
   grid-template-columns: 500px 500px;
   grid-template-rows: 500px;
@@ -625,9 +654,11 @@ align-items: center;
   align-content: center;
   justify-content: center;
   justify-items: center;
+
+  margin-bottom: 50px;
 }
 
-.EthanPfp{
+.EthanPfp {
   width: 450px;
   height: 450px;
   /* background-color: red; */
@@ -637,11 +668,11 @@ align-items: center;
 
   display: flex;
 
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.EthanText{
+.EthanText {
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
@@ -657,4 +688,3 @@ align-items: center;
   justify-items: center;
 
 }
-
