@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-
+//useRef accesses the Dom element
 function Music1() {
   const audioRef = useRef(null);
   const volume = 0.7;
