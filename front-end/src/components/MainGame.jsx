@@ -34,7 +34,7 @@ const MainGame = () => {
 
   // Gets existing Mono data if possible
   const getSaveData = async() =>{
-    const saveDataFetch = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/monostats/${userID}`)
+    const saveDataFetch = await fetch(`https://capstone-project-1cyy-iznfzih54-jrock474.vercel.app/monostats/${userID}`)
     const saveData = await saveDataFetch.json()
     console.log(saveData)
 
@@ -45,7 +45,7 @@ const MainGame = () => {
 
    // Saves Mono data to database
   const saveMonoData = async() =>{
-    const saveRespone = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/save/${userID}`, {
+    const saveRespone = await fetch(`https://capstone-project-1cyy-iznfzih54-jrock474.vercel.app/save/${userID}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
