@@ -1,6 +1,5 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const pg = require("pg-promise")();
 const app = express();
 const port = 3000;
 const cors = require("cors")
@@ -8,7 +7,6 @@ const {Users, MonoStats} = require("./models");
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser')
 const session = require("express-session")
-const passport = require("passport")
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -18,15 +16,11 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {
+    userID: null,
     secure: false, // Set to true in production if using HTTPS
     maxAge: 3600000, // Session expiration time in milliseconds (e.g., 1 hour)
   },
 }));
-
-
-
-
-
 
 app.use(cors(
   {
@@ -87,7 +81,7 @@ app.get('/playgame/:userID', async (req, res) => {
   try {
     const foundUser = await Users.findOne({ where: { id: req.params.userID }});
 
-    if (req.session.isAuthenticated) {
+    if (req.session.isAuthenticated && req.params.userID == req.session.userID) {
       // User is authenticated, proceed to the dashboard
       const JSONdata = foundUser.dataValues
       console.log(JSONdata)
@@ -174,9 +168,24 @@ app.get('/getAnswer/:email', async (req, res) => {
   }
 });
 
+app.get("/monostats/:userID", async (req, res)=>{
+  const userID = req.params.userID
+  let monoData = await MonoStats.findOne({ where: { userID: userID } });
+  res.json(monoData)
+})
+
+app.get("/monostats", async (req, res)=>{
+  const userID = req.params.userID
+  let monoData = await MonoStats.findAll();
+  res.json(monoData)
+})
+
 // Mono save data
-app.post("/save/:userID", async () =>{
+app.put("/save/:userID", async (req, res) =>{
   const {monoData} = req.body
+  const userID = req.params.userID
+  await MonoStats.update({monoData}, { where: { userID: userID } });
+  res.json("Save Successful")
 })
 
 // Account registration endpoint
@@ -260,7 +269,6 @@ app.post('/Login', async (req, res) => {
       // Passwords match, redirect to the game with the User's ID
       req.session.isAuthenticated = true;
       req.session.userID = returningUser.id; // Store the user's ID in the session
-      
 
       res.redirect(`/playgame/${returningUser.id}`)
     } else {

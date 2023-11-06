@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { UserData } from '../App';
 import { Link } from 'react-router-dom';
-
+import Music6 from './MusicFolder/Loginost';
 
 const Login = () => {
 
@@ -41,6 +41,7 @@ const Login = () => {
     // If login is successful, fetches User data and redirects
     if (loginSubmission.ok) {
       // on Successful login
+      console.log(userData)
       setUserData(userData)
       navigate("/PlayGame");
     }
@@ -54,6 +55,7 @@ const Login = () => {
   
   return (
     <div className='logMain'>
+      <Music6/>
       <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
       <img src={"/images/Login.png"} className="LoginButtonNoHover" style= {{ marginBottom: 30 }} />
       <form className= "centeringForInputs" action="/Login" method="post" onSubmit={handleSubmit}>

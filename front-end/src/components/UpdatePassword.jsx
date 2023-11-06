@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-
+import Music4 from './MusicFolder/UpdatePasswordOst';
 const UpdatePassword = () => {
     const [formData, setFormData] = useState({
         username: '',
@@ -82,6 +82,7 @@ const UpdatePassword = () => {
     
       return (
         <div className='updateMain'>
+          <Music4/>
           <img src={"./images/ResetPassword.PNG"} style={{height: 185, marginBottom: 30}} />
           <div>
             <form className="QuestionForm" onSubmit={handleQuestionSubmit}>

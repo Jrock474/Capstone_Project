@@ -1,50 +1,4 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  background-color: aqua;
-}
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-  min-height: 100vh; 
-  background-color: aqua;
-} */
-/* .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-} */
+/* WEATHER CSS */
 .wContainer {
   background-color: #f0f0f0;
 
@@ -118,7 +72,11 @@ body {
   background-color: black;
   /* overflow-y: hidden; */
 }
+.volume {
+max-width: 30px;
+max-height: 30px;
 
+}
 .errorD {
   color: red;
 }
@@ -548,7 +506,7 @@ field {
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
-  color: yellow;
+  color: rgb(255, 0, 242);
   grid-column: 2;
   grid-row: 1;
 
@@ -590,7 +548,7 @@ field {
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
-  color: yellow;
+  color: rgb(255, 0, 242);
   grid-column: 1;
   grid-row: 1;
 
@@ -632,7 +590,7 @@ field {
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
-  color: yellow;
+  color: rgb(255, 0, 242);
   grid-column: 2;
   grid-row: 1;
 
@@ -676,7 +634,7 @@ field {
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
-  color: yellow;
+  color: rgb(255, 0, 242);
   grid-column: 1;
   grid-row: 1;
 
@@ -687,4 +645,32 @@ field {
   align-items: center;
   justify-items: center;
 
+}
+
+.wTitle {
+  color: skyblue;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.wContainer {
+  background-color: black;
+}
+
+.aboutUsContainer {
+  color: rgb(255, 0, 242);
+  display: grid;
+  grid-template-columns: 500px 500px;
+  grid-template-rows: 500px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  font-size: large;
+
+}
+
+.aboutUsLinks {
+  color: skyblue;
 }

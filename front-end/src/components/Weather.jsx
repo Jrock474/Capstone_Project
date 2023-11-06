@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { WeatherContext } from '../App';
 import { useNavigate } from 'react-router-dom';
+import Music2 from './MusicFolder/WeatherOst';
 
 const Weather = () => {
   const navigate = useNavigate();
@@ -51,11 +52,12 @@ const Weather = () => {
 
   return (
     <div>
+    <Music2/>
       <div className="wContainer">
         <h2 className="wTitle">Weather Information</h2>
         <div className="wInput">
-          <label htmlFor="city" className="wLabel">
-            Enter Current City:
+          <label htmlFor="city" className="wTitle">
+            {/* Enter Current City: */}
           </label>
           <input
             type="text"
@@ -63,8 +65,9 @@ const Weather = () => {
             value={city}
             onChange={handleCityChange}
             className="wCity"
+            placeholder='Enter Current City'
           />
-          <button onClick={handleButtonClick} className="get-weather-button">
+          <button onClick={handleButtonClick} className="submitBtn">
             Get Weather
           </button>
         </div>
