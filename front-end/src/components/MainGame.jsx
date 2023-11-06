@@ -150,10 +150,10 @@ const MainGame = () => {
               </div>
               <div className="ActivityBox">
                 {/* <img src={"/images/FightIcon.png"} style= {{ height: 100 }} /> */}
-                <img onClick={() =>{handleActivityClick("gifs/Dino_Eating.gif")}}  src={"/images/FoodIcon.png"}  style={{ height: 100 }}  />
+                <img onClick={() =>{handleActivityClick("gifs/Dino_Eating2.gif")}}  src={"/images/FoodIcon.png"}  style={{ height: 100 }}  />
                     <img onClick={() =>{handleActivityClick("/gifs/Dino_Pill.gif")}} src={"/images/MedicineIcon.png"} style= {{ height: 100 }} />
                       <img src={"/images/BathIcon.png"} style= {{ height: 100 }} />
-                        <img onClick={() =>{ handleActivityClick("/gifs/Dino_Play.gif")}} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
+                        <img onClick={() =>{ handleActivityClick("/gifs/Dino_Play2.gif")}} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
                         </div>
                         {/* <Timer /> */}
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />
