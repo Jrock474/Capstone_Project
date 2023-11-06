@@ -81,15 +81,15 @@ app.get('/playgame/:userID', async (req, res) => {
   try {
     const foundUser = await Users.findOne({ where: { id: req.params.userID }});
 
-    if (req.session.isAuthenticated && req.params.userID == req.session.userID) {
+    // if (req.session.isAuthenticated && req.params.userID == req.session.userID) {
       // User is authenticated, proceed to the dashboard
       const JSONdata = foundUser.dataValues
       console.log(JSONdata)
       res.json(JSONdata);
-    } else {
-      // User is not authenticated, redirect to the login page
-      res.json('Authentication Expired');
-    }
+    // } else {
+    //   // User is not authenticated
+    //   res.json('Authentication Expired');
+    // }
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal server error'); // Handle other unexpected errors
@@ -185,7 +185,7 @@ app.put("/save/:userID", async (req, res) =>{
   const {monoData} = req.body
   const userID = req.params.userID
   await MonoStats.update({monoData}, { where: { userID: userID } });
-  res.json("Save Successful")
+  res.json("Save successful")
 })
 
 // Account registration endpoint
