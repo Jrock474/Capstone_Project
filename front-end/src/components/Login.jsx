@@ -41,6 +41,7 @@ const Login = () => {
     // If login is successful, fetches User data and redirects
     if (loginSubmission.ok) {
       // on Successful login
+      console.log(userData)
       setUserData(userData)
       navigate("/PlayGame");
     }
