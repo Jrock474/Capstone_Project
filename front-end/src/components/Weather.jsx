@@ -16,7 +16,7 @@ const Weather = () => {
         `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
       );
 
-      if (response.ok) {
+      if (response.ok) { //If the API is succesful the below data is parsed
         const data = await response.json();
         const iconUrl = data.current.condition.icon;
         const condition = data.current.condition.text;
@@ -27,7 +27,7 @@ const Weather = () => {
           temperature: temperature,
         };
         setWeatherContext(weatherData);
-        setDisplayWeather(true);
+        setDisplayWeather(true); //weather data is shown (hidden)
        
         // If the fetch call is successful, navigate to MainGame
         navigate('/MainGame');
@@ -40,7 +40,7 @@ const Weather = () => {
     }
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = () => { //calls the API
     if (city) {
       fetchWeatherData();
     }
@@ -68,10 +68,11 @@ const Weather = () => {
             placeholder='Enter Current City'
           />
           <button onClick={handleButtonClick} className="submitBtn">
-            Get Weather
+            Get Current Weather
           </button>
         </div>
-        {displayWeather && (
+        {/* Below is hidden */}
+        {displayWeather && (  
           <div className="wDetails">
             <h3 className="whCity">Weather for {city} Entered</h3>
           </div>

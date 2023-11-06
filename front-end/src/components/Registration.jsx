@@ -6,7 +6,7 @@ import Music7 from './MusicFolder/RegistrationOst';
 const Registration = () => {
 
   const [userData, setUserData] = useContext(UserData)
-
+//access user data from the provider
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -19,9 +19,9 @@ const Registration = () => {
   });
 
   const [errorFound, setErrorFound] = useState('');
-
+// initialized error variable
   const handleSubmit = async (e) => {
-    setErrorFound("")
+    setErrorFound("") //clear old errors
     e.preventDefault();
 
     // Check if the passwords match
@@ -56,14 +56,14 @@ const Registration = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value }); //Updated the form data when the input is changed.
   };
   
   return (
     <div className='regMain'>
       <Music7/>
       <img src={"/images/SignUp.png"} className="SignInButtonNoHover" style= {{ marginBottom: 15 }} />
-      <div>{errorFound && <div className="errorD">{errorFound}</div>}</div>
+      <div>{errorFound && <div className="errorD">{errorFound}</div>}</div> 
       <form action="/Registration" method="post" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -121,7 +121,7 @@ const Registration = () => {
           onChange={handleChange}
           className= "centeringForInputs"
         />
-        <button type="submit" className= "submitBtn">Sign Up</button>
+        <button type="submit" className= "submitBtn">Sign Up and Recieve Email</button>
         {/* <input type="submit" value="Sign Up" className= "submitBtn" /> */}
         <br></br>
         <Link to="/Login" className='links-for-reRoutes'>Already Have An Account?</Link>

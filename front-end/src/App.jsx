@@ -25,7 +25,7 @@ function App() {
       <div>
       <MyNavbar />
       <UserData.Provider value = {[userData, setUserData]}>
-      <WeatherContext.Provider value={[weatherData, setWeatherData]}>
+      <WeatherContext.Provider value={[weatherData, setWeatherData]}> 
       
         <Routes>
 

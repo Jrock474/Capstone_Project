@@ -104,7 +104,7 @@ const UpdatePassword = () => {
             <input
               onChange={handleChange}
               type="email"
-              placeholder='Email'
+              placeholder='Email for Reset'
               name="email"
               required
               maxLength={200}
@@ -123,7 +123,7 @@ const UpdatePassword = () => {
             />
             <input
           onChange={handleChange}
-          type="password" // Input for the new password
+          type="password" 
           placeholder="New Password"
           name="newPassword"
           required
