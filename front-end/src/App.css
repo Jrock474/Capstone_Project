@@ -1,3 +1,4 @@
+/* WEATHER CSS */
 .wContainer {
   background-color: #f0f0f0;
  
@@ -52,7 +53,11 @@ body {
   background-color: black;
   /* overflow-y: hidden; */
 }
+.volume {
+max-width: 30px;
+max-height: 30px;
 
+}
 .errorD {
   color: red;
 }
@@ -472,7 +477,7 @@ align-items: center;
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
-  color: yellow;
+  color: rgb(255, 0, 242);
   grid-column: 2;
   grid-row: 1;
 
@@ -514,7 +519,7 @@ align-items: center;
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
-  color: yellow;
+  color: rgb(255, 0, 242);
   grid-column: 1;
   grid-row: 1;
 
@@ -556,7 +561,7 @@ align-items: center;
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
-  color: yellow;
+  color: rgb(255, 0, 242);
   grid-column: 2;
   grid-row: 1;
 
@@ -598,7 +603,7 @@ align-items: center;
   width: 450px;
   height: 450px;
   /* background-color: rgb(187, 255, 0); */
-  color: yellow;
+  color: rgb(255, 0, 242);
   grid-column: 1;
   grid-row: 1;
 
@@ -621,3 +626,20 @@ align-items: center;
   background-color: black;
 }
 
+.aboutUsContainer {
+  color: rgb(255, 0, 242);
+  display: grid;
+  grid-template-columns: 500px 500px;
+  grid-template-rows: 500px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  font-size: large;
+
+}
+
+.aboutUsLinks {
+  color: skyblue;
+}
