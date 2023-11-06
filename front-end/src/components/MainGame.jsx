@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import Music1 from './MusicFolder/Music1'
 import { WeatherContext } from '../App';
 import { Link } from 'react-router-dom';
-import useSound from 'use-sound'
+import useSound from 'use-sound';
 import { UserData } from '../App';
 
 const MainGame = () => {
@@ -12,7 +12,7 @@ const MainGame = () => {
   ///weather context
   const weatherData = useContext(WeatherContext);
 
-  const [animationTimer, setAnimationTimer] = useState(0) //initilize timer
+  const [animationTimer, setAnimationTimer] = useState(0) //initialize timer
 
   //Character Data
   let monoData = {
