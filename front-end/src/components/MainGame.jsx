@@ -7,20 +7,20 @@ import { UserData } from '../App';
 
 const MainGame = () => {
   const userData = useContext(UserData)
-  // const userID = userData[0].id
+  const userID = userData[0].id
   
   ///weather context
   const weatherData = useContext(WeatherContext);
 
   const [animationTimer, setAnimationTimer] = useState(0) //initilize timer
 
-  //Character Data
-  let monoData = {
+  //Character Data Initialization
+  const  [monoData, setMonoData] = useState({
     health: 100,
     hunger: 100,
     cleanliness: 100,
     happiness: 100
-  }
+  })
 
   // Determines the state of character based off of data
   let isMonoSick = false
@@ -36,22 +36,24 @@ const MainGame = () => {
   const getSaveData = async() =>{
     const saveDataFetch = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/monostats/${userID}`)
     const saveData = await saveDataFetch.json()
+    console.log(saveData)
 
     if (saveData != null){
-      monoData = saveData
+      setMonoData(saveData.monoData)
     }
   }
 
    // Saves Mono data to database
-   const saveMonoData = async() =>{
-    const saveRespone = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel./save/${userID}`, {
+  const saveMonoData = async() =>{
+    const saveRespone = await fetch(`https://capstone-project-j8cd-yibhwja4f-jrock474.vercel.app/save/${userID}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(monoData),
     });
-    console.log(saveRespone)
+    const saveData = await saveRespone.json()
+    console.log(saveData)
   }
 
   const handleMonoChange = () => {
@@ -89,7 +91,6 @@ const MainGame = () => {
   useEffect(()=>{
     handleMonoChange()
     saveMonoData()
-    console.log(weatherData)
   },[monoData])
 
 
@@ -108,6 +109,9 @@ const MainGame = () => {
   //   handleClick("/gifs/Dino_Play.gif");
   //   playsfx();
   // };
+
+  console.log(monoData)
+  
 
   return (
   
