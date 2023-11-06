@@ -44,7 +44,7 @@ app.put('/UpdatePassword', async (req, res) => {
   });
 
   if (!existingUser) {
-    return res.status(400).json('Email not found');
+    return res.status(400).json('Email not found'); 
   }
 
   if (existingUser.secanswer != userAnswer){
@@ -98,7 +98,7 @@ app.get('/playgame/:userID', async (req, res) => {
 
 app.get('/checkEmail', async (req, res) => {
   const { email } = req.query; // Get the email from the query parameters
-  // Use your Sequelize model to check if the email exists in your database
+  // Use the Sequelize model to check if the email exists in thedatabase
   const existingUser = await Users.findOne({
     where: {
       email: email,
@@ -113,7 +113,7 @@ app.get('/checkEmail', async (req, res) => {
 
 app.get('/checkAnswer', async (req, res) => {
   const { secanswer } = req.query; // Get the email from the query parameters
-  // Use your Sequelize model to check if the email exists in your database
+  // Use the  Sequelize model to check if the email exists in the database
   const existingUser = await Users.findOne({
     where: {
       secanswer: secanswer,
