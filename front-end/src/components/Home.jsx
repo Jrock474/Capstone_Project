@@ -18,6 +18,7 @@ const Home = () => {
         <img src={"/images/Logo2.png"} className="logo2"></img>
           <img src={"/images/Login.png"} className="LoginButton" onClick={reRouteLogin}></img>
           <img src={"/images/SignUp.png"} className="SignInButton" onClick={reRouteReg}></img>
+          <Music5/>
       </div>
     </>
   );
