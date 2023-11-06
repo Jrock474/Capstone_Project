@@ -44,7 +44,7 @@ app.put('/UpdatePassword', async (req, res) => {
   });
 
   if (!existingUser) {
-    return res.status(400).send('Email not found');
+    return res.status(400).json('Email not found');
   }
 
   if (existingUser.secanswer != userAnswer){

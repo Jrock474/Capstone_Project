@@ -71,7 +71,8 @@ const Weather = () => {
             Get Current Weather
           </button>
         </div>
-        {displayWeather && (
+        {/* Below is hidden */}
+        {displayWeather && (  
           <div className="wDetails">
             <h3 className="whCity">Weather for {city} Entered</h3>
           </div>

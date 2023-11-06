@@ -6,7 +6,7 @@ import Music7 from './MusicFolder/RegistrationOst';
 const Registration = () => {
 
   const [userData, setUserData] = useContext(UserData)
-
+//access user data from the provider
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
