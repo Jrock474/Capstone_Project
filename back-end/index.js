@@ -227,7 +227,7 @@ app.post('/Registration', async (req, res) => {
     from: 'sbarashang76@gmail.com',
     to: newUser.email, // User's email address
     subject: 'Kanari-Mono Registration',
-    text: `Congrats on your registration ${newUser.username} click here to start playing: http://localhost:5173/Home`,
+    text: `Congrats on your registration ${newUser.username} click here to login: https://capstone-project-jrock474.vercel.app/Login`,
   }; 
   
   // Send the email
