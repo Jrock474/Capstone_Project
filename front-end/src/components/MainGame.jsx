@@ -157,7 +157,6 @@ const MainGame = () => {
 
 
       <div className="GameBody">
-        <div>{activityTimer}</div>
         <div className="Pet" id="Pet">
           <img src={monoState} style= {{ height: 500 }} />
         </div>
