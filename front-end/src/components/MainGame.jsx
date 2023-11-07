@@ -4,6 +4,7 @@ import { WeatherContext } from '../App';
 import { Link } from 'react-router-dom';
 import useSound from 'use-sound';
 import { UserData } from '../App';
+import { useNavigate } from "react-router-dom";
 
 const MainGame = () => {
   const userData = useContext(UserData)
@@ -111,6 +112,18 @@ const MainGame = () => {
   // };
 
   console.log(monoData)
+
+  // Re routes for game options 
+  let nav = useNavigate()
+  const reRouteMainMenu = () => {
+    nav("/Home")
+  }
+  const reRouteCredits = () => {
+    nav("/AboutUs")
+  }
+  const reRouteTutorial = () => {
+    nav("/Tutorial")
+  }
   
 
   return (
@@ -137,9 +150,12 @@ const MainGame = () => {
     </div>
 
 {/* GAME LOGIC BELOW */}
-
-
       <div className="GameBody">
+          <div className='game-options'>
+          <h3 onClick={reRouteMainMenu}>Main Menu</h3>
+          <h3 onClick={reRouteCredits}>Credits</h3>
+          <h3 onClick={reRouteTutorial}>Tutorial</h3>
+          </div>
         <div className="Pet" id="Pet">
           <img src={monoState} style= {{ height: 500 }} />
         </div>
