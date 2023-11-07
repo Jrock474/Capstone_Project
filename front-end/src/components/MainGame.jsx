@@ -105,10 +105,16 @@ const MainGame = () => {
           console.log(sec)
           sec--;
           if (sec < 0) {
-              clearInterval(timer);
-              setIsActivityActive(false)
+            clearInterval(timer);
+            setIsActivityActive(false)
+            if(isMonoSick){
+              setMonoState("/gifs/Dino_Sick.gif")
+            } else if (isMonoAngry){
+              setMonoState("/gifs/DinoAngry.gif")
+            } else {
               setMonoState("/gifs/Dino_Still.gif")
-              return
+            }
+            return
           }
         }, 1000);
       
