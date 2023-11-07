@@ -646,3 +646,23 @@ align-items: center;
 .aboutUsLinks {
   color: skyblue;
 }
+
+.game-options {
+  display: flex;
+  background-color: #050101;
+  /* padding: 10px;  */
+  border: 1px solid #a2a09d;
+  text-align: center;
+  width: 50%;
+  margin-left: 300%;
+  flex-direction: column;
+
+  margin-bottom: 15em;
+
+  /* margin-bottom: 25em; */
+  /* flex-direction: column; */
+  
+  
+  
+
+  }
