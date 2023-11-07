@@ -168,18 +168,18 @@ const MainGame = () => {
 
 {/* GAME LOGIC BELOW */}
       <div className="GameBody">
-          <div className='game-options'>
+          {/* <div className='game-options'>
           <h3 onClick={reRouteMainMenu}>Main Menu</h3>
           <h3 onClick={reRouteCredits}>Credits</h3>
           <h3 onClick={reRouteTutorial}>Tutorial</h3>
-          </div>
+          </div> */}
         <div className="Pet" id="Pet">
           <img src={monoState} style= {{ height: 500 }} />
         </div>
         <div className="MoodBox">
-          <img src={"/images/MoodAngry.png"} style= {{ height: 100 }} />
+          {/* <img src={"/images/MoodAngry.png"} style= {{ height: 100 }} />
             <img src={"/images/MoodDiscomfort.png"} style= {{ height: 100 }} />
-              <img src={"/images/MoodSick.png"} style= {{ height: 100 }} />
+              <img src={"/images/MoodSick.png"} style= {{ height: 100 }} /> */}
               </div>
               <div className="ActivityBox">
                 {/* <img src={"/images/FightIcon.png"} style= {{ height: 100 }} /> */}
