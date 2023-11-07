@@ -168,11 +168,9 @@ const MainGame = () => {
 
 {/* GAME LOGIC BELOW */}
       <div className="GameBody">
-          {/* <div className='game-options'>
-          <h3 onClick={reRouteMainMenu}>Main Menu</h3>
-          <h3 onClick={reRouteCredits}>Credits</h3>
-          <h3 onClick={reRouteTutorial}>Tutorial</h3>
-          </div> */}
+          <div className='game-options'>
+          <img src={"/gifs/Settings.GIF"} style={{width:150}}></img>
+          </div>
         <div className="Pet" id="Pet">
           <img src={monoState} style= {{ height: 500 }} />
         </div>
