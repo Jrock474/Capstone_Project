@@ -16,10 +16,10 @@ const MainGame = () => {
 
   //Character Data Initialization
   const  [monoData, setMonoData] = useState({
-    health: 100,
-    hunger: 100,
-    cleanliness: 100,
-    happiness: 100
+    health: 75,
+    hunger: 75,
+    cleanliness: 75,
+    happiness: 75
   })
 
   // Determines the state of character based off of data
@@ -95,7 +95,24 @@ const MainGame = () => {
 
 
   const handleActivityClick = (e) =>{
-    setMonoState(e)
+    if (isActivityActive === false){
+      setIsActivityActive(true)
+      setMonoState(e)
+      
+        var sec = 3;
+        var timer = setInterval(function(){
+          console.log(sec)
+          sec--;
+          if (sec < 0) {
+              clearInterval(timer);
+              setIsActivityActive(false)
+              setMonoState("/gifs/Dino_Still.gif")
+              return
+          }
+        }, 1000);
+      
+    
+    }
   }
   //Adds animation and Eating sfx on burger click
   const [eatsfx] = useSound('/music/Eating.mp3')
@@ -140,6 +157,7 @@ const MainGame = () => {
 
 
       <div className="GameBody">
+        <div>{activityTimer}</div>
         <div className="Pet" id="Pet">
           <img src={monoState} style= {{ height: 500 }} />
         </div>
