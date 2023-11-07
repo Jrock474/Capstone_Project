@@ -23,33 +23,35 @@ React-Router-DOM to re-route user to different pages
 Bootstrap for the Nav Bar
 
 # Home Page
-The home page lets you sign up or login.
+The home page allows you to sign up or login. UseNavigate (a hook from react-router-dom)  allows clicking  the img that say 'Login' or 'SignUp' to take you to the appropriate page without any reloading. This allows for quicker laoding and easy access to other pages. 
+<img width="1440" alt="Screenshot 2023-11-02 at 10 10 44 AM" src="https://github.com/Jrock474/Capstone_Project/assets/38538883/5584c182-1220-414b-ac29-aba081f91638">
 
 # Login Page
-The login page lets the user input their username and password made on the registration page.
+The login page lets the user input their username and password made on the registration page. If the wrong password is entered an appropriate error message shows up.
+<img width="1440" alt="Screenshot 2023-11-07 at 6 30 48 PM" src="https://github.com/Jrock474/Capstone_Project/assets/38538883/67a338f1-4bd8-4722-bc2e-0a78ecf63293">
 
 # Registration Page
-The registration or sign up page lets the user input a username, password, security question, security answer and email.
+The registration or sign up page lets the user input a username, password, security question, security answer and email. If there are any error (ie. passwords do not match or email is already in use) the appropriate error message is shown.
+<img width="1440" alt="Screenshot 2023-11-07 at 6 31 01 PM" src="https://github.com/Jrock474/Capstone_Project/assets/38538883/0466a55b-393a-485e-84b1-01c8342c1292">
 
 # About Us Page
-The about us page is there for development credits. If you want to know a bit more about the Devs check it out to learn more about us.
+The about us page is there for development credits. If you want to know a bit more about the Devs check it out to learn more about us. Each graphic on the page is made by hand.
+<img width="1440" alt="Screenshot 2023-11-07 at 6 32 38 PM" src="https://github.com/Jrock474/Capstone_Project/assets/38538883/0079b016-2c52-4d67-9f62-d7b429b95c16">
 
 # Delete Account
-The delete account page lets the user delete his or her account associated with their username and email.
+The delete account page lets the user delete his or her account associated with their username and email. This removes the data from the Postgress table as well.
+<img width="1440" alt="Screenshot 2023-11-07 at 6 32 56 PM" src="https://github.com/Jrock474/Capstone_Project/assets/38538883/afffa11c-3068-4b2e-8535-b369bfc83c00">
 
 # Main Game Page
-The main game page contains the game feature of our website. You can click the bottom buttons to trigger specific activities with your Kanri-Mono. Your kaiju's mood is displayed on the top left of the screen, there is also a mute button along with an options feature.
+The main game page contains the game feature of our website. You can click the bottom buttons to trigger specific activities with your Kanri-Mono. Your kaiju's mood is displayed on the top left of the screen, there is also a mute button along with an options feature. Clicking on the icons allows you to respectivaly feed the pet, bathe the pet, play with the pet, or heal the pet. Each activity can help improve the pets mood.
+<img width="1440" alt="Screenshot 2023-11-07 at 6 34 10 PM" src="https://github.com/Jrock474/Capstone_Project/assets/38538883/b499276b-fcb3-4f24-8a62-e867a5085af2">
 
 # Reset Password Page
-The reset password page lets the user reset their password within the database.
+The reset password page lets the user reset their password within the database. Any passwords entered on our site are ALWAYS encrypted
+<img width="1440" alt="Screenshot 2023-11-07 at 6 46 42 PM" src="https://github.com/Jrock474/Capstone_Project/assets/38538883/ab97f891-8291-40a9-b3f9-d2a207d0dd9b">
 
 # Weather Page
-The weather page allows the user to input their city and have the game show a window with that city's weather in real time.
+The weather page allows the user to input their city and have the game show a window with that city's weather in real time. The data is fetched using a realtime weather api for the best accuracy possible.
+<img width="1440" alt="Screenshot 2023-11-07 at 6 34 21 PM" src="https://github.com/Jrock474/Capstone_Project/assets/38538883/ba18617c-f9f8-4449-b2a9-bdc27231f63c">
 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
