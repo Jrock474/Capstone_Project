@@ -13,8 +13,6 @@ const MainGame = () => {
   ///weather context
   const weatherData = useContext(WeatherContext);
 
-  const [animationTimer, setAnimationTimer] = useState(0) //initialize timer
-
   //Character Data Initialization
   const  [monoData, setMonoData] = useState({
     health: 75,
@@ -180,7 +178,7 @@ const MainGame = () => {
           <h3 onClick={reRouteTutorial}>Tutorial</h3>
           </div>
         <div className="Pet" id="Pet">
-          <img src={monoState} style= {{ height: 500 }} />
+          <img src={monoState} style= {{ height: 500 }}  />
         </div>
         <div className="MoodBox">
           <img src={"/images/MoodAngry.png"} style= {{ height: 100 }} />

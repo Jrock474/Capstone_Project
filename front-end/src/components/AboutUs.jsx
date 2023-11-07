@@ -46,8 +46,9 @@ const AboutUs = () => {
           </div>
 
           <div className='JordanText'>
-            <p style={{alignSelf:'center'}}>Hello my name is Jordan. kdjfbvksdjbgkjsdbhgkjbhsdogbksdgbksdjbgosd
-              sdkfvkasdhbfkajsdhfbkasdbgkasjbgkasjdbgkjwf
+            <p style={{alignSelf:'center'}}>Hello my name is Jordan. I am an enthusiastic Multimedia and Software Developer with extensive experience in Creative Design,
+                Production, and Web Development. Skilled in Adobe Creative Suite, React.js, and many
+                other related software, I am self motivated with a passion for learning new perspectives and posses the grit to follow through on my pursuits. My ambition is to assimilate my creative vision with my skills in Software Development.
               <br />
             <div className='aboutUsLinks'>
             <a href="https://portfolio-ivory-delta-98.vercel.app/" className='aboutUsLinks'>Portfolio</a>       <a href="https://drive.google.com/file/d/18SQ9YnNfsLhL2dW3GMwAMqSKOnxu1Qew/view" className='aboutUsLinks'>Resume</a>       <a href="https://github.com/sababu1" className='aboutUsLinks'>Github</a>          <a href="https://www.linkedin.com/in/sababu-barashango-482b2714b/" className='aboutUsLinks'>LinkedIn</a>
