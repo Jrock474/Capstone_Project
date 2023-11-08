@@ -62,7 +62,7 @@ const MainGame = () => {
     }
 
     // Checks to see if Mono stats are below a certain threshold when monoData is changed
-    const handleMonoChange = async() => {
+    const handleMonoChange = () => {
 
       if(monoData.health <= 25){
         setIsMonoSick(true)
@@ -85,7 +85,7 @@ const MainGame = () => {
 
 
     // Changes Mono idle animation based off its state
-    const handleMonoStateChange = async() =>{ 
+    const handleMonoStateChange = () =>{ 
 
       if(isMonoSick){
         setMonoState(dinoSick)
@@ -111,7 +111,7 @@ const MainGame = () => {
     if (!initialPageLoad){
 
       // Checks to see if Mono stats are below a certain threshold when monoData is changed
-      const handleMonoChange = async() => {
+      const handleMonoChange = () => {
 
         if(monoData.health <= 25){
           setIsMonoSick(true)
@@ -148,7 +148,7 @@ const MainGame = () => {
 
 
       // Changes Mono idle animation based off its state
-      const handleMonoStateChange = async() =>{ 
+      const handleMonoStateChange = () =>{ 
 
         if(isMonoSick){
           setMonoState(dinoSick)
