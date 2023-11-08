@@ -219,13 +219,13 @@ app.post('/Registration', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'sbarashang76@gmail.com', // My Gmail email address
-      pass: 'dcrodlsynxbtyfks', // My application-specific password
+      user: 'jordanw0412@gmail.com', // My Gmail email address
+      pass: 'kxaciyphgoqcjmmt', // My application-specific password
     },
   });
   
   const mailOptions = {
-    from: 'sbarashang76@gmail.com',
+    from: 'jordanw0412@gmail.com',
     to: newUser.email, // User's email address
     subject: 'Kanari-Mono Registration',
     text: `Congrats on your registration ${newUser.username} click here to login: https://capstone-project-jrock474.vercel.app/Login`,
