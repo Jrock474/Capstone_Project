@@ -2,6 +2,7 @@
 
 # Inspiration for Project
 
+
 # Technologies Used
 React, Vite, CSS, Javascript, HTML, Sequelize, Node.js, Nodemailer, Express, Postgres, Bcrypt, React-Router-DOM, Bootstrap
 
