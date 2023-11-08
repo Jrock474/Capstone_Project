@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect, useContext, useRef} from 'react'
 import Music1 from './MusicFolder/Music1'
 import { WeatherContext } from '../App';
 import { Link } from 'react-router-dom';
@@ -9,14 +9,16 @@ import { useNavigate } from "react-router-dom";
 const MainGame = () => {
   const userData = useContext(UserData)
   const userID = userData[0].id
+
+  const [initialPageLoad, setInitalPageLoad] = useState(true)
   
   ///weather context
   const weatherData = useContext(WeatherContext);
 
   //Character Data Initialization
   const  [monoData, setMonoData] = useState({
-    health: 10,
-    hunger: 75,
+    health: 20,
+    hunger: 20,
     cleanliness: 75,
     happiness: 75,
     exp: 0
@@ -35,85 +37,139 @@ const MainGame = () => {
   const dinoWash = "/gifs/Dino_Wash.gif"
   const dinoPlay = "/gifs/Dino_Play2.gif"
 
-  // Determines the state of character based off of data
+  // Determines the state of Mono based off of data
   const [isMonoSick, setIsMonoSick] = useState(false)
-  let isMonoAngry = false
-  let isMonoHungry = false
+  const [isMonoAngry, setIsMonoAngry] = useState(false)
+  const [isMonoHungry, setIsMonoHungry] = useState(false)
   let isPoopActive = false
   
-  // Changes animation based off of selected activity
-  const [monoState, setMonoState] = useState(dinoIdle)
+  // Renders Mono based off of selected activity and or state
+  const [monoState, setMonoState] = useState(null)
   const [isActivityActive, setIsActivityActive] = useState(false);
-
-  // Gets existing Mono data if possible
-  const getSaveData = async() =>{
-    const saveDataFetch = await fetch(`https://capstone-project-1cyy.vercel.app/monostats/${userID}`)
-    const saveData = await saveDataFetch.json()
-    console.log(saveData)
-
-    if (saveData != null){
-      setMonoData(saveData.monoData)
-    }
-  }
-
-   // Saves Mono data to database
-  const saveMonoData = async() =>{
-    const saveRespone = await fetch(`https://capstone-project-1cyy.vercel.app/save/${userID}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(monoData),
-    });
-    const saveData = await saveRespone.json()
-    console.log(saveData)
-  }
-
-  const handleMonoChange = () => {
-    
-    // Checks to see if Mono health is below 26
-    if(monoData.health <= 25){
-      setIsMonoSick(true)
-    } else {
-      setIsMonoSick(false)
-    }
-
-    // Checks to see if Mono happiness is below 26
-    if(monoData.happiness <= 25){
-      isMonoAngry = true
-    } else {
-      isMonoAngry = false
-    }
-
-    // Checks to see it hunger is below 26
-    if(monoData.happiness <= 25){
-      isMonoHungry = true
-    } else {
-      isMonoHungry = false
-    }
-
-    // Changes Mono animation based off its state
-    if(isMonoSick){
-       setMonoState(dinoSick)
-    } else if (isMonoAngry){
-       setMonoState(dinoAngry)
-    } else {
-      setMonoState(dinoIdle)
-    }
-  }
 
   // Runs on page startup
   useEffect(()=>{
-    console.log("called 1")
-    handleMonoChange()
+
+    // Gets existing Mono data if possible
+    const getSaveData = async() =>{
+      const saveDataFetch = await fetch(`https://capstone-project-1cyy.vercel.app/monostats/${userID}`)
+      const saveData = await saveDataFetch.json()
+      console.log(saveData)
+
+      if (saveData != null){
+        setMonoData(saveData.monoData)
+      }
+    }
+
+    // Checks to see if Mono stats are below a certain threshold when monoData is changed
+    const handleMonoChange = async() => {
+
+      if(monoData.health <= 25){
+        setIsMonoSick(true)
+      } else {
+        setIsMonoSick(false)
+      }
+
+      if(monoData.happiness <= 25){
+        setIsMonoAngry(true)
+      } else {
+        setIsMonoAngry(false)
+      }
+
+      if(monoData.hunger <= 25){
+        setIsMonoHungry(true)
+      } else {
+        setIsMonoHungry(false)
+      }
+    }
+
+
+    // Changes Mono idle animation based off its state
+    const handleMonoStateChange = async() =>{ 
+
+      if(isMonoSick){
+        return setMonoState(dinoSick)
+      } else if (isMonoAngry){
+        return setMonoState(dinoAngry)
+      } else if(isMonoHungry){
+        return setMonoState(dinoIdle)
+      } else {
+        return setMonoState(dinoIdle)
+      }
+    }
+
+    console.log("called Use Effect 1")
     getSaveData()
+    handleMonoChange()
+    handleMonoStateChange()
   },[])
   
   // Runs every time Mono's data is changed
   useEffect(()=>{
-    console.log("called 2")
-    handleMonoChange()
-    saveMonoData()
+
+    // Stops code from running on initialized to avoid confliction
+    if (!initialPageLoad){
+
+      // Checks to see if Mono stats are below a certain threshold when monoData is changed
+      const handleMonoChange = async() => {
+
+        if(monoData.health <= 25){
+          setIsMonoSick(true)
+        } else {
+          setIsMonoSick(false)
+        }
+
+        if(monoData.happiness <= 25){
+          setIsMonoAngry(true)
+        } else {
+          setIsMonoAngry(false)
+        }
+
+        if(monoData.hunger <= 25){
+          setIsMonoHungry(true)
+        } else {
+          setIsMonoHungry(false)
+        }
+      }
+
+      // Saves Mono data to database
+      const saveMonoData = async() =>{
+        const saveRespone = await fetch(`https://capstone-project-1cyy.vercel.app/save/${userID}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(monoData),
+        });
+      const saveData = await saveRespone.json()
+      console.log(saveData)
+    }
+
+
+
+      // Changes Mono idle animation based off its state
+      const handleMonoStateChange = async() =>{ 
+
+        if(isMonoSick){
+          return setMonoState(dinoSick)
+        } else if (isMonoAngry){
+          return setMonoState(dinoAngry)
+        } else if(isMonoHungry){
+          return setMonoState(dinoIdle)
+        } else {
+          return setMonoState(dinoIdle)
+        }
+      }
+
+      console.log("called Use Effect2")
+      handleMonoChange()
+      saveMonoData()
+      handleMonoStateChange()
+    } else {
+      // After page initialization, changes variable to allow the conditional statement to run the code
+      console.log("initial load")
+      setInitalPageLoad(false)
+    }
   },[monoData])
 
   const handleActivityClick = (e) =>{
@@ -128,17 +184,28 @@ const MainGame = () => {
         if (sec < 0) {
           clearInterval(timer);
           setIsActivityActive(false)
-          if (e == dinoEating){
-            setMonoData({...monoData, exp: + 10})
+
+          // Gives Mono exp and changes stats based off of activity if the corresponding data is less than 100
+          if (e == dinoEating && monoData.hunger < 100){
+            setMonoData({...monoData, exp: monoData.exp + 25, hunger: monoData.hunger + 25})
           }
+          if (e == dinoPill && monoData.health < 100){
+            setMonoData({...monoData, health: monoData.health + 30, exp: monoData.exp + 10})
+          }
+
+          if (e == dinoPlay && monoData.happiness < 100){
+            setMonoData({...monoData, happiness: monoData.happiness + 25, exp: monoData.exp + 15})
+          }
+          console.log(monoData)
+
+          // Checks for the state of Mono and displays corresponding animation
           if(isMonoSick){
-            setMonoState(dinoSick)
+            return setMonoState(dinoSick)
           } else if (isMonoAngry){
-            setMonoState(dinoAngry)
+            return setMonoState(dinoAngry)
           } else {
-            setMonoState(dinoIdle)
+            return setMonoState(dinoIdle)
           }
-          return
         }
       }, 1000);
     }
@@ -155,8 +222,6 @@ const MainGame = () => {
   //   handleClick("/gifs/Dino_Play.gif");
   //   playsfx();
   // };
-
-  console.log(monoData)
 
   // Re routes for game options 
   let nav = useNavigate()
