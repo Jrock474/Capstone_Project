@@ -15,21 +15,35 @@ const MainGame = () => {
 
   //Character Data Initialization
   const  [monoData, setMonoData] = useState({
-    health: 75,
+    health: 10,
     hunger: 75,
     cleanliness: 75,
-    happiness: 75
+    happiness: 75,
+    exp: 0
   })
 
+  let monoExp = monoData.exp
+
+  // Mono Idle States
+  const dinoIdle = "/gifs/Dino_Still.gif"
+  const dinoAngry = "/gifs/DinoAngry.gif"
+  const dinoSick = "/gifs/Dino_Sick.gif"
+
+  // Pet Animations based off buttons clicks
+  const dinoEating = "/gifs/Dino_Eating2.gif"
+  const dinoPill = "/gifs/Dino_Pill.gif"
+  const dinoWash = "/gifs/Dino_Wash.gif"
+  const dinoPlay = "/gifs/Dino_Play2.gif"
+
   // Determines the state of character based off of data
-  let isMonoSick = false
+  const [isMonoSick, setIsMonoSick] = useState(false)
   let isMonoAngry = false
+  let isMonoHungry = false
   let isPoopActive = false
   
   // Changes animation based off of selected activity
-  const [monoState, setMonoState] = useState("/gifs/Dino_Still.gif")
+  const [monoState, setMonoState] = useState(dinoIdle)
   const [isActivityActive, setIsActivityActive] = useState(false);
-  const [activityTimer, setActivityTimer] = useState(0)
 
   // Gets existing Mono data if possible
   const getSaveData = async() =>{
@@ -59,9 +73,9 @@ const MainGame = () => {
     
     // Checks to see if Mono health is below 26
     if(monoData.health <= 25){
-      isMonoSick = true
+      setIsMonoSick(true)
     } else {
-      isMonoSick = false
+      setIsMonoSick(false)
     }
 
     // Checks to see if Mono happiness is below 26
@@ -71,52 +85,62 @@ const MainGame = () => {
       isMonoAngry = false
     }
 
+    // Checks to see it hunger is below 26
+    if(monoData.happiness <= 25){
+      isMonoHungry = true
+    } else {
+      isMonoHungry = false
+    }
+
     // Changes Mono animation based off its state
     if(isMonoSick){
-       setMonoState("/gifs/Dino_Sick.gif")
+       setMonoState(dinoSick)
     } else if (isMonoAngry){
-       setMonoState("/gifs/DinoAngry.gif")
+       setMonoState(dinoAngry)
     } else {
-      setMonoState("/gifs/Dino_Still.gif")
+      setMonoState(dinoIdle)
     }
   }
 
   // Runs on page startup
   useEffect(()=>{
+    console.log("called 1")
+    handleMonoChange()
     getSaveData()
   },[])
   
   // Runs every time Mono's data is changed
   useEffect(()=>{
+    console.log("called 2")
     handleMonoChange()
     saveMonoData()
   },[monoData])
 
-
   const handleActivityClick = (e) =>{
     if (isActivityActive === false){
+      // Makes sure animations can't overlap
+      // When the timer ends, sets animation back to idle
       setIsActivityActive(true)
       setMonoState(e)
-      
-        var sec = 3;
-        var timer = setInterval(function(){
-          console.log(sec)
-          sec--;
-          if (sec < 0) {
-            clearInterval(timer);
-            setIsActivityActive(false)
-            if(isMonoSick){
-              setMonoState("/gifs/Dino_Sick.gif")
-            } else if (isMonoAngry){
-              setMonoState("/gifs/DinoAngry.gif")
-            } else {
-              setMonoState("/gifs/Dino_Still.gif")
-            }
-            return
+      var sec = 3;
+      var timer = setInterval(function(){
+        sec--;
+        if (sec < 0) {
+          clearInterval(timer);
+          setIsActivityActive(false)
+          if (e == dinoEating){
+            setMonoData({...monoData, exp: + 10})
           }
-        }, 1000);
-      
-    
+          if(isMonoSick){
+            setMonoState(dinoSick)
+          } else if (isMonoAngry){
+            setMonoState(dinoAngry)
+          } else {
+            setMonoState(dinoIdle)
+          }
+          return
+        }
+      }, 1000);
     }
   }
   //Adds animation and Eating sfx on burger click
@@ -172,6 +196,7 @@ const MainGame = () => {
 
 {/* GAME LOGIC BELOW */}
       <div className="GameBody">
+        <div>{monoExp}</div>
           <div className='game-options'>
           <h3 onClick={reRouteMainMenu}>Main Menu</h3>
           <h3 onClick={reRouteCredits}>Credits</h3>
@@ -181,16 +206,16 @@ const MainGame = () => {
           <img src={monoState} style= {{ height: 500 }}  />
         </div>
         <div className="MoodBox">
-          <img src={"/images/MoodAngry.png"} style= {{ height: 100 }} />
-            <img src={"/images/MoodDiscomfort.png"} style= {{ height: 100 }} />
-              <img src={"/images/MoodSick.png"} style= {{ height: 100 }} />
+          {isMonoAngry ? <img src={"/images/MoodAngry.png"} style= {{ height: 100 }} /> : null}
+            {isMonoHungry ? <img src={"/images/MoodDiscomfort.png"} style= {{ height: 100 }} /> : null}
+              {isMonoSick ? <img src={"/images/MoodSick.png"} style= {{ height: 100 }} /> : null}
               </div>
               <div className="ActivityBox">
                 {/* <img src={"/images/FightIcon.png"} style= {{ height: 100 }} /> */}
-                <img onClick={() =>{handleActivityClick("gifs/Dino_Eating2.gif")}}  src={"/images/FoodIcon.png"}  style={{ height: 100 }}  />
-                    <img onClick={() =>{handleActivityClick("/gifs/Dino_Pill.gif")}} src={"/images/MedicineIcon.png"} style= {{ height: 100 }} />
-                      <img src={"/images/BathIcon.png"} style= {{ height: 100 }} />
-                        <img onClick={() =>{ handleActivityClick("/gifs/Dino_Play2.gif")}} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
+                <img onClick={() =>{handleActivityClick(dinoEating)}}  src={"/images/FoodIcon.png"}  style={{ height: 100 }}  />
+                    <img onClick={() =>{handleActivityClick(dinoPill)}} src={"/images/MedicineIcon.png"} style= {{ height: 100 }} />
+                    <img onClick={() =>{handleActivityClick(dinoWash)}} src={"/images/BathIcon.png"} style= {{ height: 100 }} />
+                        <img onClick={() =>{ handleActivityClick(dinoPlay)}} src={"/images/PlayIcon.png"} style= {{ height: 100 }} />
                         </div>
                         {/* <Timer /> */}
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />
