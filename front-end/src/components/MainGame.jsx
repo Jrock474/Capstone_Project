@@ -88,13 +88,13 @@ const MainGame = () => {
     const handleMonoStateChange = async() =>{ 
 
       if(isMonoSick){
-        return setMonoState(dinoSick)
+        setMonoState(dinoSick)
       } else if (isMonoAngry){
-        return setMonoState(dinoAngry)
+        setMonoState(dinoAngry)
       } else if(isMonoHungry){
-        return setMonoState(dinoIdle)
+        setMonoState(dinoIdle)
       } else {
-        return setMonoState(dinoIdle)
+        setMonoState(dinoIdle)
       }
     }
 
@@ -151,13 +151,13 @@ const MainGame = () => {
       const handleMonoStateChange = async() =>{ 
 
         if(isMonoSick){
-          return setMonoState(dinoSick)
+          setMonoState(dinoSick)
         } else if (isMonoAngry){
-          return setMonoState(dinoAngry)
+          setMonoState(dinoAngry)
         } else if(isMonoHungry){
-          return setMonoState(dinoIdle)
+          setMonoState(dinoIdle)
         } else {
-          return setMonoState(dinoIdle)
+          setMonoState(dinoIdle)
         }
       }
 
@@ -200,11 +200,11 @@ const MainGame = () => {
 
           // Checks for the state of Mono and displays corresponding animation
           if(isMonoSick){
-            return setMonoState(dinoSick)
+            setMonoState(dinoSick)
           } else if (isMonoAngry){
-            return setMonoState(dinoAngry)
+            setMonoState(dinoAngry)
           } else {
-            return setMonoState(dinoIdle)
+            setMonoState(dinoIdle)
           }
         }
       }, 1000);
