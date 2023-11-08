@@ -285,7 +285,7 @@ const MainGame = () => {
                         {/* <Timer /> */}
                         <img src={isPoopActive ? "/images/Poop.png" : null} id="Poop" style= {{ height: 100 }} />
                         </div>
-                        <Music1/>                      
+                        <Music1/>                 
                       </div>
                       )
 }
