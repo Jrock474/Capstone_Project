@@ -16,9 +16,9 @@ const MainGame = () => {
   const weatherData = useContext(WeatherContext);
 
   //Character Data Initialization
-  const  [monoData, setMonoData] = useState({
-    health: 20,
-    hunger: 20,
+  const [monoData, setMonoData] = useState({
+    health: 75,
+    hunger: 75,
     cleanliness: 75,
     happiness: 75,
     exp: 0
@@ -57,8 +57,11 @@ const MainGame = () => {
       console.log(saveData)
 
       if (saveData != null){
-        setMonoData(saveData.monoData)
+        const storedData = saveData.monoData
+        setMonoData({...monoData, exp: storedData.exp, hunger: storedData.hunger, health: storedData.health, cleanliness: storedData.cleanliness, happiness: storedData.happiness})
+        monoData
       }
+      console.log(saveData.monoData)
     }
 
     // Checks to see if Mono stats are below a certain threshold when monoData is changed
@@ -133,17 +136,17 @@ const MainGame = () => {
       }
 
       // Saves Mono data to database
-      const saveMonoData = async() =>{
+      const saveMonoData = async() => {
         const saveRespone = await fetch(`https://capstone-project-1cyy.vercel.app/save/${userID}`, {
-          method: 'PUT',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(monoData),
         });
-      const saveData = await saveRespone.json()
-      console.log(saveData)
-    }
+        const saveData = await saveRespone.json();
+        console.log(saveData);
+      };
 
 
 
@@ -194,7 +197,7 @@ const MainGame = () => {
           }
 
           if (e == dinoPlay && monoData.happiness < 100){
-            setMonoData({...monoData, happiness: monoData.happiness + 25, exp: monoData.exp + 15})
+            setMonoData((previousData) =>({...previousData, happiness: previousData.happiness + 25, exp: previousData.exp + 15}))
           }
           console.log(monoData)
 

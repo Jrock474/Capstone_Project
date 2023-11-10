@@ -9,8 +9,8 @@ const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser')
 const session = require("express-session")
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.urlencoded({ extended: false }))
+
+
 app.use(bodyParser.json())
 app.use(session({
   secret: 'digitalCrafts',
@@ -182,11 +182,24 @@ app.get("/monostats", async (req, res)=>{
 })
 
 // Mono save data
-app.put("/save/:userID", async (req, res) =>{
-  const {monoData} = req.body
+app.post("/save/:userID", async (req, res) =>{
+  const {health, hunger, cleanliness, happiness, exp} = req.body
   const userID = req.params.userID
-  await MonoStats.update({monoData}, { where: { userID: userID } });
-  res.json("Save successful")
+  const exitingData = await MonoStats.findOne({
+    where: {
+      userID: userID,
+    },
+  });
+  console.log(exitingData)
+  if(exitingData){
+    const newData = await MonoStats.update({monoData: {health: health, hunger: hunger, cleanliness: cleanliness, happiness: happiness, exp: exp}}, { where: { userID: userID } });
+    res.json(newData)
+    return
+  } else {
+    const newData = await MonoStats.create({userID: userID, monoData: {health: health, hunger: hunger, cleanliness: cleanliness, happiness: happiness, exp: exp}});
+    res.json(newData)
+    return
+  }
 })
 
 // Account registration endpoint
