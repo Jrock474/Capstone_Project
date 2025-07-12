@@ -1,20 +1,20 @@
 {
   "development": {
-    "username": "neondb",
+    "username": "neondb_owner",
     "password": "npg_XB49doWKgMQy",
     "database": "neondb",
     "host": "ep-misty-feather-ad6vjgy4-pooler.c-2.us-east-1.aws.neon.tech",
     "dialect": "postgres"
   },
   "test": {
-    "username": "neondb",
+    "username": "neondb_owner",
     "password": "npg_XB49doWKgMQy",
     "database": "neondb",
     "host": "ep-misty-feather-ad6vjgy4-pooler.c-2.us-east-1.aws.neon.tech",
     "dialect": "postgres"
   },
   "production": {
-    "username": "neondb",
+    "username": "neondb_owner",
     "password": "npg_XB49doWKgMQy",
     "database": "neondb",
     "host": "ep-misty-feather-ad6vjgy4-pooler.c-2.us-east-1.aws.neon.tech",
