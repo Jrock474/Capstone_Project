@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "jzdsbatx",
-    "password": "b481sJPqbgJfnSdPqfNjlmGEEIEim7zw",
-    "database": "jzdsbatx",
-    "host": "batyr.db.elephantsql.com",
+    "username": "neondb",
+    "password": "npg_XB49doWKgMQy",
+    "database": "neondb",
+    "host": "ep-misty-feather-ad6vjgy4-pooler.c-2.us-east-1.aws.neon.tech",
     "dialect": "postgres"
   },
   "test": {
-    "username": "jzdsbatx",
-    "password": "b481sJPqbgJfnSdPqfNjlmGEEIEim7zw",
-    "database": "jzdsbatx",
-    "host": "batyr.db.elephantsql.com",
+    "username": "neondb",
+    "password": "npg_XB49doWKgMQy",
+    "database": "neondb",
+    "host": "ep-misty-feather-ad6vjgy4-pooler.c-2.us-east-1.aws.neon.tech",
     "dialect": "postgres"
   },
   "production": {
-    "username": "jzdsbatx",
-    "password": "b481sJPqbgJfnSdPqfNjlmGEEIEim7zw",
-    "database": "jzdsbatx",
-    "host": "batyr.db.elephantsql.com",
+    "username": "neondb",
+    "password": "npg_XB49doWKgMQy",
+    "database": "neondb",
+    "host": "ep-misty-feather-ad6vjgy4-pooler.c-2.us-east-1.aws.neon.tech",
     "dialect": "postgres"
   }
 }
